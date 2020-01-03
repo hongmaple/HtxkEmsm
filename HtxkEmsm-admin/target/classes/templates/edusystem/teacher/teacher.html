@@ -20,16 +20,23 @@
                             </li>
                             <li>
                                 <p>学历：</p>
-                                <input type="text" name="education"/>
+                                <select name="education" th:with="type=${@dict.getType('Education')}">
+                                    <option value="">所有</option>
+                                    <option th:each="dict : ${type}" th:text="${dict.dictLabel}" th:value="${dict.dictValue}"></option>
+                                </select>
                             </li>
                             <li>
                                 <p>职称：</p>
-                                <input type="text" name="academicTitle"/>
+                                <select name="academicTitle" th:with="type=${@dict.getType('teacher_academic_title')}">
+                                    <option value="">所有</option>
+                                    <option th:each="dict : ${type}" th:text="${dict.dictLabel}" th:value="${dict.dictValue}"></option>
+                                </select>
                             </li>
                             <li>
                                 <p>状态：</p>
-                                <select name="status">
+                                <select name="status" th:with="type=${@dict.getType('teacher_status')}">
                                     <option value="">所有</option>
+                                    <option th:each="dict : ${type}" th:text="${dict.dictLabel}" th:value="${dict.dictValue}"></option>
                                 </select>
                             </li>
                             <li>
@@ -64,6 +71,9 @@
     <script th:inline="javascript">
         var editFlag = [[${@permission.hasPermi('edusystem:teacher:edit')}]];
         var removeFlag = [[${@permission.hasPermi('edusystem:teacher:remove')}]];
+        var educationDatas = [[${@dict.getType('Education')}]];
+        var academicTitleDatas = [[${@dict.getType('teacher_academic_title')}]];
+        var statusDatas = [[${@dict.getType('teacher_status')}]];
         var prefix = ctx + "edusystem/teacher";
 
         $(function() {
@@ -92,15 +102,24 @@
                 },
                 {
                     field : 'education', 
-                    title : '学历'
+                    title : '学历',
+                    formatter: function(value, row, index) {
+                       return $.table.selectDictLabel(educationDatas, value);
+                    }
                 },
                 {
                     field : 'academicTitle', 
-                    title : '职称'
+                    title : '职称',
+                    formatter: function(value, row, index) {
+                       return $.table.selectDictLabel(academicTitleDatas, value);
+                    }
                 },
                 {
                     field : 'status', 
-                    title : '状态'
+                    title : '状态',
+                    formatter: function(value, row, index) {
+                       return $.table.selectDictLabel(statusDatas, value);
+                    }
                 },
                 {
                     title: '操作',

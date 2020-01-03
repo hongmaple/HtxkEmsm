@@ -28,13 +28,19 @@
                             </li>
                             <li>
                                 <p>状态：</p>
-                                <select name="status">
+                                <select name="status" th:with="type=${@dict.getType('student_status')}">
                                     <option value="">所有</option>
+                                    <option th:each="dict : ${type}" th:text="${dict.dictLabel}"
+                                            th:value="${dict.dictValue}"></option>
                                 </select>
                             </li>
                             <li>
                                 <p>所学专业id：</p>
-                                <input type="text" name="studentMajorstudiedid"/>
+                                <select name="studentMajorstudiedid" th:with="type=${@dict.getType('')}">
+                                    <option value="">所有</option>
+                                    <option th:each="dict : ${type}" th:text="${dict.dictLabel}"
+                                            th:value="${dict.dictValue}"></option>
+                                </select>
                             </li>
                             <li>
                                 <a class="btn btn-primary btn-rounded btn-sm" onclick="$.table.search()"><i class="fa fa-search"></i>&nbsp;搜索</a>
@@ -68,6 +74,7 @@
     <script th:inline="javascript">
         var editFlag = [[${@permission.hasPermi('edusystem:student:edit')}]];
         var removeFlag = [[${@permission.hasPermi('edusystem:student:remove')}]];
+        var statusDatas = [[${@dict.getType('student_status')}]];
         var prefix = ctx + "edusystem/student";
 
         $(function() {
@@ -103,8 +110,11 @@
                     title : '所属班级'
                 },
                 {
-                    field : 'status', 
-                    title : '状态'
+                    field : 'status',
+                    title: '状态',
+                    formatter: function (value, row, index) {
+                        return $.table.selectDictLabel(statusDatas, value);
+                    }
                 },
                 {
                     field : 'studentMajorstudiedid', 

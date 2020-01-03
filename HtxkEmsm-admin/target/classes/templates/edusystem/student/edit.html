@@ -10,7 +10,7 @@
             <div class="form-group">    
                 <label class="col-sm-3 control-label">学号：</label>
                 <div class="col-sm-8">
-                    <input name="studentNo" th:field="*{studentNo}" class="form-control" type="text">
+                    <input name="studentNo" th:field="*{studentNo}" class="form-control" type="text" required>
                 </div>
             </div>
             <div class="form-group">    
@@ -34,17 +34,18 @@
             <div class="form-group">    
                 <label class="col-sm-3 control-label">状态：</label>
                 <div class="col-sm-8">
-                    <div class="radio-box">
-                        <input type="radio" name="status" value="">
-                        <label th:for="status" th:text="未知"></label>
-                    </div>
-                    <span class="help-block m-b-none"><i class="fa fa-info-circle"></i> 代码生成请选择字典属性</span>
+                    <select name="status" class="form-control m-b" th:with="type=${@dict.getType('student_status')}" required>
+                        <option th:each="dict : ${type}" th:text="${dict.dictLabel}" th:value="${dict.dictValue}" th:field="*{status}"></option>
+                    </select>
                 </div>
             </div>
             <div class="form-group">    
                 <label class="col-sm-3 control-label">所学专业id：</label>
                 <div class="col-sm-8">
-                    <input name="studentMajorstudiedid" th:field="*{studentMajorstudiedid}" class="form-control" type="text" required>
+                    <select name="studentMajorstudiedid" class="form-control m-b" required>
+                        <option value="">所有</option>
+                    </select>
+                    <span class="help-block m-b-none"><i class="fa fa-info-circle"></i> 代码生成请选择字典属性</span>
                 </div>
             </div>
         </form>

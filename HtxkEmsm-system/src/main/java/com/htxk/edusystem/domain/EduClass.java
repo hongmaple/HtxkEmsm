@@ -1,0 +1,101 @@
+package com.htxk.edusystem.domain;
+
+import com.ruoyi.common.annotation.Excel;
+import com.ruoyi.common.core.domain.BaseEntity;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
+
+import java.util.Date;
+
+/**
+ * 班级信息对象 edu_class
+ *
+ * @author maple
+ * @date 2020-01-03
+ */
+public class EduClass extends BaseEntity {
+    private static final long serialVersionUID = 1L;
+
+    /**
+     * ID
+     */
+    private Long classId;
+
+    /**
+     * 班级名
+     */
+    @Excel(name = "班级名")
+    private String className;
+
+    /**
+     * 开班时间
+     */
+    @Excel(name = "开班时间", width = 30, dateFormat = "yyyy-MM-dd")
+    private Date classDate;
+
+    /**
+     * 删除标志（0代表存在 2代表删除）
+     */
+    private String delFlag;
+
+    /**
+     * 班级专业
+     */
+    @Excel(name = "班级专业")
+    private Long classMajor;
+
+    public Long getClassId() {
+        return classId;
+    }
+
+    public void setClassId(Long classId) {
+        this.classId = classId;
+    }
+
+    public String getClassName() {
+        return className;
+    }
+
+    public void setClassName(String className) {
+        this.className = className;
+    }
+
+    public Date getClassDate() {
+        return classDate;
+    }
+
+    public void setClassDate(Date classDate) {
+        this.classDate = classDate;
+    }
+
+    public String getDelFlag() {
+        return delFlag;
+    }
+
+    public void setDelFlag(String delFlag) {
+        this.delFlag = delFlag;
+    }
+
+    public Long getClassMajor() {
+        return classMajor;
+    }
+
+    public void setClassMajor(Long classMajor) {
+        this.classMajor = classMajor;
+    }
+
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this, ToStringStyle.MULTI_LINE_STYLE)
+                .append("classId", getClassId())
+                .append("className", getClassName())
+                .append("createTime", getCreateTime())
+                .append("updateTime", getUpdateTime())
+                .append("classDate", getClassDate())
+                .append("updateBy", getUpdateBy())
+                .append("createBy", getCreateBy())
+                .append("delFlag", getDelFlag())
+                .append("classMajor", getClassMajor())
+                .toString();
+    }
+}
