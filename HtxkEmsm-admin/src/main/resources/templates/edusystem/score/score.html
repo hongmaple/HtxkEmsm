@@ -11,7 +11,7 @@
                 <div class="select-list">
                     <ul>
                         <li>
-                            <p>学生ID：</p>
+                            <p>学生姓名：</p>
                             <select name="scoreStudentid" th:with="type=${@dict.getType('')}">
                                 <option value="">所有</option>
                                 <option th:each="dict : ${type}" th:text="${dict.dictLabel}"
@@ -19,7 +19,7 @@
                             </select>
                         </li>
                         <li>
-                            <p>班级课程ID：</p>
+                            <p>课程名：</p>
                             <select name="classCourseCourseId" th:with="type=${@dict.getType('')}">
                                 <option value="">所有</option>
                                 <option th:each="dict : ${type}" th:text="${dict.dictLabel}"
@@ -33,18 +33,10 @@
                         <li class="select-time">
                             <p>创建时间：</p>
                             <input type="text" class="time-input" id="startTime" placeholder="开始时间"
-                                   name="params[beginCreateDate]"/>
+                                   name="params[beginCreateTime]"/>
                             <span>-</span>
                             <input type="text" class="time-input" id="endTime" placeholder="结束时间"
-                                   name="params[endCreateDate]"/>
-                        </li>
-                        <li class="select-time">
-                            <p>修改时间：</p>
-                            <input type="text" class="time-input" id="startTime" placeholder="开始时间"
-                                   name="params[beginModifyDate]"/>
-                            <span>-</span>
-                            <input type="text" class="time-input" id="endTime" placeholder="结束时间"
-                                   name="params[endModifyDate]"/>
+                                   name="params[endCreateTime]"/>
                         </li>
                         <li>
                             <a class="btn btn-primary btn-rounded btn-sm" onclick="$.table.search()"><i
@@ -102,23 +94,31 @@
                 },
                 {
                     field: 'scoreStudentid',
-                    title: '学生ID'
+                    title: '学生姓名'
                 },
                 {
                     field: 'classCourseCourseId',
-                    title: '班级课程ID'
+                    title: '课程名'
                 },
                 {
                     field: 'score',
                     title: '分数'
                 },
                 {
-                    field: 'createDate',
+                    field: 'createBy',
+                    title: '创建者'
+                },
+                {
+                    field: 'createTime',
                     title: '创建时间'
                 },
                 {
-                    field: 'modifyDate',
-                    title: '修改时间'
+                    field: 'updataBy',
+                    title: '更新者'
+                },
+                {
+                    field: 'updataTime',
+                    title: '更新时间'
                 },
                 {
                     field: 'describe',

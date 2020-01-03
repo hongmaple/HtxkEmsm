@@ -24,7 +24,11 @@
                             </li>
                             <li>
                                 <p>所属班级：</p>
-                                <input type="text" name="studentClass"/>
+                                <select name="studentClass" th:with="type=${@dict.getType('')}">
+                                    <option value="">所有</option>
+                                    <option th:each="dict : ${type}" th:text="${dict.dictLabel}"
+                                            th:value="${dict.dictValue}"></option>
+                                </select>
                             </li>
                             <li>
                                 <p>状态：</p>
@@ -35,7 +39,7 @@
                                 </select>
                             </li>
                             <li>
-                                <p>所学专业id：</p>
+                                <p>所学专业：</p>
                                 <select name="studentMajorstudiedid" th:with="type=${@dict.getType('')}">
                                     <option value="">所有</option>
                                     <option th:each="dict : ${type}" th:text="${dict.dictLabel}"
@@ -110,15 +114,15 @@
                     title : '所属班级'
                 },
                 {
-                    field : 'status',
+                    field: 'status',
                     title: '状态',
                     formatter: function (value, row, index) {
                         return $.table.selectDictLabel(statusDatas, value);
                     }
                 },
                 {
-                    field : 'studentMajorstudiedid', 
-                    title : '所学专业id'
+                    field : 'studentMajorstudiedid',
+                    title: '所学专业'
                 },
                 {
                     title: '操作',

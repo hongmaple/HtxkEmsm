@@ -9,7 +9,7 @@ import java.util.Date;
 
 /**
  * 课程对象 edu_course
- *
+ * 
  * @author maple
  * @date 2020-01-03
  */
@@ -21,80 +21,84 @@ public class EduCourse extends BaseEntity {
      */
     private Long courseId;
 
-    /**
-     * 课程名
-     */
+    /** 课程名 */
     @Excel(name = "课程名")
     private String courseName;
 
-    /**
-     * 更新者
-     */
+    /** 更新者 */
     @Excel(name = "更新者")
     private String updataBy;
 
-    /**
-     * 更新时间
-     */
+    /** 更新时间 */
     @Excel(name = "更新时间", width = 30, dateFormat = "yyyy-MM-dd")
     private Date updataTime;
 
     /**
-     * 课程类型id
+     * 课程类型ID
      */
-    @Excel(name = "课程类型id")
+    @Excel(name = "课程类型ID")
     private Long courseTypeid;
 
-    /**
-     * 删除标志（0代表存在 2代表删除）
-     */
+    /** 删除标志（0代表存在 2代表删除） */
     private String delFlag;
 
-    public Long getCourseId() {
+    public Long getCourseId()
+    {
         return courseId;
     }
 
-    public void setCourseId(Long courseId) {
+    public void setCourseId(Long courseId)
+    {
         this.courseId = courseId;
     }
 
-    public String getCourseName() {
+    public String getCourseName()
+    {
         return courseName;
     }
 
-    public void setCourseName(String courseName) {
+    public void setCourseName(String courseName)
+    {
         this.courseName = courseName;
     }
 
-    public String getUpdataBy() {
+    public String getUpdataBy()
+    {
         return updataBy;
     }
 
-    public void setUpdataBy(String updataBy) {
+    public void setUpdataBy(String updataBy)
+    {
         this.updataBy = updataBy;
     }
 
-    public Date getUpdataTime() {
+    public Date getUpdataTime()
+    {
         return updataTime;
     }
 
-    public void setUpdataTime(Date updataTime) {
+    public void setUpdataTime(Date updataTime)
+    {
         this.updataTime = updataTime;
     }
 
-    public Long getCourseTypeid() {
+    public Long getCourseTypeid()
+    {
         return courseTypeid;
     }
 
-    public void setCourseTypeid(Long courseTypeid) {
+    public void setCourseTypeid(Long courseTypeid)
+    {
         this.courseTypeid = courseTypeid;
     }
 
-    public String getDelFlag() {
+    public String getDelFlag()
+    {
         return delFlag;
     }
 
-    public void setDelFlag(String delFlag) {
+    public void setDelFlag(String delFlag)
+    {
         this.delFlag = delFlag;
     }
 

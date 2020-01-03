@@ -6,14 +6,14 @@ import java.util.List;
 
 /**
  * 课程类型Mapper接口
- *
+ * 
  * @author maple
  * @date 2020-01-03
  */
 public interface EduCourseTypeMapper {
     /**
      * 查询课程类型
-     *
+     * 
      * @param courseTypeId 课程类型ID
      * @return 课程类型
      */
@@ -21,7 +21,7 @@ public interface EduCourseTypeMapper {
 
     /**
      * 查询课程类型列表
-     *
+     * 
      * @param eduCourseType 课程类型
      * @return 课程类型集合
      */
@@ -29,7 +29,7 @@ public interface EduCourseTypeMapper {
 
     /**
      * 新增课程类型
-     *
+     * 
      * @param eduCourseType 课程类型
      * @return 结果
      */
@@ -37,7 +37,7 @@ public interface EduCourseTypeMapper {
 
     /**
      * 修改课程类型
-     *
+     * 
      * @param eduCourseType 课程类型
      * @return 结果
      */
@@ -45,7 +45,7 @@ public interface EduCourseTypeMapper {
 
     /**
      * 删除课程类型
-     *
+     * 
      * @param courseTypeId 课程类型ID
      * @return 结果
      */
@@ -53,7 +53,7 @@ public interface EduCourseTypeMapper {
 
     /**
      * 批量删除课程类型
-     *
+     * 
      * @param courseTypeIds 需要删除的数据ID
      * @return 结果
      */

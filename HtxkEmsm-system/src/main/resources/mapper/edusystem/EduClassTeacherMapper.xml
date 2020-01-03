@@ -74,7 +74,7 @@
     </delete>
 
     <delete id="deleteEduClassTeacherByIds" parameterType="String">
-        delete from edu_class_teacher where class_teacher_id in
+        delete from edu_class_teacher where class_teacher_id in 
         <foreach item="classTeacherId" collection="array" open="(" separator="," close=")">
             #{classTeacherId}
         </foreach>

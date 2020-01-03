@@ -12,7 +12,7 @@ import java.util.List;
 
 /**
  * 教室Service业务层处理
- *
+ * 
  * @author maple
  * @date 2020-01-03
  */
@@ -23,7 +23,7 @@ public class EduClassroomServiceImpl implements IEduClassroomService {
 
     /**
      * 查询教室
-     *
+     * 
      * @param classroomId 教室ID
      * @return 教室
      */
@@ -34,7 +34,7 @@ public class EduClassroomServiceImpl implements IEduClassroomService {
 
     /**
      * 查询教室列表
-     *
+     * 
      * @param eduClassroom 教室
      * @return 教室
      */
@@ -45,7 +45,7 @@ public class EduClassroomServiceImpl implements IEduClassroomService {
 
     /**
      * 新增教室
-     *
+     * 
      * @param eduClassroom 教室
      * @return 结果
      */
@@ -57,7 +57,7 @@ public class EduClassroomServiceImpl implements IEduClassroomService {
 
     /**
      * 修改教室
-     *
+     * 
      * @param eduClassroom 教室
      * @return 结果
      */
@@ -69,7 +69,7 @@ public class EduClassroomServiceImpl implements IEduClassroomService {
 
     /**
      * 删除教室对象
-     *
+     * 
      * @param ids 需要删除的数据ID
      * @return 结果
      */
@@ -80,7 +80,7 @@ public class EduClassroomServiceImpl implements IEduClassroomService {
 
     /**
      * 删除教室信息
-     *
+     * 
      * @param classroomId 教室ID
      * @return 结果
      */

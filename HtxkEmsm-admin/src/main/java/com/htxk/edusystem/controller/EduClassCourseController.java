@@ -18,28 +18,28 @@ import java.util.List;
 
 /**
  * 班级课程Controller
- *
+ * 
  * @author maple
  * @date 2020-01-03
  */
 @Controller
-@RequestMapping("/edusystem/course")
+@RequestMapping("/edusystem/ClassCourse")
 public class EduClassCourseController extends BaseController {
-    private String prefix = "edusystem/course";
+    private String prefix = "edusystem/ClassCourse";
 
     @Autowired
     private IEduClassCourseService eduClassCourseService;
 
-    @RequiresPermissions("edusystem:course:view")
+    @RequiresPermissions("edusystem:ClassCourse:view")
     @GetMapping()
-    public String course() {
-        return prefix + "/course";
+    public String ClassCourse() {
+        return prefix + "/ClassCourse";
     }
 
     /**
      * 查询班级课程列表
      */
-    @RequiresPermissions("edusystem:course:list")
+    @RequiresPermissions("edusystem:ClassCourse:list")
     @PostMapping("/list")
     @ResponseBody
     public TableDataInfo list(EduClassCourse eduClassCourse) {
@@ -51,14 +51,14 @@ public class EduClassCourseController extends BaseController {
     /**
      * 导出班级课程列表
      */
-    @RequiresPermissions("edusystem:course:export")
+    @RequiresPermissions("edusystem:ClassCourse:export")
     @Log(title = "班级课程", businessType = BusinessType.EXPORT)
     @PostMapping("/export")
     @ResponseBody
     public AjaxResult export(EduClassCourse eduClassCourse) {
         List<EduClassCourse> list = eduClassCourseService.selectEduClassCourseList(eduClassCourse);
         ExcelUtil<EduClassCourse> util = new ExcelUtil<EduClassCourse>(EduClassCourse.class);
-        return util.exportExcel(list, "course");
+        return util.exportExcel(list, "ClassCourse");
     }
 
     /**
@@ -72,7 +72,7 @@ public class EduClassCourseController extends BaseController {
     /**
      * 新增保存班级课程
      */
-    @RequiresPermissions("edusystem:course:add")
+    @RequiresPermissions("edusystem:ClassCourse:add")
     @Log(title = "班级课程", businessType = BusinessType.INSERT)
     @PostMapping("/add")
     @ResponseBody
@@ -93,7 +93,7 @@ public class EduClassCourseController extends BaseController {
     /**
      * 修改保存班级课程
      */
-    @RequiresPermissions("edusystem:course:edit")
+    @RequiresPermissions("edusystem:ClassCourse:edit")
     @Log(title = "班级课程", businessType = BusinessType.UPDATE)
     @PostMapping("/edit")
     @ResponseBody
@@ -104,7 +104,7 @@ public class EduClassCourseController extends BaseController {
     /**
      * 删除班级课程
      */
-    @RequiresPermissions("edusystem:course:remove")
+    @RequiresPermissions("edusystem:ClassCourse:remove")
     @Log(title = "班级课程", businessType = BusinessType.DELETE)
     @PostMapping("/remove")
     @ResponseBody

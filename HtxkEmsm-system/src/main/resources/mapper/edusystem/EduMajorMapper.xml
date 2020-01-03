@@ -25,9 +25,6 @@
             <if test="majorStudiedname != null  and majorStudiedname != ''">and Major_studiedName like concat('%',
                 #{majorStudiedname}, '%')
             </if>
-            <if test="describe != null  and describe != ''">and describe = #{describe}</if>
-            <if test="updataBy != null  and updataBy != ''">and updata_by = #{updataBy}</if>
-            <if test="updataTime != null ">and updata_time = #{updataTime}</if>
         </where>
     </select>
 
@@ -80,7 +77,7 @@
     </delete>
 
     <delete id="deleteEduMajorByIds" parameterType="String">
-        delete from edu_major where Major_studiedId in
+        delete from edu_major where Major_studiedId in 
         <foreach item="majorStudiedid" collection="array" open="(" separator="," close=")">
             #{majorStudiedid}
         </foreach>

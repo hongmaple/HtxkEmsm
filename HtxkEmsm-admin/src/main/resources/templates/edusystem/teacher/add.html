@@ -15,35 +15,37 @@
             <div class="form-group">    
                 <label class="col-sm-3 control-label">用户id：</label>
                 <div class="col-sm-8">
-                    <input name="sysUserId" class="form-control" type="text" required>
+                    <select name="sysUserId" class="form-control m-b" required>
+                        <option value="">所有</option>
+                    </select>
+                    <span class="help-block m-b-none"><i class="fa fa-info-circle"></i> 代码生成请选择字典属性</span>
                 </div>
             </div>
             <div class="form-group">    
                 <label class="col-sm-3 control-label">学历：</label>
                 <div class="col-sm-8">
-                    <select name="education" class="form-control m-b" th:with="type=${@dict.getType('Education')}">
-                        <option th:each="dict : ${type}" th:text="${dict.dictLabel}"
-                                th:value="${dict.dictValue}"></option>
+                    <select name="education" class="form-control m-b">
+                        <option value="">所有</option>
                     </select>
+                    <span class="help-block m-b-none"><i class="fa fa-info-circle"></i> 代码生成请选择字典属性</span>
                 </div>
             </div>
             <div class="form-group">    
                 <label class="col-sm-3 control-label">职称：</label>
                 <div class="col-sm-8">
-                    <select name="academicTitle" class="form-control m-b"
-                            th:with="type=${@dict.getType('teacher_academic_title')}">
-                        <option th:each="dict : ${type}" th:text="${dict.dictLabel}"
-                                th:value="${dict.dictValue}"></option>
+                    <select name="academicTitle" class="form-control m-b">
+                        <option value="">所有</option>
                     </select>
+                    <span class="help-block m-b-none"><i class="fa fa-info-circle"></i> 代码生成请选择字典属性</span>
                 </div>
             </div>
             <div class="form-group">    
                 <label class="col-sm-3 control-label">状态：</label>
                 <div class="col-sm-8">
-                    <select name="status" class="form-control m-b" th:with="type=${@dict.getType('teacher_status')}">
-                        <option th:each="dict : ${type}" th:text="${dict.dictLabel}"
-                                th:value="${dict.dictValue}"></option>
+                    <select name="status" class="form-control m-b">
+                        <option value="">所有</option>
                     </select>
+                    <span class="help-block m-b-none"><i class="fa fa-info-circle"></i> 代码生成请选择字典属性</span>
                 </div>
             </div>
         </form>

@@ -7,17 +7,17 @@
     <resultMap type="EduClass" id="EduClassResult">
         <result property="classId" column="class_id"/>
         <result property="className" column="class_name"/>
-        <result property="createTime" column="create_time"/>
-        <result property="updateTime" column="update_time"/>
         <result property="classDate" column="class_Date"/>
-        <result property="updateBy" column="update_by"/>
         <result property="createBy" column="create_by"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateBy" column="update_by"/>
+        <result property="updateTime" column="update_time"/>
         <result property="delFlag" column="del_flag"/>
         <result property="classMajor" column="class_Major"/>
     </resultMap>
 
     <sql id="selectEduClassVo">
-        select class_id, class_name, create_time, update_time, class_Date, update_by, create_by, del_flag, class_Major from edu_class
+        select class_id, class_name, class_Date, create_by, create_time, update_by, update_time, del_flag, class_Major from edu_class
     </sql>
 
     <select id="selectEduClassList" parameterType="EduClass" resultMap="EduClassResult">
@@ -38,21 +38,21 @@
         insert into edu_class
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="className != null  and className != ''">class_name,</if>
-            <if test="createTime != null ">create_time,</if>
-            <if test="updateTime != null ">update_time,</if>
             <if test="classDate != null ">class_Date,</if>
-            <if test="updateBy != null  and updateBy != ''">update_by,</if>
             <if test="createBy != null  and createBy != ''">create_by,</if>
+            <if test="createTime != null ">create_time,</if>
+            <if test="updateBy != null  and updateBy != ''">update_by,</if>
+            <if test="updateTime != null ">update_time,</if>
             <if test="delFlag != null  and delFlag != ''">del_flag,</if>
             <if test="classMajor != null ">class_Major,</if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             <if test="className != null  and className != ''">#{className},</if>
-            <if test="createTime != null ">#{createTime},</if>
-            <if test="updateTime != null ">#{updateTime},</if>
             <if test="classDate != null ">#{classDate},</if>
-            <if test="updateBy != null  and updateBy != ''">#{updateBy},</if>
             <if test="createBy != null  and createBy != ''">#{createBy},</if>
+            <if test="createTime != null ">#{createTime},</if>
+            <if test="updateBy != null  and updateBy != ''">#{updateBy},</if>
+            <if test="updateTime != null ">#{updateTime},</if>
             <if test="delFlag != null  and delFlag != ''">#{delFlag},</if>
             <if test="classMajor != null ">#{classMajor},</if>
         </trim>
@@ -62,11 +62,11 @@
         update edu_class
         <trim prefix="SET" suffixOverrides=",">
             <if test="className != null  and className != ''">class_name = #{className},</if>
-            <if test="createTime != null ">create_time = #{createTime},</if>
-            <if test="updateTime != null ">update_time = #{updateTime},</if>
             <if test="classDate != null ">class_Date = #{classDate},</if>
-            <if test="updateBy != null  and updateBy != ''">update_by = #{updateBy},</if>
             <if test="createBy != null  and createBy != ''">create_by = #{createBy},</if>
+            <if test="createTime != null ">create_time = #{createTime},</if>
+            <if test="updateBy != null  and updateBy != ''">update_by = #{updateBy},</if>
+            <if test="updateTime != null ">update_time = #{updateTime},</if>
             <if test="delFlag != null  and delFlag != ''">del_flag = #{delFlag},</if>
             <if test="classMajor != null ">class_Major = #{classMajor},</if>
         </trim>
@@ -78,7 +78,7 @@
     </delete>
 
     <delete id="deleteEduClassByIds" parameterType="String">
-        delete from edu_class where class_id in
+        delete from edu_class where class_id in 
         <foreach item="classId" collection="array" open="(" separator="," close=")">
             #{classId}
         </foreach>

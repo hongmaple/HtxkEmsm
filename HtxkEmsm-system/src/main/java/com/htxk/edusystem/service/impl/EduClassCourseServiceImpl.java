@@ -12,7 +12,7 @@ import java.util.List;
 
 /**
  * 班级课程Service业务层处理
- *
+ * 
  * @author maple
  * @date 2020-01-03
  */
@@ -23,7 +23,7 @@ public class EduClassCourseServiceImpl implements IEduClassCourseService {
 
     /**
      * 查询班级课程
-     *
+     * 
      * @param classCourseId 班级课程ID
      * @return 班级课程
      */
@@ -34,7 +34,7 @@ public class EduClassCourseServiceImpl implements IEduClassCourseService {
 
     /**
      * 查询班级课程列表
-     *
+     * 
      * @param eduClassCourse 班级课程
      * @return 班级课程
      */
@@ -45,7 +45,7 @@ public class EduClassCourseServiceImpl implements IEduClassCourseService {
 
     /**
      * 新增班级课程
-     *
+     * 
      * @param eduClassCourse 班级课程
      * @return 结果
      */
@@ -57,7 +57,7 @@ public class EduClassCourseServiceImpl implements IEduClassCourseService {
 
     /**
      * 修改班级课程
-     *
+     * 
      * @param eduClassCourse 班级课程
      * @return 结果
      */
@@ -69,7 +69,7 @@ public class EduClassCourseServiceImpl implements IEduClassCourseService {
 
     /**
      * 删除班级课程对象
-     *
+     * 
      * @param ids 需要删除的数据ID
      * @return 结果
      */
@@ -80,7 +80,7 @@ public class EduClassCourseServiceImpl implements IEduClassCourseService {
 
     /**
      * 删除班级课程信息
-     *
+     * 
      * @param classCourseId 班级课程ID
      * @return 结果
      */

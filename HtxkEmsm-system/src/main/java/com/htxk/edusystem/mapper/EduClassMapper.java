@@ -6,14 +6,14 @@ import java.util.List;
 
 /**
  * 班级信息Mapper接口
- *
+ * 
  * @author maple
  * @date 2020-01-03
  */
 public interface EduClassMapper {
     /**
      * 查询班级信息
-     *
+     * 
      * @param classId 班级信息ID
      * @return 班级信息
      */
@@ -21,7 +21,7 @@ public interface EduClassMapper {
 
     /**
      * 查询班级信息列表
-     *
+     * 
      * @param eduClass 班级信息
      * @return 班级信息集合
      */
@@ -29,7 +29,7 @@ public interface EduClassMapper {
 
     /**
      * 新增班级信息
-     *
+     * 
      * @param eduClass 班级信息
      * @return 结果
      */
@@ -37,7 +37,7 @@ public interface EduClassMapper {
 
     /**
      * 修改班级信息
-     *
+     * 
      * @param eduClass 班级信息
      * @return 结果
      */
@@ -45,7 +45,7 @@ public interface EduClassMapper {
 
     /**
      * 删除班级信息
-     *
+     * 
      * @param classId 班级信息ID
      * @return 结果
      */
@@ -53,7 +53,7 @@ public interface EduClassMapper {
 
     /**
      * 批量删除班级信息
-     *
+     * 
      * @param classIds 需要删除的数据ID
      * @return 结果
      */

@@ -7,7 +7,7 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 
 /**
  * 课程类型对象 edu_course_type
- *
+ * 
  * @author maple
  * @date 2020-01-03
  */
@@ -19,38 +19,40 @@ public class EduCourseType extends BaseEntity {
      */
     private Long courseTypeId;
 
-    /**
-     * 课程类型名
-     */
+    /** 课程类型名 */
     @Excel(name = "课程类型名")
     private String courseTypeName;
 
-    /**
-     * 删除标志（0代表存在 2代表删除）
-     */
+    /** 删除标志（0代表存在 2代表删除） */
     private String delFlag;
 
-    public Long getCourseTypeId() {
+    public Long getCourseTypeId()
+    {
         return courseTypeId;
     }
 
-    public void setCourseTypeId(Long courseTypeId) {
+    public void setCourseTypeId(Long courseTypeId)
+    {
         this.courseTypeId = courseTypeId;
     }
 
-    public String getCourseTypeName() {
+    public String getCourseTypeName()
+    {
         return courseTypeName;
     }
 
-    public void setCourseTypeName(String courseTypeName) {
+    public void setCourseTypeName(String courseTypeName)
+    {
         this.courseTypeName = courseTypeName;
     }
 
-    public String getDelFlag() {
+    public String getDelFlag()
+    {
         return delFlag;
     }
 
-    public void setDelFlag(String delFlag) {
+    public void setDelFlag(String delFlag)
+    {
         this.delFlag = delFlag;
     }
 

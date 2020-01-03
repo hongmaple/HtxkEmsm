@@ -9,7 +9,7 @@ import java.util.Date;
 
 /**
  * 专业对象 edu_major
- *
+ * 
  * @author maple
  * @date 2020-01-03
  */
@@ -21,48 +21,46 @@ public class EduMajor extends BaseEntity {
      */
     private Long majorStudiedid;
 
-    /**
-     * 专业名
-     */
+    /** 专业名 */
     @Excel(name = "专业名")
     private String majorStudiedname;
 
-    /**
-     * 专业描述
-     */
+    /** 专业描述 */
     @Excel(name = "专业描述")
     private String describe;
 
     /**
-     * null
+     * 更新者
      */
-    @Excel(name = "null")
+    @Excel(name = "更新者")
     private String updataBy;
 
     /**
-     * null
+     * 更新时间
      */
-    @Excel(name = "null", width = 30, dateFormat = "yyyy-MM-dd")
+    @Excel(name = "更新时间", width = 30, dateFormat = "yyyy-MM-dd")
     private Date updataTime;
 
-    /**
-     * 删除标志（0代表存在 2代表删除）
-     */
+    /** 删除标志（0代表存在 2代表删除） */
     private String delFlag;
 
-    public Long getMajorStudiedid() {
+    public Long getMajorStudiedid()
+    {
         return majorStudiedid;
     }
 
-    public void setMajorStudiedid(Long majorStudiedid) {
+    public void setMajorStudiedid(Long majorStudiedid)
+    {
         this.majorStudiedid = majorStudiedid;
     }
 
-    public String getMajorStudiedname() {
+    public String getMajorStudiedname()
+    {
         return majorStudiedname;
     }
 
-    public void setMajorStudiedname(String majorStudiedname) {
+    public void setMajorStudiedname(String majorStudiedname)
+    {
         this.majorStudiedname = majorStudiedname;
     }
 
@@ -70,7 +68,8 @@ public class EduMajor extends BaseEntity {
         return describe;
     }
 
-    public void setDescribe(String describe) {
+    public void setDescribe(String describe)
+    {
         this.describe = describe;
     }
 
@@ -78,7 +77,8 @@ public class EduMajor extends BaseEntity {
         return updataBy;
     }
 
-    public void setUpdataBy(String updataBy) {
+    public void setUpdataBy(String updataBy)
+    {
         this.updataBy = updataBy;
     }
 
@@ -86,7 +86,8 @@ public class EduMajor extends BaseEntity {
         return updataTime;
     }
 
-    public void setUpdataTime(Date updataTime) {
+    public void setUpdataTime(Date updataTime)
+    {
         this.updataTime = updataTime;
     }
 
@@ -94,7 +95,8 @@ public class EduMajor extends BaseEntity {
         return delFlag;
     }
 
-    public void setDelFlag(String delFlag) {
+    public void setDelFlag(String delFlag)
+    {
         this.delFlag = delFlag;
     }
 
@@ -109,6 +111,6 @@ public class EduMajor extends BaseEntity {
                 .append("updataBy", getUpdataBy())
                 .append("updataTime", getUpdataTime())
                 .append("delFlag", getDelFlag())
-                .toString();
+            .toString();
     }
 }

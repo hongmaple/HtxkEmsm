@@ -12,7 +12,7 @@ import java.util.List;
 
 /**
  * 专业Service业务层处理
- *
+ * 
  * @author maple
  * @date 2020-01-03
  */
@@ -23,7 +23,7 @@ public class EduMajorServiceImpl implements IEduMajorService {
 
     /**
      * 查询专业
-     *
+     * 
      * @param majorStudiedid 专业ID
      * @return 专业
      */
@@ -34,7 +34,7 @@ public class EduMajorServiceImpl implements IEduMajorService {
 
     /**
      * 查询专业列表
-     *
+     * 
      * @param eduMajor 专业
      * @return 专业
      */
@@ -45,7 +45,7 @@ public class EduMajorServiceImpl implements IEduMajorService {
 
     /**
      * 新增专业
-     *
+     * 
      * @param eduMajor 专业
      * @return 结果
      */
@@ -57,7 +57,7 @@ public class EduMajorServiceImpl implements IEduMajorService {
 
     /**
      * 修改专业
-     *
+     * 
      * @param eduMajor 专业
      * @return 结果
      */
@@ -68,7 +68,7 @@ public class EduMajorServiceImpl implements IEduMajorService {
 
     /**
      * 删除专业对象
-     *
+     * 
      * @param ids 需要删除的数据ID
      * @return 结果
      */
@@ -79,7 +79,7 @@ public class EduMajorServiceImpl implements IEduMajorService {
 
     /**
      * 删除专业信息
-     *
+     * 
      * @param majorStudiedid 专业ID
      * @return 结果
      */

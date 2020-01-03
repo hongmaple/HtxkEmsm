@@ -18,28 +18,28 @@ import java.util.List;
 
 /**
  * 班级教师Controller
- *
+ * 
  * @author maple
  * @date 2020-01-03
  */
 @Controller
-@RequestMapping("/edusystem/teacher")
+@RequestMapping("/edusystem/ClassTeacher")
 public class EduClassTeacherController extends BaseController {
-    private String prefix = "edusystem/teacher";
+    private String prefix = "edusystem/ClassTeacher";
 
     @Autowired
     private IEduClassTeacherService eduClassTeacherService;
 
-    @RequiresPermissions("edusystem:teacher:view")
+    @RequiresPermissions("edusystem:ClassTeacher:view")
     @GetMapping()
-    public String teacher() {
-        return prefix + "/teacher";
+    public String ClassTeacher() {
+        return prefix + "/ClassTeacher";
     }
 
     /**
      * 查询班级教师列表
      */
-    @RequiresPermissions("edusystem:teacher:list")
+    @RequiresPermissions("edusystem:ClassTeacher:list")
     @PostMapping("/list")
     @ResponseBody
     public TableDataInfo list(EduClassTeacher eduClassTeacher) {
@@ -51,14 +51,14 @@ public class EduClassTeacherController extends BaseController {
     /**
      * 导出班级教师列表
      */
-    @RequiresPermissions("edusystem:teacher:export")
+    @RequiresPermissions("edusystem:ClassTeacher:export")
     @Log(title = "班级教师", businessType = BusinessType.EXPORT)
     @PostMapping("/export")
     @ResponseBody
     public AjaxResult export(EduClassTeacher eduClassTeacher) {
         List<EduClassTeacher> list = eduClassTeacherService.selectEduClassTeacherList(eduClassTeacher);
         ExcelUtil<EduClassTeacher> util = new ExcelUtil<EduClassTeacher>(EduClassTeacher.class);
-        return util.exportExcel(list, "teacher");
+        return util.exportExcel(list, "ClassTeacher");
     }
 
     /**
@@ -72,7 +72,7 @@ public class EduClassTeacherController extends BaseController {
     /**
      * 新增保存班级教师
      */
-    @RequiresPermissions("edusystem:teacher:add")
+    @RequiresPermissions("edusystem:ClassTeacher:add")
     @Log(title = "班级教师", businessType = BusinessType.INSERT)
     @PostMapping("/add")
     @ResponseBody
@@ -93,7 +93,7 @@ public class EduClassTeacherController extends BaseController {
     /**
      * 修改保存班级教师
      */
-    @RequiresPermissions("edusystem:teacher:edit")
+    @RequiresPermissions("edusystem:ClassTeacher:edit")
     @Log(title = "班级教师", businessType = BusinessType.UPDATE)
     @PostMapping("/edit")
     @ResponseBody
@@ -104,7 +104,7 @@ public class EduClassTeacherController extends BaseController {
     /**
      * 删除班级教师
      */
-    @RequiresPermissions("edusystem:teacher:remove")
+    @RequiresPermissions("edusystem:ClassTeacher:remove")
     @Log(title = "班级教师", businessType = BusinessType.DELETE)
     @PostMapping("/remove")
     @ResponseBody

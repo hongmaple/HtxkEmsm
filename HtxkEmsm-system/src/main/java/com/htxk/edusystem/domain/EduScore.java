@@ -9,7 +9,7 @@ import java.util.Date;
 
 /**
  * 课程分数对象 edu_score
- *
+ * 
  * @author maple
  * @date 2020-01-03
  */
@@ -22,43 +22,37 @@ public class EduScore extends BaseEntity {
     private Long scoreId;
 
     /**
-     * 学生ID
+     * 学生姓名
      */
-    @Excel(name = "学生ID")
+    @Excel(name = "学生姓名")
     private Long scoreStudentid;
 
     /**
-     * 班级课程ID
+     * 课程名
      */
-    @Excel(name = "班级课程ID")
+    @Excel(name = "课程名")
     private Long classCourseCourseId;
 
-    /**
-     * 分数
-     */
+    /** 分数 */
     @Excel(name = "分数")
     private Double score;
 
     /**
-     * 创建时间
+     * 更新者
      */
-    @Excel(name = "创建时间", width = 30, dateFormat = "yyyy-MM-dd")
-    private Date createDate;
+    @Excel(name = "更新者")
+    private String updataBy;
 
     /**
-     * 修改时间
+     * 更新时间
      */
-    @Excel(name = "修改时间", width = 30, dateFormat = "yyyy-MM-dd")
-    private Date modifyDate;
+    @Excel(name = "更新时间", width = 30, dateFormat = "yyyy-MM-dd")
+    private Date updataTime;
 
-    /**
-     * 删除标志（0代表存在 2代表删除）
-     */
+    /** 删除标志（0代表存在 2代表删除） */
     private String delFlag;
 
-    /**
-     * 考试描述（比如期末测评 等等）
-     */
+    /** 考试描述（比如期末测评 等等） */
     @Excel(name = "考试描述", readConverterExp = "比=如期末测评,等=等")
     private String describe;
 
@@ -82,7 +76,8 @@ public class EduScore extends BaseEntity {
         return classCourseCourseId;
     }
 
-    public void setClassCourseCourseId(Long classCourseCourseId) {
+    public void setClassCourseCourseId(Long classCourseCourseId)
+    {
         this.classCourseCourseId = classCourseCourseId;
     }
 
@@ -94,20 +89,20 @@ public class EduScore extends BaseEntity {
         this.score = score;
     }
 
-    public Date getCreateDate() {
-        return createDate;
+    public String getUpdataBy() {
+        return updataBy;
     }
 
-    public void setCreateDate(Date createDate) {
-        this.createDate = createDate;
+    public void setUpdataBy(String updataBy) {
+        this.updataBy = updataBy;
     }
 
-    public Date getModifyDate() {
-        return modifyDate;
+    public Date getUpdataTime() {
+        return updataTime;
     }
 
-    public void setModifyDate(Date modifyDate) {
-        this.modifyDate = modifyDate;
+    public void setUpdataTime(Date updataTime) {
+        this.updataTime = updataTime;
     }
 
     public String getDelFlag() {
@@ -122,7 +117,8 @@ public class EduScore extends BaseEntity {
         return describe;
     }
 
-    public void setDescribe(String describe) {
+    public void setDescribe(String describe)
+    {
         this.describe = describe;
     }
 
@@ -133,10 +129,12 @@ public class EduScore extends BaseEntity {
                 .append("scoreStudentid", getScoreStudentid())
                 .append("classCourseCourseId", getClassCourseCourseId())
                 .append("score", getScore())
-                .append("createDate", getCreateDate())
-                .append("modifyDate", getModifyDate())
+                .append("createBy", getCreateBy())
+                .append("createTime", getCreateTime())
+                .append("updataBy", getUpdataBy())
+                .append("updataTime", getUpdataTime())
                 .append("delFlag", getDelFlag())
                 .append("describe", getDescribe())
-                .toString();
+            .toString();
     }
 }

@@ -12,7 +12,7 @@ import java.util.List;
 
 /**
  * 课程类型Service业务层处理
- *
+ * 
  * @author maple
  * @date 2020-01-03
  */
@@ -23,7 +23,7 @@ public class EduCourseTypeServiceImpl implements IEduCourseTypeService {
 
     /**
      * 查询课程类型
-     *
+     * 
      * @param courseTypeId 课程类型ID
      * @return 课程类型
      */
@@ -34,7 +34,7 @@ public class EduCourseTypeServiceImpl implements IEduCourseTypeService {
 
     /**
      * 查询课程类型列表
-     *
+     * 
      * @param eduCourseType 课程类型
      * @return 课程类型
      */
@@ -45,7 +45,7 @@ public class EduCourseTypeServiceImpl implements IEduCourseTypeService {
 
     /**
      * 新增课程类型
-     *
+     * 
      * @param eduCourseType 课程类型
      * @return 结果
      */
@@ -57,7 +57,7 @@ public class EduCourseTypeServiceImpl implements IEduCourseTypeService {
 
     /**
      * 修改课程类型
-     *
+     * 
      * @param eduCourseType 课程类型
      * @return 结果
      */
@@ -69,7 +69,7 @@ public class EduCourseTypeServiceImpl implements IEduCourseTypeService {
 
     /**
      * 删除课程类型对象
-     *
+     * 
      * @param ids 需要删除的数据ID
      * @return 结果
      */
@@ -80,7 +80,7 @@ public class EduCourseTypeServiceImpl implements IEduCourseTypeService {
 
     /**
      * 删除课程类型信息
-     *
+     * 
      * @param courseTypeId 课程类型ID
      * @return 结果
      */

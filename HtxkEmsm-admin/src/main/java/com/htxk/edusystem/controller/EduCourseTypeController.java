@@ -18,28 +18,28 @@ import java.util.List;
 
 /**
  * 课程类型Controller
- *
+ * 
  * @author maple
  * @date 2020-01-03
  */
 @Controller
-@RequestMapping("/edusystem/coursetype")
+@RequestMapping("/edusystem/CourseType")
 public class EduCourseTypeController extends BaseController {
-    private String prefix = "edusystem/coursetype";
+    private String prefix = "edusystem/CourseType";
 
     @Autowired
     private IEduCourseTypeService eduCourseTypeService;
 
-    @RequiresPermissions("edusystem:coursetype:view")
+    @RequiresPermissions("edusystem:CourseType:view")
     @GetMapping()
-    public String coursetype() {
-        return prefix + "/coursetype";
+    public String CourseType() {
+        return prefix + "/CourseType";
     }
 
     /**
      * 查询课程类型列表
      */
-    @RequiresPermissions("edusystem:coursetype:list")
+    @RequiresPermissions("edusystem:CourseType:list")
     @PostMapping("/list")
     @ResponseBody
     public TableDataInfo list(EduCourseType eduCourseType) {
@@ -51,14 +51,14 @@ public class EduCourseTypeController extends BaseController {
     /**
      * 导出课程类型列表
      */
-    @RequiresPermissions("edusystem:coursetype:export")
+    @RequiresPermissions("edusystem:CourseType:export")
     @Log(title = "课程类型", businessType = BusinessType.EXPORT)
     @PostMapping("/export")
     @ResponseBody
     public AjaxResult export(EduCourseType eduCourseType) {
         List<EduCourseType> list = eduCourseTypeService.selectEduCourseTypeList(eduCourseType);
         ExcelUtil<EduCourseType> util = new ExcelUtil<EduCourseType>(EduCourseType.class);
-        return util.exportExcel(list, "coursetype");
+        return util.exportExcel(list, "CourseType");
     }
 
     /**
@@ -72,7 +72,7 @@ public class EduCourseTypeController extends BaseController {
     /**
      * 新增保存课程类型
      */
-    @RequiresPermissions("edusystem:coursetype:add")
+    @RequiresPermissions("edusystem:CourseType:add")
     @Log(title = "课程类型", businessType = BusinessType.INSERT)
     @PostMapping("/add")
     @ResponseBody
@@ -93,7 +93,7 @@ public class EduCourseTypeController extends BaseController {
     /**
      * 修改保存课程类型
      */
-    @RequiresPermissions("edusystem:coursetype:edit")
+    @RequiresPermissions("edusystem:CourseType:edit")
     @Log(title = "课程类型", businessType = BusinessType.UPDATE)
     @PostMapping("/edit")
     @ResponseBody
@@ -104,7 +104,7 @@ public class EduCourseTypeController extends BaseController {
     /**
      * 删除课程类型
      */
-    @RequiresPermissions("edusystem:coursetype:remove")
+    @RequiresPermissions("edusystem:CourseType:remove")
     @Log(title = "课程类型", businessType = BusinessType.DELETE)
     @PostMapping("/remove")
     @ResponseBody

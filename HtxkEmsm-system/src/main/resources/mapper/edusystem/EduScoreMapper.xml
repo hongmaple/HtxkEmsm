@@ -9,14 +9,16 @@
         <result property="scoreStudentid" column="score_studentid"/>
         <result property="classCourseCourseId" column="class_course_course_id"/>
         <result property="score" column="score"/>
-        <result property="createDate" column="create_Date"/>
-        <result property="modifyDate" column="modify_Date"/>
+        <result property="createBy" column="create_by"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updataBy" column="updata_by"/>
+        <result property="updataTime" column="updata_time"/>
         <result property="delFlag" column="del_flag"/>
         <result property="describe" column="describe"/>
     </resultMap>
 
     <sql id="selectEduScoreVo">
-        select score_id, score_studentid, class_course_course_id, score, create_Date, modify_Date, del_flag, describe from edu_score
+        select score_id, score_studentid, class_course_course_id, score, create_by, create_time, updata_by, updata_time, del_flag, describe from edu_score
     </sql>
 
     <select id="selectEduScoreList" parameterType="EduScore" resultMap="EduScoreResult">
@@ -25,9 +27,7 @@
             <if test="scoreStudentid != null ">and score_studentid = #{scoreStudentid}</if>
             <if test="classCourseCourseId != null ">and class_course_course_id = #{classCourseCourseId}</if>
             <if test="score != null ">and score = #{score}</if>
-            <if test="createDate != null ">and create_Date = #{createDate}</if>
-            <if test="modifyDate != null ">and modify_Date = #{modifyDate}</if>
-            <if test="describe != null  and describe != ''">and describe = #{describe}</if>
+            <if test="createTime != null ">and create_time = #{createTime}</if>
         </where>
     </select>
 
@@ -42,8 +42,10 @@
             <if test="scoreStudentid != null ">score_studentid,</if>
             <if test="classCourseCourseId != null ">class_course_course_id,</if>
             <if test="score != null ">score,</if>
-            <if test="createDate != null ">create_Date,</if>
-            <if test="modifyDate != null ">modify_Date,</if>
+            <if test="createBy != null  and createBy != ''">create_by,</if>
+            <if test="createTime != null ">create_time,</if>
+            <if test="updataBy != null  and updataBy != ''">updata_by,</if>
+            <if test="updataTime != null ">updata_time,</if>
             <if test="delFlag != null  and delFlag != ''">del_flag,</if>
             <if test="describe != null  and describe != ''">describe,</if>
         </trim>
@@ -51,8 +53,10 @@
             <if test="scoreStudentid != null ">#{scoreStudentid},</if>
             <if test="classCourseCourseId != null ">#{classCourseCourseId},</if>
             <if test="score != null ">#{score},</if>
-            <if test="createDate != null ">#{createDate},</if>
-            <if test="modifyDate != null ">#{modifyDate},</if>
+            <if test="createBy != null  and createBy != ''">#{createBy},</if>
+            <if test="createTime != null ">#{createTime},</if>
+            <if test="updataBy != null  and updataBy != ''">#{updataBy},</if>
+            <if test="updataTime != null ">#{updataTime},</if>
             <if test="delFlag != null  and delFlag != ''">#{delFlag},</if>
             <if test="describe != null  and describe != ''">#{describe},</if>
         </trim>
@@ -64,8 +68,10 @@
             <if test="scoreStudentid != null ">score_studentid = #{scoreStudentid},</if>
             <if test="classCourseCourseId != null ">class_course_course_id = #{classCourseCourseId},</if>
             <if test="score != null ">score = #{score},</if>
-            <if test="createDate != null ">create_Date = #{createDate},</if>
-            <if test="modifyDate != null ">modify_Date = #{modifyDate},</if>
+            <if test="createBy != null  and createBy != ''">create_by = #{createBy},</if>
+            <if test="createTime != null ">create_time = #{createTime},</if>
+            <if test="updataBy != null  and updataBy != ''">updata_by = #{updataBy},</if>
+            <if test="updataTime != null ">updata_time = #{updataTime},</if>
             <if test="delFlag != null  and delFlag != ''">del_flag = #{delFlag},</if>
             <if test="describe != null  and describe != ''">describe = #{describe},</if>
         </trim>
@@ -77,7 +83,7 @@
     </delete>
 
     <delete id="deleteEduScoreByIds" parameterType="String">
-        delete from edu_score where score_id in
+        delete from edu_score where score_id in 
         <foreach item="scoreId" collection="array" open="(" separator="," close=")">
             #{scoreId}
         </foreach>

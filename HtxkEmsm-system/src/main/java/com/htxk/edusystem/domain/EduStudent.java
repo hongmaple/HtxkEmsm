@@ -1,9 +1,9 @@
 package com.htxk.edusystem.domain;
 
-import org.apache.commons.lang3.builder.ToStringBuilder;
-import org.apache.commons.lang3.builder.ToStringStyle;
 import com.ruoyi.common.annotation.Excel;
 import com.ruoyi.common.core.domain.BaseEntity;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
 
 /**
  * 学生信息对象 edu_student
@@ -38,8 +38,10 @@ public class EduStudent extends BaseEntity
     @Excel(name = "状态", readConverterExp = "0=.在籍1:毕业,2=:休学,3=:退学")
     private String status;
 
-    /** 所学专业id */
-    @Excel(name = "所学专业id")
+    /**
+     * 所学专业
+     */
+    @Excel(name = "所学专业")
     private Long studentMajorstudiedid;
 
     public void setStudentId(Long studentId) 

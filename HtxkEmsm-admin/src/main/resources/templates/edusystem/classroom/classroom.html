@@ -15,6 +15,10 @@
                             <input type="text" name="classroomAddress"/>
                         </li>
                         <li>
+                            <p>教室容量 单位人：</p>
+                            <input type="text" name="classroomCapacity"/>
+                        </li>
+                        <li>
                             <a class="btn btn-primary btn-rounded btn-sm" onclick="$.table.search()"><i
                                     class="fa fa-search"></i>&nbsp;搜索</a>
                             <a class="btn btn-warning btn-rounded btn-sm" onclick="$.form.reset()"><i
@@ -65,7 +69,7 @@
             },
                 {
                     field: 'classroomId',
-                    title: '教室id',
+                    title: '教室ID',
                     visible: false
                 },
                 {
@@ -76,6 +80,10 @@
                     field: 'classroomCapacity',
                     title: '教室容量 单位人',
                     visible: false
+                },
+                {
+                    field: 'createTime',
+                    title: '创建时间'
                 },
                 {
                     title: '操作',

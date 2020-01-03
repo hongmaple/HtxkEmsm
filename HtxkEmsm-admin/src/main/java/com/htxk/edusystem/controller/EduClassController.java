@@ -18,7 +18,7 @@ import java.util.List;
 
 /**
  * 班级信息Controller
- *
+ * 
  * @author maple
  * @date 2020-01-03
  */
@@ -32,7 +32,7 @@ public class EduClassController extends BaseController {
 
     @RequiresPermissions("edusystem:class:view")
     @GetMapping()
-    public String EduClass() {
+    public String educlass() {
         return prefix + "/class";
     }
 

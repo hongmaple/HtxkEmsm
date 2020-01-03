@@ -24,8 +24,7 @@
         <where>
             <if test="courseName != null  and courseName != ''">and course_name like concat('%', #{courseName}, '%')
             </if>
-            <if test="updataBy != null  and updataBy != ''">and updata_by = #{updataBy}</if>
-            <if test="updataTime != null ">and updata_time = #{updataTime}</if>
+            <if test="createTime != null ">and create_time = #{createTime}</if>
             <if test="courseTypeid != null ">and course_typeid = #{courseTypeid}</if>
         </where>
     </select>
@@ -76,7 +75,7 @@
     </delete>
 
     <delete id="deleteEduCourseByIds" parameterType="String">
-        delete from edu_course where course_id in
+        delete from edu_course where course_id in 
         <foreach item="courseId" collection="array" open="(" separator="," close=")">
             #{courseId}
         </foreach>

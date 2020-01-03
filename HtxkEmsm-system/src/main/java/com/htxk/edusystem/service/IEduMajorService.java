@@ -6,14 +6,14 @@ import java.util.List;
 
 /**
  * 专业Service接口
- *
+ * 
  * @author maple
  * @date 2020-01-03
  */
 public interface IEduMajorService {
     /**
      * 查询专业
-     *
+     * 
      * @param majorStudiedid 专业ID
      * @return 专业
      */
@@ -21,7 +21,7 @@ public interface IEduMajorService {
 
     /**
      * 查询专业列表
-     *
+     * 
      * @param eduMajor 专业
      * @return 专业集合
      */
@@ -29,7 +29,7 @@ public interface IEduMajorService {
 
     /**
      * 新增专业
-     *
+     * 
      * @param eduMajor 专业
      * @return 结果
      */
@@ -37,7 +37,7 @@ public interface IEduMajorService {
 
     /**
      * 修改专业
-     *
+     * 
      * @param eduMajor 专业
      * @return 结果
      */
@@ -45,7 +45,7 @@ public interface IEduMajorService {
 
     /**
      * 批量删除专业
-     *
+     * 
      * @param ids 需要删除的数据ID
      * @return 结果
      */
@@ -53,7 +53,7 @@ public interface IEduMajorService {
 
     /**
      * 删除专业信息
-     *
+     * 
      * @param majorStudiedid 专业ID
      * @return 结果
      */

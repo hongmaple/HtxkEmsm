@@ -7,7 +7,7 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 
 /**
  * 班级课程对象 edu_class_course
- *
+ * 
  * @author maple
  * @date 2020-01-03
  */
@@ -15,62 +15,66 @@ public class EduClassCourse extends BaseEntity {
     private static final long serialVersionUID = 1L;
 
     /**
-     * ID
+     * 班级课程ID
      */
     private Long classCourseId;
 
     /**
-     * 班级ID
+     * 班级名
      */
-    @Excel(name = "班级ID")
+    @Excel(name = "班级名")
     private Long classCourseClassId;
 
     /**
-     * 任课教师id
+     * 任课教师
      */
-    @Excel(name = "任课教师id")
+    @Excel(name = "任课教师")
     private Long classCourseTeacherid;
 
-    /**
-     * 课程ID
-     */
-    @Excel(name = "课程ID")
+    /** 课程名 */
+    @Excel(name = "课程名")
     private Long classCourseCourseId;
 
-    /**
-     * 删除标志（0代表存在 2代表删除）
-     */
+    /** 删除标志（0代表存在 2代表删除） */
     private String delFlag;
 
-    public Long getClassCourseId() {
+    public Long getClassCourseId()
+    {
         return classCourseId;
     }
 
-    public void setClassCourseId(Long classCourseId) {
+    public void setClassCourseId(Long classCourseId)
+    {
         this.classCourseId = classCourseId;
     }
 
-    public Long getClassCourseClassId() {
+    public Long getClassCourseClassId()
+    {
         return classCourseClassId;
     }
 
-    public void setClassCourseClassId(Long classCourseClassId) {
+    public void setClassCourseClassId(Long classCourseClassId)
+    {
         this.classCourseClassId = classCourseClassId;
     }
 
-    public Long getClassCourseTeacherid() {
+    public Long getClassCourseTeacherid()
+    {
         return classCourseTeacherid;
     }
 
-    public void setClassCourseTeacherid(Long classCourseTeacherid) {
+    public void setClassCourseTeacherid(Long classCourseTeacherid)
+    {
         this.classCourseTeacherid = classCourseTeacherid;
     }
 
-    public Long getClassCourseCourseId() {
+    public Long getClassCourseCourseId()
+    {
         return classCourseCourseId;
     }
 
-    public void setClassCourseCourseId(Long classCourseCourseId) {
+    public void setClassCourseCourseId(Long classCourseCourseId)
+    {
         this.classCourseCourseId = classCourseCourseId;
     }
 
@@ -78,7 +82,8 @@ public class EduClassCourse extends BaseEntity {
         return delFlag;
     }
 
-    public void setDelFlag(String delFlag) {
+    public void setDelFlag(String delFlag)
+    {
         this.delFlag = delFlag;
     }
 
@@ -94,6 +99,6 @@ public class EduClassCourse extends BaseEntity {
                 .append("updateBy", getUpdateBy())
                 .append("updateTime", getUpdateTime())
                 .append("delFlag", getDelFlag())
-                .toString();
+            .toString();
     }
 }

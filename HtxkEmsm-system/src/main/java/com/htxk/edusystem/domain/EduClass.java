@@ -9,7 +9,7 @@ import java.util.Date;
 
 /**
  * 班级信息对象 edu_class
- *
+ * 
  * @author maple
  * @date 2020-01-03
  */
@@ -17,38 +17,32 @@ public class EduClass extends BaseEntity {
     private static final long serialVersionUID = 1L;
 
     /**
-     * ID
+     * 班级ID
      */
     private Long classId;
 
-    /**
-     * 班级名
-     */
+    /** 班级名 */
     @Excel(name = "班级名")
     private String className;
 
-    /**
-     * 开班时间
-     */
+    /** 开班时间 */
     @Excel(name = "开班时间", width = 30, dateFormat = "yyyy-MM-dd")
     private Date classDate;
 
-    /**
-     * 删除标志（0代表存在 2代表删除）
-     */
+    /** 删除标志（0代表存在 2代表删除） */
     private String delFlag;
 
-    /**
-     * 班级专业
-     */
+    /** 班级专业 */
     @Excel(name = "班级专业")
     private Long classMajor;
 
-    public Long getClassId() {
+    public Long getClassId()
+    {
         return classId;
     }
 
-    public void setClassId(Long classId) {
+    public void setClassId(Long classId)
+    {
         this.classId = classId;
     }
 
@@ -60,15 +54,18 @@ public class EduClass extends BaseEntity {
         this.className = className;
     }
 
-    public Date getClassDate() {
+    public Date getClassDate()
+    {
         return classDate;
     }
 
-    public void setClassDate(Date classDate) {
+    public void setClassDate(Date classDate)
+    {
         this.classDate = classDate;
     }
 
-    public String getDelFlag() {
+    public String getDelFlag()
+    {
         return delFlag;
     }
 
@@ -89,11 +86,11 @@ public class EduClass extends BaseEntity {
         return new ToStringBuilder(this, ToStringStyle.MULTI_LINE_STYLE)
                 .append("classId", getClassId())
                 .append("className", getClassName())
-                .append("createTime", getCreateTime())
-                .append("updateTime", getUpdateTime())
                 .append("classDate", getClassDate())
-                .append("updateBy", getUpdateBy())
                 .append("createBy", getCreateBy())
+                .append("createTime", getCreateTime())
+                .append("updateBy", getUpdateBy())
+                .append("updateTime", getUpdateTime())
                 .append("delFlag", getDelFlag())
                 .append("classMajor", getClassMajor())
                 .toString();

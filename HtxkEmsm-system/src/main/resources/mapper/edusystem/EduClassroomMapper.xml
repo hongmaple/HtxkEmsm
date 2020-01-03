@@ -22,9 +22,10 @@
     <select id="selectEduClassroomList" parameterType="EduClassroom" resultMap="EduClassroomResult">
         <include refid="selectEduClassroomVo"/>
         <where>
-            <if test="classroomAddress != null  and classroomAddress != ''">and Classroom_address =
-                #{classroomAddress}
+            <if test="classroomAddress != null  and classroomAddress != ''">and Classroom_address like concat('%',
+                #{classroomAddress}, '%')
             </if>
+            <if test="classroomCapacity != null ">and Classroom_capacity &gt;= #{classroomCapacity}</if>
         </where>
     </select>
 
@@ -77,7 +78,7 @@
     </delete>
 
     <delete id="deleteEduClassroomByIds" parameterType="String">
-        delete from edu_classroom where Classroom_id in
+        delete from edu_classroom where Classroom_id in 
         <foreach item="classroomId" collection="array" open="(" separator="," close=")">
             #{classroomId}
         </foreach>

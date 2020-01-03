@@ -16,11 +16,15 @@
                             </li>
                             <li>
                                 <p>用户id：</p>
-                                <input type="text" name="sysUserId"/>
+                                <select name="sysUserId" th:with="type=${@dict.getType('')}">
+                                    <option value="">所有</option>
+                                    <option th:each="dict : ${type}" th:text="${dict.dictLabel}"
+                                            th:value="${dict.dictValue}"></option>
+                                </select>
                             </li>
                             <li>
                                 <p>学历：</p>
-                                <select name="education" th:with="type=${@dict.getType('Education')}">
+                                <select name="education" th:with="type=${@dict.getType('')}">
                                     <option value="">所有</option>
                                     <option th:each="dict : ${type}" th:text="${dict.dictLabel}"
                                             th:value="${dict.dictValue}"></option>
@@ -28,7 +32,7 @@
                             </li>
                             <li>
                                 <p>职称：</p>
-                                <select name="academicTitle" th:with="type=${@dict.getType('teacher_academic_title')}">
+                                <select name="academicTitle" th:with="type=${@dict.getType('')}">
                                     <option value="">所有</option>
                                     <option th:each="dict : ${type}" th:text="${dict.dictLabel}"
                                             th:value="${dict.dictValue}"></option>
@@ -36,7 +40,7 @@
                             </li>
                             <li>
                                 <p>状态：</p>
-                                <select name="status" th:with="type=${@dict.getType('teacher_status')}">
+                                <select name="status" th:with="type=${@dict.getType('')}">
                                     <option value="">所有</option>
                                     <option th:each="dict : ${type}" th:text="${dict.dictLabel}"
                                             th:value="${dict.dictValue}"></option>
@@ -74,9 +78,6 @@
     <script th:inline="javascript">
         var editFlag = [[${@permission.hasPermi('edusystem:teacher:edit')}]];
         var removeFlag = [[${@permission.hasPermi('edusystem:teacher:remove')}]];
-        var educationDatas = [[${@dict.getType('Education')}]];
-        var academicTitleDatas = [[${@dict.getType('teacher_academic_title')}]];
-        var statusDatas = [[${@dict.getType('teacher_status')}]];
         var prefix = ctx + "edusystem/teacher";
 
         $(function() {
@@ -104,25 +105,16 @@
                     title : '用户id'
                 },
                 {
-                    field : 'education',
-                    title: '学历',
-                    formatter: function (value, row, index) {
-                        return $.table.selectDictLabel(educationDatas, value);
-                    }
+                    field: 'education',
+                    title: '学历'
                 },
                 {
-                    field : 'academicTitle',
-                    title: '职称',
-                    formatter: function (value, row, index) {
-                        return $.table.selectDictLabel(academicTitleDatas, value);
-                    }
+                    field: 'academicTitle',
+                    title: '职称'
                 },
                 {
-                    field : 'status',
-                    title: '状态',
-                    formatter: function (value, row, index) {
-                        return $.table.selectDictLabel(statusDatas, value);
-                    }
+                    field: 'status',
+                    title: '状态'
                 },
                 {
                     title: '操作',

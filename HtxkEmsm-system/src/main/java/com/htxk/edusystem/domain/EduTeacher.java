@@ -1,9 +1,9 @@
 package com.htxk.edusystem.domain;
 
-import org.apache.commons.lang3.builder.ToStringBuilder;
-import org.apache.commons.lang3.builder.ToStringStyle;
 import com.ruoyi.common.annotation.Excel;
 import com.ruoyi.common.core.domain.BaseEntity;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
 
 /**
  * 教师信息对象 edu_teacher
@@ -30,8 +30,10 @@ public class EduTeacher extends BaseEntity
     @Excel(name = "学历", readConverterExp = "0=.高中1.大专.2.本科3.研究生")
     private String education;
 
-    /** 职称（一级教师，二级教师，三级教师） */
-    @Excel(name = "职称", readConverterExp = "一=级教师，二级教师，三级教师")
+    /**
+     * 职称（0.一级教师，1.二级教师，2.三级教师）
+     */
+    @Excel(name = "职称", readConverterExp = "0=.一级教师，1.二级教师，2.三级教师")
     private String academicTitle;
 
     /** 状态（0.在职 1.离职） */
