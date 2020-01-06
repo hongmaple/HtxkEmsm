@@ -4,9 +4,9 @@
     <th:block th:include="include :: header('新增教师信息')"/>
     <th:block th:include="include :: select2-css"/>
 </head>
-<body class="white-bg">
-<div class="wrapper wrapper-content animated fadeInRight ibox-content">
-    <form class="form-horizontal m" id="form-teacher-add">
+<body>
+<div class="main-content">
+    <form class="form-horizontal" id="form-teacher-add">
         <input name="deptId" type="hidden" id="treeId"/>
         <h4 class="form-header h4">基本信息</h4>
         <div class="row">
@@ -147,7 +147,7 @@
                 <div class="form-group">
                     <label class="col-xs-2 control-label">岗位：</label>
                     <div class="col-xs-4">
-                        <select id="sysUser.post" class="form-control select2-multiple" multiple>
+                        <select id="post" class="form-control select2-multiple" multiple>
                             <option th:each="post:${posts}" th:value="${post.postId}" th:text="${post.postName}"
                                     th:disabled="${post.status == '1'}"></option>
                         </select>
@@ -161,7 +161,7 @@
                     <label class="col-xs-2 control-label">角色：</label>
                     <div class="col-xs-10">
                         <label th:each="role:${roles}" class="check-box">
-                            <input name="sysUser.role" type="checkbox" th:value="${role.roleId}"
+                            <input name="role" type="checkbox" th:value="${role.roleId}"
                                    th:text="${role.roleName}"
                                    th:disabled="${role.status == '1'}">
                         </label>
@@ -193,31 +193,16 @@
 <th:block th:include="include :: footer"/>
 <th:block th:include="include :: select2-js"/>
 <script type="text/javascript">
-    var teacherprefix = ctx + "edusystem/teacher"
-    $("#form-teacher-add").validate({
-        focusCleanup: true
-    });
-
-    function submitHandler() {
-        if ($.validate.form()) {
-            var data = $('#form-teacher-add').serializeArray();
-            var status = $("input[id='sysUser.status']").is(':checked') == true ? 0 : 1;
-            var roleIds = $.form.selectCheckeds("sysUser.role");
-            var postIds = $.form.selectSelects("sysUser.post");
-            data.push({"name": "sysUser.status", "value": status});
-            data.push({"name": "sysUser.roleIds", "value": roleIds});
-            data.push({"name": "sysUser.postIds", "value": postIds});
-            $.operate.save(teacherprefix + "/add", data);
-        }
-    }
-</script>
-<script>
+    var teacherprefix = ctx + "edusystem/teacher";
     var prefix = ctx + "system/user";
+  /*  $("#form-teacher-add").validate({
+        focusCleanup: true
+    });*/
 
     $("#form-teacher-add").validate({
         onkeyup: false,
         rules: {
-            loginName: {
+            "sysUser.loginName": {
                 minlength: 2,
                 maxlength: 20,
                 remote: {
@@ -234,11 +219,11 @@
                     }
                 }
             },
-            password: {
+            "sysUser.password": {
                 minlength: 5,
                 maxlength: 20
             },
-            email: {
+            "sysUser.email": {
                 email: true,
                 remote: {
                     url: prefix + "/checkEmailUnique",
@@ -254,14 +239,14 @@
                     }
                 }
             },
-            phonenumber: {
+            "sysUser.phonenumber": {
                 isPhone: true,
                 remote: {
                     url: prefix + "/checkPhoneUnique",
                     type: "post",
                     dataType: "json",
                     data: {
-                        "sysUser.phonenumber": function () {
+                        "phonenumber": function () {
                             return $.common.trim($("#phonenumber").val());
                         }
                     },
@@ -272,18 +257,31 @@
             },
         },
         messages: {
-            "loginName": {
+            "sysUser.loginName": {
                 remote: "用户已经存在"
             },
-            "email": {
+            "sysUser.email": {
                 remote: "Email已经存在"
             },
-            "phonenumber": {
+            "sysUser.phonenumber": {
                 remote: "手机号码已经存在"
             }
         },
         focusCleanup: true
     });
+
+    function submitHandler() {
+        if ($.validate.form()) {
+            var data = $('#form-teacher-add').serializeArray();
+            var status = $("input[id='sysUser.status']").is(':checked') == true ? 0 : 1;
+            var roleIds = $.form.selectCheckeds("role");
+            var postIds = $.form.selectSelects("post");
+            data.push({"name": "sysUser.status", "value": status});
+            data.push({"name": "sysUser.roleIds", "value": roleIds});
+            data.push({"name": "sysUser.postIds", "value": postIds});
+            $.operate.save(teacherprefix + "/add", data);
+        }
+    }
 
     /*用户管理-新增-选择部门树*/
     function selectDeptTree() {
