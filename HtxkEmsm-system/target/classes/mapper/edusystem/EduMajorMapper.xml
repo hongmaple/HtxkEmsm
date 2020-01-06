@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.htxk.edusystem.mapper.EduMajorMapper">
+
+    <resultMap type="EduMajor" id="EduMajorResult">
+        <result property="majorStudiedid" column="Major_studiedId"/>
+        <result property="majorStudiedname" column="Major_studiedName"/>
+        <result property="describe" column="describe"/>
+        <result property="createBy" column="create_by"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updataBy" column="updata_by"/>
+        <result property="updataTime" column="updata_time"/>
+        <result property="delFlag" column="del_flag"/>
+    </resultMap>
+
+    <sql id="selectEduMajorVo">
+        select Major_studiedId, Major_studiedName, describe, create_by, create_time, updata_by, updata_time, del_flag from edu_major
+    </sql>
+
+    <select id="selectEduMajorList" parameterType="EduMajor" resultMap="EduMajorResult">
+        <include refid="selectEduMajorVo"/>
+        <where>
+            <if test="majorStudiedname != null  and majorStudiedname != ''">and Major_studiedName like concat('%',
+                #{majorStudiedname}, '%')
+            </if>
+        </where>
+    </select>
+
+    <select id="selectEduMajorById" parameterType="Long" resultMap="EduMajorResult">
+        <include refid="selectEduMajorVo"/>
+        where Major_studiedId = #{majorStudiedid}
+    </select>
+
+    <insert id="insertEduMajor" parameterType="EduMajor">
+        insert into edu_major
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="majorStudiedid != null ">Major_studiedId,</if>
+            <if test="majorStudiedname != null  and majorStudiedname != ''">Major_studiedName,</if>
+            <if test="describe != null  and describe != ''">describe,</if>
+            <if test="createBy != null  and createBy != ''">create_by,</if>
+            <if test="createTime != null ">create_time,</if>
+            <if test="updataBy != null  and updataBy != ''">updata_by,</if>
+            <if test="updataTime != null ">updata_time,</if>
+            <if test="delFlag != null  and delFlag != ''">del_flag,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="majorStudiedid != null ">#{majorStudiedid},</if>
+            <if test="majorStudiedname != null  and majorStudiedname != ''">#{majorStudiedname},</if>
+            <if test="describe != null  and describe != ''">#{describe},</if>
+            <if test="createBy != null  and createBy != ''">#{createBy},</if>
+            <if test="createTime != null ">#{createTime},</if>
+            <if test="updataBy != null  and updataBy != ''">#{updataBy},</if>
+            <if test="updataTime != null ">#{updataTime},</if>
+            <if test="delFlag != null  and delFlag != ''">#{delFlag},</if>
+        </trim>
+    </insert>
+
+    <update id="updateEduMajor" parameterType="EduMajor">
+        update edu_major
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="majorStudiedname != null  and majorStudiedname != ''">Major_studiedName = #{majorStudiedname},
+            </if>
+            <if test="describe != null  and describe != ''">describe = #{describe},</if>
+            <if test="createBy != null  and createBy != ''">create_by = #{createBy},</if>
+            <if test="createTime != null ">create_time = #{createTime},</if>
+            <if test="updataBy != null  and updataBy != ''">updata_by = #{updataBy},</if>
+            <if test="updataTime != null ">updata_time = #{updataTime},</if>
+            <if test="delFlag != null  and delFlag != ''">del_flag = #{delFlag},</if>
+        </trim>
+        where Major_studiedId = #{majorStudiedid}
+    </update>
+
+    <delete id="deleteEduMajorById" parameterType="Long">
+        delete from edu_major where Major_studiedId = #{majorStudiedid}
+    </delete>
+
+    <delete id="deleteEduMajorByIds" parameterType="String">
+        delete from edu_major where Major_studiedId in
+        <foreach item="majorStudiedid" collection="array" open="(" separator="," close=")">
+            #{majorStudiedid}
+        </foreach>
+    </delete>
+
+</mapper>
