@@ -1,4 +1,4 @@
-package import com.ruoyi.common.annotation.Excel;
+package import com.htxk.ruoyi.common.annotation.Excel;
 
 ${packageName}.domain;
 #if($table.crud)

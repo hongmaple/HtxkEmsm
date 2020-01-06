@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.ruoyi.system.mapper.SysUserOnlineMapper">
+<mapper namespace="com.htxk.ruoyi.system.mapper.SysUserOnlineMapper">
 
     <resultMap type="SysUserOnline" id="SysUserOnlineResult">
         <id property="sessionId" column="sessionId"/>

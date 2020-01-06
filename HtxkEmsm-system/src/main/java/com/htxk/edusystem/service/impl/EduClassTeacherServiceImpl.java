@@ -3,8 +3,8 @@ package com.htxk.edusystem.service.impl;
 import com.htxk.edusystem.domain.EduClassTeacher;
 import com.htxk.edusystem.mapper.EduClassTeacherMapper;
 import com.htxk.edusystem.service.IEduClassTeacherService;
-import com.ruoyi.common.core.text.Convert;
-import com.ruoyi.common.utils.DateUtils;
+import com.htxk.ruoyi.common.core.text.Convert;
+import com.htxk.ruoyi.common.utils.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

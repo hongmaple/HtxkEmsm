@@ -1,6 +1,6 @@
 package
 
-import com.ruoyi.common.core.domain.Ztree;
+import com.htxk.ruoyi.common.core.domain.Ztree;
 
 import java.util.List;
 

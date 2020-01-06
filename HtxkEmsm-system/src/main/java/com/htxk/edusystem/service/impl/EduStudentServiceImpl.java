@@ -3,7 +3,7 @@ package com.htxk.edusystem.service.impl;
 import com.htxk.edusystem.domain.EduStudent;
 import com.htxk.edusystem.mapper.EduStudentMapper;
 import com.htxk.edusystem.service.IEduStudentService;
-import com.ruoyi.common.core.text.Convert;
+import com.htxk.ruoyi.common.core.text.Convert;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
