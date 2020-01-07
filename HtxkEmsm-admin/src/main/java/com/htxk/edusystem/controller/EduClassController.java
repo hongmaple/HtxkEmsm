@@ -1,13 +1,18 @@
 package com.htxk.edusystem.controller;
 
 import com.htxk.edusystem.domain.EduClass;
+import com.htxk.edusystem.domain.EduMajor;
 import com.htxk.edusystem.service.IEduClassService;
+import com.htxk.edusystem.service.IEduMajorService;
 import com.htxk.ruoyi.common.annotation.Log;
 import com.htxk.ruoyi.common.core.controller.BaseController;
 import com.htxk.ruoyi.common.core.domain.AjaxResult;
 import com.htxk.ruoyi.common.core.page.TableDataInfo;
 import com.htxk.ruoyi.common.enums.BusinessType;
+import com.htxk.ruoyi.common.utils.DateUtils;
 import com.htxk.ruoyi.common.utils.poi.ExcelUtil;
+import com.htxk.ruoyi.framework.util.ShiroUtils;
+import com.mchange.lang.ShortUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -30,9 +35,13 @@ public class EduClassController extends BaseController {
     @Autowired
     private IEduClassService eduClassService;
 
+    @Autowired
+    private IEduMajorService eduMajorService;
+
     @RequiresPermissions("edusystem:class:view")
     @GetMapping()
-    public String educlass() {
+    public String educlass(ModelMap mmap) {
+        mmap.put("eduMajors",eduMajorService.selectEduMajorList(new EduMajor()));
         return prefix + "/class";
     }
 
@@ -65,7 +74,8 @@ public class EduClassController extends BaseController {
      * 新增班级信息
      */
     @GetMapping("/add")
-    public String add() {
+    public String add(ModelMap mmap) {
+        mmap.put("eduMajors",eduMajorService.selectEduMajorList(new EduMajor()));
         return prefix + "/add";
     }
 
@@ -77,6 +87,8 @@ public class EduClassController extends BaseController {
     @PostMapping("/add")
     @ResponseBody
     public AjaxResult addSave(EduClass eduClass) {
+        eduClass.setCreateBy(ShiroUtils.getLoginName());
+        eduClass.setCreateTime(DateUtils.getNowDate());
         return toAjax(eduClassService.insertEduClass(eduClass));
     }
 
@@ -87,6 +99,7 @@ public class EduClassController extends BaseController {
     public String edit(@PathVariable("classId") Long classId, ModelMap mmap) {
         EduClass eduClass = eduClassService.selectEduClassById(classId);
         mmap.put("eduClass", eduClass);
+        mmap.put("eduMajors",eduMajorService.selectEduMajorList(new EduMajor()));
         return prefix + "/edit";
     }
 
@@ -98,6 +111,8 @@ public class EduClassController extends BaseController {
     @PostMapping("/edit")
     @ResponseBody
     public AjaxResult editSave(EduClass eduClass) {
+        eduClass.setUpdateBy(ShiroUtils.getLoginName());
+        eduClass.setUpdateTime(DateUtils.getNowDate());
         return toAjax(eduClassService.updateEduClass(eduClass));
     }
 

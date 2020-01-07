@@ -3,6 +3,7 @@
 <head>
     <th:block th:include="include :: header('新增班级信息')"/>
     <th:block th:include="include :: datetimepicker-css"/>
+    <th:block th:include="include :: select2-css"/>
 </head>
 <body class="white-bg">
 <div class="wrapper wrapper-content animated fadeInRight ibox-content">
@@ -25,16 +26,16 @@
         <div class="form-group">
             <label class="col-sm-3 control-label">班级专业：</label>
             <div class="col-sm-8">
-                <select name="classMajor" class="form-control m-b" required>
-                    <option value="">所有</option>
+                <select name="classMajor" class="form-control select2-multiple" required>
+                    <option th:each="eduMajor:${eduMajors}" th:value="${eduMajor.majorStudiedid}" th:text="${eduMajor.majorStudiedname}"></option>
                 </select>
-                <span class="help-block m-b-none"><i class="fa fa-info-circle"></i> 代码生成请选择字典属性</span>
             </div>
         </div>
     </form>
 </div>
 <th:block th:include="include :: footer"/>
 <th:block th:include="include :: datetimepicker-js"/>
+<th:block th:include="include :: select2-js"/>
 <script type="text/javascript">
     var prefix = ctx + "edusystem/class"
     $("#form-class-add").validate({

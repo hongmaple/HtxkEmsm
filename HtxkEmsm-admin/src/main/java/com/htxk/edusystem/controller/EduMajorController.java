@@ -7,7 +7,9 @@ import com.htxk.ruoyi.common.core.controller.BaseController;
 import com.htxk.ruoyi.common.core.domain.AjaxResult;
 import com.htxk.ruoyi.common.core.page.TableDataInfo;
 import com.htxk.ruoyi.common.enums.BusinessType;
+import com.htxk.ruoyi.common.utils.DateUtils;
 import com.htxk.ruoyi.common.utils.poi.ExcelUtil;
+import com.htxk.ruoyi.framework.util.ShiroUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -77,6 +79,8 @@ public class EduMajorController extends BaseController {
     @PostMapping("/add")
     @ResponseBody
     public AjaxResult addSave(EduMajor eduMajor) {
+        eduMajor.setCreateBy(ShiroUtils.getLoginName());
+        eduMajor.setCreateTime(DateUtils.getNowDate());
         return toAjax(eduMajorService.insertEduMajor(eduMajor));
     }
 
@@ -98,6 +102,8 @@ public class EduMajorController extends BaseController {
     @PostMapping("/edit")
     @ResponseBody
     public AjaxResult editSave(EduMajor eduMajor) {
+        eduMajor.setUpdataBy(ShiroUtils.getLoginName());
+        eduMajor.setUpdataTime(DateUtils.getNowDate());
         return toAjax(eduMajorService.updateEduMajor(eduMajor));
     }
 
