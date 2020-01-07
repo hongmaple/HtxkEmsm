@@ -4,8 +4,10 @@ import com.htxk.edusystem.domain.EduStudent;
 import com.htxk.edusystem.mapper.EduStudentMapper;
 import com.htxk.edusystem.service.IEduStudentService;
 import com.htxk.ruoyi.common.core.text.Convert;
+import com.htxk.ruoyi.system.mapper.SysUserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -19,6 +21,9 @@ import java.util.List;
 public class EduStudentServiceImpl implements IEduStudentService {
     @Autowired
     private EduStudentMapper eduStudentMapper;
+
+    @Autowired
+    private SysUserMapper sysUserMapper;
 
     /**
      * 查询学生信息
@@ -49,7 +54,10 @@ public class EduStudentServiceImpl implements IEduStudentService {
      * @return 结果
      */
     @Override
+    @Transactional
     public int insertEduStudent(EduStudent eduStudent) {
+        sysUserMapper.insertUser(eduStudent.getSysUser());
+        eduStudent.setSysUserId(sysUserMapper.selectOidBySELECT_LAST_INSERT_ID());
         return eduStudentMapper.insertEduStudent(eduStudent);
     }
 

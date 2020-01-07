@@ -1,13 +1,20 @@
 package com.htxk.edusystem.controller;
 
 import com.htxk.edusystem.domain.EduStudent;
+import com.htxk.edusystem.service.IEduClassService;
 import com.htxk.edusystem.service.IEduStudentService;
 import com.htxk.ruoyi.common.annotation.Log;
+import com.htxk.ruoyi.common.constant.UserConstants;
 import com.htxk.ruoyi.common.core.controller.BaseController;
 import com.htxk.ruoyi.common.core.domain.AjaxResult;
 import com.htxk.ruoyi.common.core.page.TableDataInfo;
 import com.htxk.ruoyi.common.enums.BusinessType;
 import com.htxk.ruoyi.common.utils.poi.ExcelUtil;
+import com.htxk.ruoyi.framework.shiro.service.SysPasswordService;
+import com.htxk.ruoyi.framework.util.ShiroUtils;
+import com.htxk.ruoyi.system.domain.SysUser;
+import com.htxk.ruoyi.system.service.ISysRoleService;
+import com.htxk.ruoyi.system.service.ISysUserService;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -29,6 +36,18 @@ public class EduStudentController extends BaseController {
 
     @Autowired
     private IEduStudentService eduStudentService;
+
+    @Autowired
+    private ISysRoleService roleService;
+
+    @Autowired
+    private ISysUserService sysUserService;
+
+    @Autowired
+    private SysPasswordService passwordService;
+
+    @Autowired
+    private IEduClassService eduClassService;
 
     @RequiresPermissions("edusystem:student:view")
     @GetMapping()
@@ -57,7 +76,7 @@ public class EduStudentController extends BaseController {
     @ResponseBody
     public AjaxResult export(EduStudent eduStudent) {
         List<EduStudent> list = eduStudentService.selectEduStudentList(eduStudent);
-        ExcelUtil<EduStudent> util = new ExcelUtil<EduStudent>(EduStudent.class);
+        ExcelUtil<EduStudent> util = new ExcelUtil<>(EduStudent.class);
         return util.exportExcel(list, "student");
     }
 
@@ -65,7 +84,8 @@ public class EduStudentController extends BaseController {
      * 新增学生信息
      */
     @GetMapping("/add")
-    public String add() {
+    public String add(ModelMap mmap) {
+        mmap.put("roles", roleService.selectRoleAll());
         return prefix + "/add";
     }
 
@@ -77,6 +97,19 @@ public class EduStudentController extends BaseController {
     @PostMapping("/add")
     @ResponseBody
     public AjaxResult addSave(EduStudent eduStudent) {
+        SysUser user = eduStudent.getSysUser();
+        if (UserConstants.USER_NAME_NOT_UNIQUE.equals(sysUserService.checkLoginNameUnique(user.getLoginName()))) {
+            return error("新增用户'" + user.getLoginName() + "'失败，登录账号已存在");
+        } else if (UserConstants.USER_PHONE_NOT_UNIQUE.equals(sysUserService.checkPhoneUnique(user))) {
+            return error("新增用户'" + user.getLoginName() + "'失败，手机号码已存在");
+        } else if (UserConstants.USER_EMAIL_NOT_UNIQUE.equals(sysUserService.checkEmailUnique(user))) {
+            return error("新增用户'" + user.getLoginName() + "'失败，邮箱账号已存在");
+        }
+        user.setSalt(ShiroUtils.randomSalt());
+        user.setPassword(passwordService.encryptPassword(user.getLoginName(), user.getPassword(), user.getSalt()));
+        user.setCreateBy(ShiroUtils.getLoginName());
+        System.out.println(user);
+        eduStudent.setSysUser(user);
         return toAjax(eduStudentService.insertEduStudent(eduStudent));
     }
 

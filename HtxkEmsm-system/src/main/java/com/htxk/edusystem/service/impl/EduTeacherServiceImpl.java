@@ -4,8 +4,11 @@ import com.htxk.edusystem.domain.EduTeacher;
 import com.htxk.edusystem.mapper.EduTeacherMapper;
 import com.htxk.edusystem.service.IEduTeacherService;
 import com.htxk.ruoyi.common.core.text.Convert;
+import com.htxk.ruoyi.system.domain.SysUser;
+import com.htxk.ruoyi.system.mapper.SysUserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -19,6 +22,9 @@ import java.util.List;
 public class EduTeacherServiceImpl implements IEduTeacherService {
     @Autowired
     private EduTeacherMapper eduTeacherMapper;
+
+    @Autowired
+    private SysUserMapper sysUserMapper;
 
     /**
      * 查询教师信息
@@ -49,7 +55,10 @@ public class EduTeacherServiceImpl implements IEduTeacherService {
      * @return 结果
      */
     @Override
+    @Transactional
     public int insertEduTeacher(EduTeacher eduTeacher) {
+        sysUserMapper.insertUser(eduTeacher.getSysUser());
+        eduTeacher.setSysUserId(sysUserMapper.selectOidBySELECT_LAST_INSERT_ID());
         return eduTeacherMapper.insertEduTeacher(eduTeacher);
     }
 
@@ -61,6 +70,7 @@ public class EduTeacherServiceImpl implements IEduTeacherService {
      */
     @Override
     public int updateEduTeacher(EduTeacher eduTeacher) {
+        sysUserMapper.updateUser(eduTeacher.getSysUser());
         return eduTeacherMapper.updateEduTeacher(eduTeacher);
     }
 
@@ -71,7 +81,13 @@ public class EduTeacherServiceImpl implements IEduTeacherService {
      * @return 结果
      */
     @Override
+    @Transactional
     public int deleteEduTeacherByIds(String ids) {
+        int i=0;
+        for (String tid:Convert.toStrArray(ids)){
+            sysUserMapper.deleteUserById(selectEduTeacherById(Long.valueOf(tid)).getSysUserId());
+            i++;
+        }
         return eduTeacherMapper.deleteEduTeacherByIds(Convert.toStrArray(ids));
     }
 
