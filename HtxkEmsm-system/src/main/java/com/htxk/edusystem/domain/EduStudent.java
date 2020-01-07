@@ -2,6 +2,7 @@ package com.htxk.edusystem.domain;
 
 import com.htxk.ruoyi.common.annotation.Excel;
 import com.htxk.ruoyi.common.core.domain.BaseEntity;
+import com.htxk.ruoyi.system.domain.SysUser;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
@@ -54,6 +55,19 @@ public class EduStudent extends BaseEntity {
      */
     @Excel(name = "所学专业")
     private Long studentMajorstudiedid;
+
+    /**
+     * 用户账号信息
+     */
+    private SysUser sysUser;
+
+    public SysUser getSysUser() {
+        return sysUser;
+    }
+
+    public void setSysUser(SysUser sysUser) {
+        this.sysUser = sysUser;
+    }
 
     public Long getStudentId() {
         return studentId;

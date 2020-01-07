@@ -114,7 +114,6 @@ public class EduTeacherController extends BaseController {
         user.setSalt(ShiroUtils.randomSalt());
         user.setPassword(passwordService.encryptPassword(user.getLoginName(), user.getPassword(), user.getSalt()));
         user.setCreateBy(ShiroUtils.getLoginName());
-        System.out.println(user);
         eduTeacher.setSysUser(user);
         return toAjax(eduTeacherService.insertEduTeacher(eduTeacher));
     }
