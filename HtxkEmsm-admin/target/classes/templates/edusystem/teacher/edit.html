@@ -2,33 +2,25 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="zh">
 <head>
     <th:block th:include="include :: header('修改教师信息')"/>
+    <th:block th:include="include :: select2-css"/>
 </head>
 <body class="white-bg">
 <div class="wrapper wrapper-content animated fadeInRight ibox-content">
     <form class="form-horizontal m" id="form-teacher-edit" th:object="${eduTeacher}">
         <input name="teacherId" th:field="*{teacherId}" type="hidden">
-        <input name="deptId" type="hidden" th:field="*{deptId}" id="treeId"/>
+        <input name="sysUser.userId" type="hidden" th:field="*{sysUser.userId}" id="sysUser_userId"/>
+        <input name="sysUser.deptId" type="hidden" th:field="*{sysUser.deptId}" id="treeId"/>
         <h4 class="form-header h4">基本信息</h4>
         <div class="row">
             <div class="col-sm-6">
                 <div class="form-group">
-                    <label class="col-sm-3 control-label">用户名：</label>
+                    <label class="col-sm-4 control-label">教师名：</label>
                     <div class="col-sm-8">
                         <input name="teacherName" th:field="*{teacherName}" class="form-control" type="text" required>
                     </div>
                 </div>
             </div>
-            <div class="col-sm-6">
-                <div class="form-group">
-                    <label class="col-sm-4 control-label">用户id：</label>
-                    <div class="col-sm-8">
-                        <select name="sysUserId" class="form-control m-b" required>
-                            <option value="">所有</option>
-                        </select>
-                        <span class="help-block m-b-none"><i class="fa fa-info-circle"></i> 代码生成请选择字典属性</span>
-                    </div>
-                </div>
-            </div>
+
             <div class="col-sm-6">
                 <div class="form-group">
                     <label class="col-sm-4 control-label">学历：</label>
@@ -79,7 +71,7 @@
                     <label class="col-sm-4 control-label"><span style="color: red; ">*</span>归属部门：</label>
                     <div class="col-sm-8">
                         <div class="input-group">
-                            <input class="form-control" type="text" name="sysUser.deptName" onclick="selectDeptTree()"
+                            <input class="form-control" type="text" name="sysUser.dept.deptName" onclick="selectDeptTree()"
                                    id="treeName" th:field="*{sysUser.dept.deptName}" required>
                             <span class="input-group-addon"><i class="fa fa-search"></i></span>
                         </div>
@@ -123,8 +115,8 @@
                     <label class="col-sm-4 control-label">用户状态：</label>
                     <div class="col-sm-8">
                         <label class="toggle-switch switch-solid">
-                            <input type="checkbox" id="status"
-                                   th:checked="${sysUser.user.status == '0' ? true : false}">
+                            <input type="checkbox" id="sysUserStatus"
+                                   th:checked="${eduTeacher.sysUser.status == '0' ? true : false}">
                             <span></span>
                         </label>
                     </div>
@@ -137,7 +129,7 @@
                     <label class="col-sm-4 control-label">岗位：</label>
                     <div class="col-sm-8">
                         <select id="post" class="form-control select2-multiple" multiple>
-                            <option th:each="post:${sysUser.posts}" th:value="${post.postId}" th:text="${post.postName}"
+                            <option th:each="post:${posts}" th:value="${post.postId}" th:text="${post.postName}"
                                     th:selected="${post.flag}" th:disabled="${post.status == '1'}"></option>
                         </select>
                     </div>
@@ -161,15 +153,13 @@
                 <div class="form-group">
                     <label class="col-xs-2 control-label">角色：</label>
                     <div class="col-xs-10">
-                        <label th:each="role:${sysUser.roles}" class="check-box">
-                            <input name="sysUser.role" type="checkbox" th:value="${role.roleId}"
-                                   th:text="${role.roleName}"
+                        <label th:each="role:${roles}" class="check-box">
+                            <input name="role" type="checkbox" th:value="${role.roleId}" th:text="${role.roleName}"
                                    th:checked="${role.flag}" th:disabled="${role.status == '1'}">
                         </label>
                     </div>
                 </div>
             </div>
-        </div>
         <h4 class="form-header h4">其他信息</h4>
         <div class="row">
             <div class="col-sm-12">
@@ -183,7 +173,16 @@
         </div>
     </form>
 </div>
+<div class="row">
+    <div class="col-sm-offset-5 col-sm-10">
+        <button type="button" class="btn btn-sm btn-primary" onclick="submitHandler()"><i class="fa fa-check"></i>保 存
+        </button>&nbsp;
+        <button type="button" class="btn btn-sm btn-danger" onclick="closeItem()"><i class="fa fa-reply-all"></i>关 闭
+        </button>
+    </div>
+</div>
 <th:block th:include="include :: footer"/>
+<th:block th:include="include :: select2-js"/>
 <script type="text/javascript">
     var prefix = ctx + "edusystem/teacher";
     $("#form-teacher-edit").validate({
@@ -192,9 +191,102 @@
 
     function submitHandler() {
         if ($.validate.form()) {
-            $.operate.save(prefix + "/edit", $('#form-teacher-edit').serialize());
+            var data = $('#form-teacher-edit').serializeArray();
+            var status = $("input[id='sysUserStatus']").is(':checked') == true ? 0 : 1;
+            var roleIds = $.form.selectCheckeds("role");
+            var postIds = $.form.selectSelects("post");
+            data.push({"name": "sysUser.status", "value": status});
+            data.push({"name": "sysUser.roleIds", "value": roleIds});
+            data.push({"name": "sysUser.postIds", "value": postIds});
+            $.operate.save(prefix + "/edit",data);
         }
     }
+
+    var UserPrefix = ctx + "system/user";
+
+    $("#form-teacher-edit").validate({
+        onkeyup: false,
+        rules: {
+            email: {
+                email: true,
+                remote: {
+                    url: UserPrefix + "/checkEmailUnique",
+                    type: "post",
+                    dataType: "json",
+                    data: {
+                        "userId": function () {
+                            return $("#sysUser_userId").val();
+                        },
+                        "email": function () {
+                            return $.common.trim($("#email").val());
+                        }
+                    },
+                    dataFilter: function (data, type) {
+                        return $.validate.unique(data);
+                    }
+                }
+            },
+            phonenumber: {
+                isPhone: true,
+                remote: {
+                    url: UserPrefix + "/checkPhoneUnique",
+                    type: "post",
+                    dataType: "json",
+                    data: {
+                        "userId": function () {
+                            return $("#sysUser_userId").val();
+                        },
+                        "phonenumber": function () {
+                            return $.common.trim($("#phonenumber").val());
+                        }
+                    },
+                    dataFilter: function (data, type) {
+                        return $.validate.unique(data);
+                    }
+                }
+            },
+        },
+        messages: {
+            "sysUser.email": {
+                remote: "Email已经存在"
+            },
+            "sysUser.phonenumber": {
+                remote: "手机号码已经存在"
+            }
+        },
+        focusCleanup: true
+    });
+
+    /*用户管理-修改-选择部门树*/
+    function selectDeptTree() {
+        var deptId = $.common.isEmpty($("#treeId").val()) ? "100" : $("#treeId").val();
+        var url = ctx + "system/dept/selectDeptTree/" + deptId;
+        var options = {
+            title: '选择部门',
+            width: "380",
+            url: url,
+            callBack: doSubmit
+        };
+        $.modal.openOptions(options);
+    }
+
+    function doSubmit(index, layero) {
+        var tree = layero.find("iframe")[0].contentWindow.$._tree;
+        if ($.tree.notAllowParents(tree)) {
+            var body = layer.getChildFrame('body', index);
+            $("#treeId").val(body.find('#treeId').val());
+            $("#treeName").val(body.find('#treeName').val());
+            layer.close(index);
+        }
+    }
+
+    $(function () {
+        $('#post').select2({
+            placeholder: "请选择岗位",
+            allowClear: true
+        });
+    })
+
 </script>
 </body>
 </html>

@@ -66,7 +66,7 @@ public class SysUserController extends BaseController {
     @ResponseBody
     public AjaxResult export(SysUser user) {
         List<SysUser> list = userService.selectUserList(user);
-        ExcelUtil<SysUser> util = new ExcelUtil<SysUser>(SysUser.class);
+        ExcelUtil<SysUser> util = new ExcelUtil<>(SysUser.class);
         return util.exportExcel(list, "用户数据");
     }
 
@@ -75,7 +75,7 @@ public class SysUserController extends BaseController {
     @PostMapping("/importData")
     @ResponseBody
     public AjaxResult importData(MultipartFile file, boolean updateSupport) throws Exception {
-        ExcelUtil<SysUser> util = new ExcelUtil<SysUser>(SysUser.class);
+        ExcelUtil<SysUser> util = new ExcelUtil<>(SysUser.class);
         List<SysUser> userList = util.importExcel(file.getInputStream());
         String operName = ShiroUtils.getSysUser().getLoginName();
         String message = userService.importUser(userList, updateSupport, operName);
@@ -86,7 +86,7 @@ public class SysUserController extends BaseController {
     @GetMapping("/importTemplate")
     @ResponseBody
     public AjaxResult importTemplate() {
-        ExcelUtil<SysUser> util = new ExcelUtil<SysUser>(SysUser.class);
+        ExcelUtil<SysUser> util = new ExcelUtil<>(SysUser.class);
         return util.importTemplateExcel("用户数据");
     }
 
