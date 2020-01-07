@@ -87,4 +87,9 @@ public class EduMajorServiceImpl implements IEduMajorService {
     public int deleteEduMajorById(Long majorStudiedid) {
         return eduMajorMapper.deleteEduMajorById(majorStudiedid);
     }
+
+    @Override
+    public List<EduMajor> selectEduMajorAllList() {
+        return eduMajorMapper.selectEduMajorAllList();
+    }
 }

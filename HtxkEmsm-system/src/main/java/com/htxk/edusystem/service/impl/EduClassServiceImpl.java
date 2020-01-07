@@ -51,7 +51,6 @@ public class EduClassServiceImpl implements IEduClassService {
      */
     @Override
     public int insertEduClass(EduClass eduClass) {
-        eduClass.setCreateTime(DateUtils.getNowDate());
         return eduClassMapper.insertEduClass(eduClass);
     }
 

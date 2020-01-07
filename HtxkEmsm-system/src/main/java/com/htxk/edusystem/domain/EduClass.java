@@ -1,6 +1,8 @@
 package com.htxk.edusystem.domain;
 
 import com.htxk.ruoyi.common.annotation.Excel;
+import com.htxk.ruoyi.common.annotation.Excels;
+import com.htxk.ruoyi.common.annotation.Excel.Type;
 import com.htxk.ruoyi.common.core.domain.BaseEntity;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
@@ -41,8 +43,20 @@ public class EduClass extends BaseEntity {
     /**
      * 班级专业
      */
-    @Excel(name = "班级专业")
     private Long classMajor;
+
+    @Excels({
+        @Excel(name = "班级专业", targetAttr = "majorStudiedname", type = Type.EXPORT)
+    })
+    private EduMajor eduMajor;
+
+    public EduMajor getEduMajor() {
+        return eduMajor;
+    }
+
+    public void setEduMajor(EduMajor eduMajor) {
+        this.eduMajor = eduMajor;
+    }
 
     public Long getClassId() {
         return classId;

@@ -58,4 +58,11 @@ public interface IEduMajorService {
      * @return 结果
      */
     public int deleteEduMajorById(Long majorStudiedid);
+
+    /**
+     * 连表查询全部专业数据
+     * @auto maple
+     * @return list
+     */
+    public List<EduMajor> selectEduMajorAllList();
 }

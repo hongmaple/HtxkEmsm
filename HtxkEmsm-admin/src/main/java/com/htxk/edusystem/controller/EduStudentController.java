@@ -2,6 +2,7 @@ package com.htxk.edusystem.controller;
 
 import com.htxk.edusystem.domain.EduStudent;
 import com.htxk.edusystem.service.IEduClassService;
+import com.htxk.edusystem.service.IEduMajorService;
 import com.htxk.edusystem.service.IEduStudentService;
 import com.htxk.ruoyi.common.annotation.Log;
 import com.htxk.ruoyi.common.constant.UserConstants;
@@ -47,7 +48,7 @@ public class EduStudentController extends BaseController {
     private SysPasswordService passwordService;
 
     @Autowired
-    private IEduClassService eduClassService;
+    private IEduMajorService eduMajorService;
 
     @RequiresPermissions("edusystem:student:view")
     @GetMapping()
@@ -86,6 +87,7 @@ public class EduStudentController extends BaseController {
     @GetMapping("/add")
     public String add(ModelMap mmap) {
         mmap.put("roles", roleService.selectRoleAll());
+
         return prefix + "/add";
     }
 
