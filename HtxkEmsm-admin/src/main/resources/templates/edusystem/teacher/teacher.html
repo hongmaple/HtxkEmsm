@@ -11,16 +11,8 @@
                 <div class="select-list">
                     <ul>
                         <li>
-                            <p>用户名：</p>
+                            <p>教师姓名：</p>
                             <input type="text" name="teacherName"/>
-                        </li>
-                        <li>
-                            <p>用户id：</p>
-                            <select name="sysUserId" th:with="type=${@dict.getType('')}">
-                                <option value="">所有</option>
-                                <option th:each="dict : ${type}" th:text="${dict.dictLabel}"
-                                        th:value="${dict.dictValue}"></option>
-                            </select>
                         </li>
                         <li>
                             <p>学历：</p>
@@ -189,10 +181,10 @@
 
     /* 用户状态显示 */
     function statusTools(row) {
-        if (row.status == 1) {
-            return '<i class=\"fa fa-toggle-off text-info fa-2x\" onclick="enable(\'' + row.userId + '\')"></i> ';
+        if (row.sysUser.status == 1) {
+            return '<i class=\"fa fa-toggle-off text-info fa-2x\" onclick="enable(\'' + row.sysUserId + '\')"></i> ';
         } else {
-            return '<i class=\"fa fa-toggle-on text-info fa-2x\" onclick="disable(\'' + row.userId + '\')"></i> ';
+            return '<i class=\"fa fa-toggle-on text-info fa-2x\" onclick="disable(\'' + row.sysUserId + '\')"></i> ';
         }
     }
 

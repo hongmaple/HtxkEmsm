@@ -7,6 +7,7 @@ import com.htxk.ruoyi.common.constant.UserConstants;
 import com.htxk.ruoyi.common.core.controller.BaseController;
 import com.htxk.ruoyi.common.core.domain.AjaxResult;
 import com.htxk.ruoyi.common.core.page.TableDataInfo;
+import com.htxk.ruoyi.common.core.text.Convert;
 import com.htxk.ruoyi.common.enums.BusinessType;
 import com.htxk.ruoyi.common.utils.poi.ExcelUtil;
 import com.htxk.ruoyi.framework.shiro.service.SysPasswordService;
@@ -113,13 +114,8 @@ public class EduTeacherController extends BaseController {
         user.setSalt(ShiroUtils.randomSalt());
         user.setPassword(passwordService.encryptPassword(user.getLoginName(), user.getPassword(), user.getSalt()));
         user.setCreateBy(ShiroUtils.getLoginName());
-        int i = sysUserService.insertUser(user);
-        System.out.println("2sahsdhjhddhhjjjjjjjjdddd" + eduTeacher);
-        if (i <= 0) {
-            return toAjax(i);
-        }
-        System.out.println("2sahsdhjhddhhjjjjjjjjdddd");
-        eduTeacher.setSysUserId(sysUserService.selectOidBySELECT_LAST_INSERT_ID());
+        System.out.println(user);
+        eduTeacher.setSysUser(user);
         return toAjax(eduTeacherService.insertEduTeacher(eduTeacher));
     }
 
@@ -129,7 +125,11 @@ public class EduTeacherController extends BaseController {
     @GetMapping("/edit/{teacherId}")
     public String edit(@PathVariable("teacherId") Long teacherId, ModelMap mmap) {
         EduTeacher eduTeacher = eduTeacherService.selectEduTeacherById(teacherId);
+        eduTeacher.setSysUser(sysUserService.selectUserById(eduTeacher.getSysUserId()));
+        System.out.println(eduTeacher.getSysUser());
         mmap.put("eduTeacher", eduTeacher);
+        mmap.put("roles", roleService.selectRolesByUserId(eduTeacher.getSysUserId()));
+        mmap.put("posts", postService.selectPostsByUserId(eduTeacher.getSysUserId()));
         return prefix + "/edit";
     }
 
@@ -141,6 +141,16 @@ public class EduTeacherController extends BaseController {
     @PostMapping("/edit")
     @ResponseBody
     public AjaxResult editSave(EduTeacher eduTeacher) {
+        SysUser user = eduTeacher.getSysUser();
+        sysUserService.checkUserAllowed(user);//校验用户是否允许操作
+        System.out.println(user);
+        if (UserConstants.USER_PHONE_NOT_UNIQUE.equals(sysUserService.checkPhoneUnique(user))) {
+            return error("修改用户'" + user.getLoginName() + "'失败，手机号码已存在");
+        } else if (UserConstants.USER_EMAIL_NOT_UNIQUE.equals(sysUserService.checkEmailUnique(user))) {
+            return error("修改用户'" + user.getLoginName() + "'失败，邮箱账号已存在");
+        }
+        user.setUpdateBy(ShiroUtils.getLoginName());
+        eduTeacher.setSysUser(user);
         return toAjax(eduTeacherService.updateEduTeacher(eduTeacher));
     }
 
