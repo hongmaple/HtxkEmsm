@@ -17,7 +17,7 @@ import java.util.List;
  * @author maple
  * @date 2020-01-03
  */
-@Service
+@Service("Student")
 public class EduStudentServiceImpl implements IEduStudentService {
     @Autowired
     private EduStudentMapper eduStudentMapper;

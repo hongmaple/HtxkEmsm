@@ -17,7 +17,11 @@
     </resultMap>
 
     <resultMap type="EduClass" id="EduClassResult2">
+<<<<<<< HEAD
         <id property="classId" column="class_id"/>
+=======
+        <result property="classId" column="class_id"/>
+>>>>>>> 6f39d047f3e885eae5b00fd611837f1cb23b213d
         <result property="className" column="class_name"/>
         <result property="classDate" column="class_Date"/>
         <result property="createBy" column="create_by"/>
