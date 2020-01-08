@@ -63,5 +63,5 @@ public interface EduMajorMapper {
      * 连表查询所有专业数据
      * @return 结果
      */
-    public List<EduMajor> selectEduMajorAllList();
+    public List<EduMajor> selectEduMajorAllList(EduMajor eduMajor);
 }

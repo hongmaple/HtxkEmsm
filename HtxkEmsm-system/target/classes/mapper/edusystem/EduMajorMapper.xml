@@ -93,12 +93,29 @@
         <result property="updataBy" column="updata_by"/>
         <result property="updataTime" column="updata_time"/>
         <result property="delFlag" column="del_flag"/>
+        <collection property="eduClasses" ofType="com.htxk.edusystem.domain.EduClass">
+            <id property="classId" column="class_id"/>
+            <result property="className" column="class_name"/>
+            <result property="classDate" column="class_Date"/>
+            <result property="createBy" column="create_by"/>
+            <result property="createTime" column="create_time"/>
+            <result property="updateBy" column="update_by"/>
+            <result property="updateTime" column="update_time"/>
+            <result property="delFlag" column="del_flag"/>
+            <result property="classMajor" column="class_Major"/>
+        </collection>
     </resultMap>
 
-    <select id="selectEduMajorAllList" resultMap="eduMajorAllresult">
+    <select id="selectEduMajorAllList" parameterType="EduMajor" resultMap="eduMajorAllresult">
         select m.Major_studiedId,m.Major_studiedName,s.class_id,s.class_name from edu_major m
         left join edu_class s
         on m.Major_studiedId = s.class_Major
+        <where>
+            <if test="majorStudiedid != null  and majorStudiedid != ''">
+                and Major_studiedId = #{majorStudiedid}
+            </if>
+            and m.del_flag = 0 and s.del_flag = 0
+        </where>
     </select>
 
 </mapper>

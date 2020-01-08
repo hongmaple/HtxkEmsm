@@ -185,7 +185,78 @@
 <th:block th:include="include :: select2-js"/>
 <script type="text/javascript">
     var prefix = ctx + "edusystem/teacher";
-    $("#form-teacher-edit").validate({
+    $("#form-teacher-add").validate({
+        onkeyup: false,
+        rules: {
+            "teacherName":{
+                isName:true,
+                onfocusout:true
+            },
+            "sysUser.loginName": {
+                minlength: 2,
+                maxlength: 20,
+                remote: {
+                    url: prefix + "/checkLoginNameUnique",
+                    type: "post",
+                    dataType: "json",
+                    data: {
+                        "loginName": function () {
+                            return $.common.trim($("#loginName").val());
+                        }
+                    },
+                    dataFilter: function (data, type) {
+                        return $.validate.unique(data);
+                    }
+                }
+            },
+            "sysUser.password": {
+                minlength: 5,
+                maxlength: 20
+            },
+            "sysUser.email": {
+                email: true,
+                remote: {
+                    url: prefix + "/checkEmailUnique",
+                    type: "post",
+                    dataType: "json",
+                    data: {
+                        "email": function () {
+                            return $.common.trim($("#email").val());
+                        }
+                    },
+                    dataFilter: function (data, type) {
+                        return $.validate.unique(data);
+                    }
+                }
+            },
+            "sysUser.phonenumber": {
+                isPhone: true,
+                remote: {
+                    url: prefix + "/checkPhoneUnique",
+                    type: "post",
+                    dataType: "json",
+                    data: {
+                        "phonenumber": function () {
+                            return $.common.trim($("#phonenumber").val());
+                        }
+                    },
+                    dataFilter: function (data, type) {
+                        return $.validate.unique(data);
+                    }
+                }
+            },
+        },
+        messages: {
+            "sysUser.loginName": {
+                remote: "用户已经存在"
+            },
+            "sysUser.email": {
+                remote: "Email已经存在"
+            },
+            "sysUser.phonenumber": {
+                remote: "手机号码已经存在"
+            }
+        },
         focusCleanup: true
     });
 
@@ -203,59 +274,6 @@
     }
 
     var UserPrefix = ctx + "system/user";
-
-    $("#form-teacher-edit").validate({
-        onkeyup: false,
-        rules: {
-            email: {
-                email: true,
-                remote: {
-                    url: UserPrefix + "/checkEmailUnique",
-                    type: "post",
-                    dataType: "json",
-                    data: {
-                        "userId": function () {
-                            return $("#sysUser_userId").val();
-                        },
-                        "email": function () {
-                            return $.common.trim($("#email").val());
-                        }
-                    },
-                    dataFilter: function (data, type) {
-                        return $.validate.unique(data);
-                    }
-                }
-            },
-            phonenumber: {
-                isPhone: true,
-                remote: {
-                    url: UserPrefix + "/checkPhoneUnique",
-                    type: "post",
-                    dataType: "json",
-                    data: {
-                        "userId": function () {
-                            return $("#sysUser_userId").val();
-                        },
-                        "phonenumber": function () {
-                            return $.common.trim($("#phonenumber").val());
-                        }
-                    },
-                    dataFilter: function (data, type) {
-                        return $.validate.unique(data);
-                    }
-                }
-            },
-        },
-        messages: {
-            "sysUser.email": {
-                remote: "Email已经存在"
-            },
-            "sysUser.phonenumber": {
-                remote: "手机号码已经存在"
-            }
-        },
-        focusCleanup: true
-    });
 
     /*用户管理-修改-选择部门树*/
     function selectDeptTree() {

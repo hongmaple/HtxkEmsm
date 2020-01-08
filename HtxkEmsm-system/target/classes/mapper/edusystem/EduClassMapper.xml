@@ -5,7 +5,7 @@
 <mapper namespace="com.htxk.edusystem.mapper.EduClassMapper">
 
     <resultMap type="EduClass" id="EduClassResult">
-        <result property="classId" column="class_id"/>
+        <id property="classId" column="class_id"/>
         <result property="className" column="class_name"/>
         <result property="classDate" column="class_Date"/>
         <result property="createBy" column="create_by"/>
@@ -16,13 +16,35 @@
         <result property="classMajor" column="class_Major"/>
     </resultMap>
 
+    <resultMap type="EduClass" id="EduClassResult2">
+        <id property="classId" column="class_id"/>
+        <result property="className" column="class_name"/>
+        <result property="classDate" column="class_Date"/>
+        <result property="createBy" column="create_by"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateBy" column="update_by"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="delFlag" column="del_flag"/>
+        <result property="classMajor" column="class_Major"/>
+        <association property="eduMajor" column="class_Major" resultMap="eduMajorResult"/>
+    </resultMap>
+
+    <resultMap id="eduMajorResult" type="EduMajor">
+        <result property="majorStudiedname" column="Major_studiedName"/>
+    </resultMap>
+    
     <sql id="selectEduClassVo">
         select class_id, class_name, class_Date, create_by, create_time, update_by, update_time, del_flag, class_Major from edu_class
     </sql>
-
-    <select id="selectEduClassList" parameterType="EduClass" resultMap="EduClassResult">
-        <include refid="selectEduClassVo"/>
+    <sql id="selectEduClass_Major">
+        select c.*,m.Major_studiedName from edu_class c
+        left join edu_major m
+        on c.class_Major = m.Major_studiedId
+    </sql>
+    <select id="selectEduClassList" parameterType="EduClass" resultMap="EduClassResult2">
+        <include refid="selectEduClass_Major"/>
         <where>
+            c.del_flag = 0
             <if test="className != null  and className != ''">and class_name like concat('%', #{className}, '%')</if>
             <if test="classDate != null ">and class_Date = #{classDate}</if>
             <if test="classMajor != null ">and class_Major = #{classMajor}</if>
@@ -31,7 +53,7 @@
 
     <select id="selectEduClassById" parameterType="Long" resultMap="EduClassResult">
         <include refid="selectEduClassVo"/>
-        where class_id = #{classId}
+        where class_id = #{classId} and del_flag = 0
     </select>
 
     <insert id="insertEduClass" parameterType="EduClass" useGeneratedKeys="true" keyProperty="classId">
@@ -74,11 +96,11 @@
     </update>
 
     <delete id="deleteEduClassById" parameterType="Long">
-        delete from edu_class where class_id = #{classId}
+        update edu_class set del_flag = 2 where class_id = #{classId}
     </delete>
 
     <delete id="deleteEduClassByIds" parameterType="String">
-        delete from edu_class where class_id in
+        update edu_class set del_flag = 2 where class_id in
         <foreach item="classId" collection="array" open="(" separator="," close=")">
             #{classId}
         </foreach>

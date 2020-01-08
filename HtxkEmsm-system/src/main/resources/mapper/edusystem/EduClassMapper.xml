@@ -5,7 +5,7 @@
 <mapper namespace="com.htxk.edusystem.mapper.EduClassMapper">
 
     <resultMap type="EduClass" id="EduClassResult">
-        <result property="classId" column="class_id"/>
+        <id property="classId" column="class_id"/>
         <result property="className" column="class_name"/>
         <result property="classDate" column="class_Date"/>
         <result property="createBy" column="create_by"/>
@@ -17,7 +17,7 @@
     </resultMap>
 
     <resultMap type="EduClass" id="EduClassResult2">
-        <result property="classId" column="class_id"/>
+        <id property="classId" column="class_id"/>
         <result property="className" column="class_name"/>
         <result property="classDate" column="class_Date"/>
         <result property="createBy" column="create_by"/>
