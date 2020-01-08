@@ -7,6 +7,7 @@ import com.htxk.ruoyi.common.constant.UserConstants;
 import com.htxk.ruoyi.common.core.controller.BaseController;
 import com.htxk.ruoyi.common.core.domain.AjaxResult;
 import com.htxk.ruoyi.common.core.page.TableDataInfo;
+import com.htxk.ruoyi.common.core.text.Convert;
 import com.htxk.ruoyi.common.enums.BusinessType;
 import com.htxk.ruoyi.common.utils.poi.ExcelUtil;
 import com.htxk.ruoyi.framework.shiro.service.SysPasswordService;
@@ -113,7 +114,8 @@ public class EduTeacherController extends BaseController {
         user.setSalt(ShiroUtils.randomSalt());
         user.setPassword(passwordService.encryptPassword(user.getLoginName(), user.getPassword(), user.getSalt()));
         user.setCreateBy(ShiroUtils.getLoginName());
-        eduTeacher.setSysUser(user);
+        sysUserService.insertUser(user);
+        eduTeacher.setSysUserId(sysUserService.selectOidBySELECT_LAST_INSERT_ID());
         return toAjax(eduTeacherService.insertEduTeacher(eduTeacher));
     }
 
@@ -141,14 +143,14 @@ public class EduTeacherController extends BaseController {
     public AjaxResult editSave(EduTeacher eduTeacher) {
         SysUser user = eduTeacher.getSysUser();
         sysUserService.checkUserAllowed(user);//校验用户是否允许操作
-        System.out.println(user);
+        System.out.println(user.getRoleIds()[0]);
         if (UserConstants.USER_PHONE_NOT_UNIQUE.equals(sysUserService.checkPhoneUnique(user))) {
             return error("修改用户'" + user.getLoginName() + "'失败，手机号码已存在");
         } else if (UserConstants.USER_EMAIL_NOT_UNIQUE.equals(sysUserService.checkEmailUnique(user))) {
             return error("修改用户'" + user.getLoginName() + "'失败，邮箱账号已存在");
         }
         user.setUpdateBy(ShiroUtils.getLoginName());
-        eduTeacher.setSysUser(user);
+        sysUserService.updateUser(user);
         return toAjax(eduTeacherService.updateEduTeacher(eduTeacher));
     }
 
@@ -160,6 +162,9 @@ public class EduTeacherController extends BaseController {
     @PostMapping("/remove")
     @ResponseBody
     public AjaxResult remove(String ids) {
+        for (String tid : Convert.toStrArray(ids)){
+            sysUserService.deleteUserById(eduTeacherService.selectEduTeacherById(Long.valueOf(tid)).getSysUserId());
+        }
         return toAjax(eduTeacherService.deleteEduTeacherByIds(ids));
     }
 }

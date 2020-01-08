@@ -23,9 +23,6 @@ public class EduTeacherServiceImpl implements IEduTeacherService {
     @Autowired
     private EduTeacherMapper eduTeacherMapper;
 
-    @Autowired
-    private SysUserMapper sysUserMapper;
-
     /**
      * 查询教师信息
      *
@@ -57,8 +54,6 @@ public class EduTeacherServiceImpl implements IEduTeacherService {
     @Override
     @Transactional
     public int insertEduTeacher(EduTeacher eduTeacher) {
-        sysUserMapper.insertUser(eduTeacher.getSysUser());
-        eduTeacher.setSysUserId(sysUserMapper.selectOidBySELECT_LAST_INSERT_ID());
         return eduTeacherMapper.insertEduTeacher(eduTeacher);
     }
 
@@ -69,8 +64,8 @@ public class EduTeacherServiceImpl implements IEduTeacherService {
      * @return 结果
      */
     @Override
+    @Transactional
     public int updateEduTeacher(EduTeacher eduTeacher) {
-        sysUserMapper.updateUser(eduTeacher.getSysUser());
         return eduTeacherMapper.updateEduTeacher(eduTeacher);
     }
 
@@ -83,11 +78,6 @@ public class EduTeacherServiceImpl implements IEduTeacherService {
     @Override
     @Transactional
     public int deleteEduTeacherByIds(String ids) {
-        int i=0;
-        for (String tid:Convert.toStrArray(ids)){
-            sysUserMapper.deleteUserById(selectEduTeacherById(Long.valueOf(tid)).getSysUserId());
-            i++;
-        }
         return eduTeacherMapper.deleteEduTeacherByIds(Convert.toStrArray(ids));
     }
 
@@ -98,6 +88,7 @@ public class EduTeacherServiceImpl implements IEduTeacherService {
      * @return 结果
      */
     @Override
+    @Transactional
     public int deleteEduTeacherById(Long teacherId) {
         return eduTeacherMapper.deleteEduTeacherById(teacherId);
     }

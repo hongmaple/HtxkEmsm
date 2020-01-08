@@ -269,6 +269,7 @@
             data.push({"name": "sysUser.status", "value": status});
             data.push({"name": "sysUser.roleIds", "value": roleIds});
             data.push({"name": "sysUser.postIds", "value": postIds});
+            console.log(JSON.stringify(data));
             $.operate.save(prefix + "/edit",data);
         }
     }

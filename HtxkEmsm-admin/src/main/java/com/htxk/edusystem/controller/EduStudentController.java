@@ -116,9 +116,11 @@ public class EduStudentController extends BaseController {
         user.setSalt(ShiroUtils.randomSalt());
         user.setPassword(passwordService.encryptPassword(user.getLoginName(), user.getPassword(), user.getSalt()));
         user.setCreateBy(ShiroUtils.getLoginName());
+        sysUserService.insertUser(user);
+        System.out.println(eduStudent.getStudentClass());
         EduClass eduClass = eduClassService.selectEduClassById(eduStudent.getStudentClass());
         eduStudent.setStudentMajorstudiedid(eduClass.getClassMajor());
-        eduStudent.setSysUser(user);
+        eduStudent.setSysUserId(sysUserService.selectOidBySELECT_LAST_INSERT_ID());
         return toAjax(eduStudentService.insertEduStudent(eduStudent));
     }
 
