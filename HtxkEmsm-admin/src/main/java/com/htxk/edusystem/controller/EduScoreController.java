@@ -14,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -77,6 +78,12 @@ public class EduScoreController extends BaseController {
     @PostMapping("/add")
     @ResponseBody
     public AjaxResult addSave(EduScore eduScore) {
+        //设置创建者
+        eduScore.setCreateBy("1");
+        //设置创建时间
+        eduScore.setCreateTime(new Date());
+        //设置修改时间
+        eduScore.setUpdataTime(new Date());
         return toAjax(eduScoreService.insertEduScore(eduScore));
     }
 
@@ -98,6 +105,8 @@ public class EduScoreController extends BaseController {
     @PostMapping("/edit")
     @ResponseBody
     public AjaxResult editSave(EduScore eduScore) {
+        //设置修改时间
+        eduScore.setUpdataTime(new Date());
         return toAjax(eduScoreService.updateEduScore(eduScore));
     }
 
