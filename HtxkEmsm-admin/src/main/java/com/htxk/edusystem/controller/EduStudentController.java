@@ -92,6 +92,9 @@ public class EduStudentController extends BaseController {
     @GetMapping("/add")
     public String add(ModelMap mmap) {
         mmap.put("roles", roleService.selectRoleAll());
+        for(EduMajor eduMajor:eduMajorService.selectEduMajorAllList(new EduMajor())){
+            System.out.println(eduMajor);
+        }
         mmap.put("classTrees",eduMajorService.selectEduMajorAllList(new EduMajor()));
         return prefix + "/add";
     }
