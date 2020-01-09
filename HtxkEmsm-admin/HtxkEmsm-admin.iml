@@ -6,40 +6,11 @@
         <descriptors>
           <deploymentDescriptor name="web.xml" url="file://$MODULE_DIR$/web/WEB-INF/web.xml" />
         </descriptors>
-        <webroots>
-          <root url="file://$MODULE_DIR$/web" relative="/" />
-        </webroots>
-        <sourceRoots>
-          <root url="file://$MODULE_DIR$/src/main/java" />
-          <root url="file://$MODULE_DIR$/src/main/resources" />
-        </sourceRoots>
+        <webroots />
       </configuration>
     </facet>
     <facet type="Spring" name="Spring">
       <configuration />
-    </facet>
-    <facet type="JRebel" name="JRebel">
-      <configuration>
-        <option name="deleteUnindexed" value="false" />
-        <option name="httpAuthEnabled" value="false" />
-        <option name="httpPassword" />
-        <option name="httpUsername" />
-        <option name="ideModuleStorage">
-          <map>
-            <entry key="com.zeroturnaround.jrebel.FormatVersion" value="7.0.0" />
-            <entry key="com.zeroturnaround.jrebel.remoting.DeleteUnindexedFiles" value="false" />
-            <entry key="com.zeroturnaround.jrebel.remoting.ModuleRemoteServerSelection" value="off" />
-            <entry key="jrebelEnabled" value="false" />
-            <entry key="lastExternalPluginCheckTime" value="1578271521170" />
-          </map>
-        </option>
-        <option name="masterModuleName" />
-        <option name="overrideStandardXmlFolder" value="false" />
-        <option name="remotingEnabled" value="false" />
-        <option name="secure" value="true" />
-        <option name="url" />
-        <option name="xmlDir" />
-      </configuration>
     </facet>
   </component>
 </module>
