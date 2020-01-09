@@ -96,7 +96,7 @@
 
     var SysUserMap = new Map();
     function querySysUserMap() {
-        //获取所课程
+        //获取所用户
         var SysUserList = [[${@SysUser.querySysUserList()}]];
         $(SysUserList).each(function () {
             SysUserMap.set(this.userId, this.userName);

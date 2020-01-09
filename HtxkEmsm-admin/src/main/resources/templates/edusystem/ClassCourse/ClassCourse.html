@@ -12,26 +12,26 @@
                     <ul>
                         <li>
                             <p>班级名：</p>
-                            <select name="classCourseClassId" th:with="type=${@dict.getType('')}">
+                            <select name="classCourseClassId" th:with="type=${@EduClass.selectEduClassList(null)}">
                                 <option value="">所有</option>
-                                <option th:each="dict : ${type}" th:text="${dict.dictLabel}"
-                                        th:value="${dict.dictValue}"></option>
+                                <option th:each="EduClass : ${type}" th:text="${EduClass.getClassName()}"
+                                        th:value="${EduClass.getClassId()}"></option>
                             </select>
                         </li>
                         <li>
                             <p>任课教师：</p>
-                            <select name="classCourseTeacherid" th:with="type=${@dict.getType('')}">
+                            <select name="classCourseTeacherid" th:with="type=${@EduTeacher.selectEduTeacherList(null)}">
                                 <option value="">所有</option>
-                                <option th:each="dict : ${type}" th:text="${dict.dictLabel}"
-                                        th:value="${dict.dictValue}"></option>
+                                <option th:each="EduTeacher : ${type}" th:text="${EduTeacher.getTeacherName()}"
+                                        th:value="${EduTeacher.getTeacherId()}"></option>
                             </select>
                         </li>
                         <li>
                             <p>课程名：</p>
-                            <select name="classCourseCourseId" th:with="type=${@dict.getType('')}">
+                            <select name="classCourseCourseId" th:with="type=${@Course.selectEduCourseList(null)}">
                                 <option value="">所有</option>
-                                <option th:each="dict : ${type}" th:text="${dict.dictLabel}"
-                                        th:value="${dict.dictValue}"></option>
+                                <option th:each="Course : ${type}" th:text="${Course.getCourseName()}"
+                                        th:value="${Course.getCourseId()}"></option>
                             </select>
                         </li>
                         <li>
@@ -73,7 +73,37 @@
     var removeFlag = [[${@permission.hasPermi('edusystem:ClassCourse:remove')}]];
     var prefix = ctx + "edusystem/ClassCourse";
 
+    var EduClassMap = new Map();
+    function selectEduClassList() {
+        //获取所有班级
+        var EduClassList = [[${@EduClass.selectEduClassList(null)}]];
+        $(EduClassList).each(function () {
+            EduClassMap.set(this.classId, this.className);
+        });
+    }
+
+    var EduTeacherMap = new Map();
+    function selectEduTeacherList() {
+        //获取所有教师
+        var EduTeacherList = [[${@EduTeacher.selectEduTeacherList(null)}]];
+        $(EduTeacherList).each(function () {
+            EduTeacherMap.set(this.teacherId, this.teacherName);
+        });
+    }
+
+    var CoursMap = new Map();
+    function queryCoursMap() {
+        //获取所课程
+        var CourseList = [[${@Course.selectEduCourseList(null)}]];
+        $(CourseList).each(function () {
+            CoursMap.set(this.courseId, this.courseName);
+        });
+    }
+
     $(function () {
+        selectEduClassList();
+        selectEduTeacherList();
+        queryCoursMap();
         var options = {
             url: prefix + "/list",
             createUrl: prefix + "/add",
@@ -91,15 +121,24 @@
                 },
                 {
                     field: 'classCourseClassId',
-                    title: '班级名'
+                    title: '班级名',
+                    formatter: function (value, row, index) {
+                        return EduClassMap.get(row.classCourseId);
+                    }
                 },
                 {
                     field: 'classCourseTeacherid',
-                    title: '任课教师'
+                    title: '任课教师',
+                    formatter: function (value, row, index) {
+                        return EduTeacherMap.get(row.classCourseTeacherid);
+                    }
                 },
                 {
                     field: 'classCourseCourseId',
-                    title: '课程名'
+                    title: '课程名',
+                    formatter: function (value, row, index) {
+                        return CoursMap.get(row.classCourseCourseId);
+                    }
                 },
                 {
                     field: 'createTime',
