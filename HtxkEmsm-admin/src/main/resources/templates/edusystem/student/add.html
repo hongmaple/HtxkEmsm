@@ -7,7 +7,6 @@
 <body class="white-bg">
 <div class="wrapper wrapper-content animated fadeInRight ibox-content">
     <form class="form-horizontal m" id="form-student-add">
-        <input name="studentClass" type="hidden" id="treeId"/>
         <h4 class="form-header h4">基本信息</h4>
         <div class="row">
             <div class="col-sm-6">
@@ -30,8 +29,7 @@
                 <div class="form-group">
                     <label class="col-sm-4 control-label">所属班级：</label>
                     <div class="col-sm-8">
-                        <select class="form-control select2-multiple" id="studentClass"
-                                 th:with="type=${@dict.getType('student_class')}">
+                        <select class="form-control select2-multiple" id="studentClass">
                             <optgroup th:each="Major:${classTrees}"
                                       th:label="${Major.majorStudiedname}">
                                 <option th:each="eduClass:${Major.eduClasses}"
@@ -55,6 +53,8 @@
                     </div>
                 </div>
             </div>
+        </div>
+        <div class="row">
             <div class="col-sm-6">
                 <div class="form-group">
                     <label class="col-sm-4 control-label"><span style="color: red; ">*</span>用户昵称：</label>
@@ -65,8 +65,6 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="row">
             <div class="col-sm-6">
                 <div class="form-group">
                     <label class="col-sm-4 control-label"><span style="color: red; ">*</span>邮箱：</label>
@@ -254,7 +252,7 @@
             var roleIds = $.form.selectCheckeds("role");
             var classId = $.form.selectSelects("studentClass");
             alert(classId)
-            data.push({"name": "studentClass", "value": classId});
+            data.push({"name": "studentClassID", "value": classId});
             data.push({"name": "sysUser.status", "value": status});
             data.push({"name": "sysUser.roleIds", "value": roleIds});
             $.operate.save(studentprefix + "/add", data);

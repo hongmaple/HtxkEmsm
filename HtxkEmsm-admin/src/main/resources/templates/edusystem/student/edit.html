@@ -7,50 +7,138 @@
 <div class="wrapper wrapper-content animated fadeInRight ibox-content">
     <form class="form-horizontal m" id="form-student-edit" th:object="${eduStudent}">
         <input name="studentId" th:field="*{studentId}" type="hidden">
-        <div class="form-group">
-            <label class="col-sm-3 control-label">学号：</label>
-            <div class="col-sm-8">
-                <input name="studentNo" th:field="*{studentNo}" class="form-control" type="text" required>
+        <input name="sysUser.userId" type="hidden" th:field="*{sysUser.userId}" id="sysUser_userId"/>
+        <h4 class="form-header h4">基本信息</h4>
+        <div class="row">
+            <div class="form-group">
+                <label class="col-sm-3 control-label">学号：</label>
+                <div class="col-sm-8">
+                    <input name="studentNo" th:field="*{studentNo}" class="form-control" type="text" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label">学生名：</label>
+                <div class="col-sm-8">
+                    <input name="studentName" th:field="*{studentName}" class="form-control" type="text" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label">状态：</label>
+                <div class="col-sm-8">
+                    <select name="status" class="form-control m-b" th:with="type=${@dict.getType('student_status')}"
+                            required>
+                        <option th:each="dict : ${type}" th:text="${dict.dictLabel}" th:value="${dict.dictValue}"
+                                th:field="*{status}"></option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label class="col-sm-4 control-label">所属班级：</label>
+                    <div class="col-sm-8">
+                        <select class="form-control select2-multiple" name="studentClass">
+                            <optgroup th:each="Major:${classTrees}"
+                                      th:label="${Major.majorStudiedname}">
+                                <option th:each="Class:${Major.eduClasses}"
+                                        th:value="${Class.classId}"
+                                        th:text="${Class.className}" th:field="*{eduClass.classId}">
+                                </option>
+                            </optgroup>
+                        </select>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="form-group">
-            <label class="col-sm-3 control-label">学生名：</label>
-            <div class="col-sm-8">
-                <input name="studentName" th:field="*{studentName}" class="form-control" type="text" required>
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label class="col-sm-4 control-label"><span style="color: red; ">*</span>用户昵称：</label>
+                    <div class="col-sm-8">
+                        <input name="sysUser.userName" placeholder="请输入用户昵称" class="form-control" type="text"
+                               maxlength="30"
+                               th:field="*{sysUser.userName}" required>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label class="col-sm-4 control-label"><span style="color: red; ">*</span>邮箱：</label>
+                    <div class="col-sm-8">
+                        <input name="sysUser.email" class="form-control email" type="text" maxlength="50"
+                               placeholder="请输入邮箱"
+                               th:field="*{sysUser.email}" required>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label class="col-sm-4 control-label"><span style="color: red; ">*</span>手机号码：</label>
+                    <div class="col-sm-8">
+                        <input name="sysUser.phonenumber" placeholder="请输入手机号码" class="form-control" type="text"
+                               maxlength="11"
+                               th:field="*{sysUser.phonenumber}" required>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="form-group">
-            <label class="col-sm-3 control-label">用户id：</label>
-            <div class="col-sm-8">
-                <input name="sysUserId" th:field="*{sysUserId}" class="form-control" type="text" required>
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label class="col-sm-4 control-label"><span style="color: red; ">*</span>登录账号：</label>
+                    <div class="col-sm-8">
+                        <input class="form-control" type="text" readonly="true" th:field="*{sysUser.loginName}"/>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label class="col-sm-4 control-label">用户状态：</label>
+                    <div class="col-sm-8">
+                        <label class="toggle-switch switch-solid">
+                            <input type="checkbox" id="sysUserStatus"
+                                   th:checked="${sysUser.status == '0' ? true : false}">
+                            <span></span>
+                        </label>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="form-group">
-            <label class="col-sm-3 control-label">所属班级：</label>
-            <div class="col-sm-8">
-                <select name="studentClass" class="form-control m-b" required>
-                    <option value="">所有</option>
-                </select>
-                <span class="help-block m-b-none"><i class="fa fa-info-circle"></i> 代码生成请选择字典属性</span>
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label class="col-sm-4 control-label">用户性别：</label>
+                    <div class="col-sm-8">
+                        <select name="sysUser.sex" class="form-control m-b"
+                                th:with="type=${@dict.getType('sys_user_sex')}">
+                            <option th:each="dict : ${type}" th:text="${dict.dictLabel}" th:value="${dict.dictValue}"
+                                    th:field="*{sysUser.sex}"></option>
+                        </select>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="form-group">
-            <label class="col-sm-3 control-label">状态：</label>
-            <div class="col-sm-8">
-                <select name="status" class="form-control m-b" th:with="type=${@dict.getType('student_status')}"
-                        required>
-                    <option th:each="dict : ${type}" th:text="${dict.dictLabel}" th:value="${dict.dictValue}"
-                            th:field="*{status}"></option>
-                </select>
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="form-group">
+                    <label class="col-xs-2 control-label">角色：</label>
+                    <div class="col-xs-10">
+                        <label th:each="role:${roles}" class="check-box">
+                            <input name="role" type="checkbox" th:value="${role.roleId}" th:text="${role.roleName}"
+                                   th:checked="${role.flag}" th:disabled="${role.status == '1'}">
+                        </label>
+                    </div>
+                </div>
             </div>
-        </div>
-        <div class="form-group">
-            <label class="col-sm-3 control-label">所学专业：</label>
-            <div class="col-sm-8">
-                <select name="studentMajorstudiedid" class="form-control m-b" required>
-                    <option value="">所有</option>
-                </select>
-                <span class="help-block m-b-none"><i class="fa fa-info-circle"></i> 代码生成请选择字典属性</span>
+            <h4 class="form-header h4">其他信息</h4>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <label class="col-xs-2 control-label">备注：</label>
+                        <div class="col-xs-10">
+                            <textarea name="sysUser.remark" maxlength="500" class="form-control" rows="3">[[*{sysUser.remark}]]</textarea>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </form>
