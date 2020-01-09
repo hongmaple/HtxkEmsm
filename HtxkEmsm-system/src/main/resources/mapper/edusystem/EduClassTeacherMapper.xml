@@ -20,10 +20,16 @@
     </sql>
 
     <select id="selectEduClassTeacherList" parameterType="EduClassTeacher" resultMap="EduClassTeacherResult">
+        SELECT * FROM edu_class_teacher ect
+        INNER JOIN edu_class ec ON ec.class_id=ect.class_teacher_class_id
+        INNER JOIN edu_teacher et ON et.teacher_id=ect.class_teacher_teacher_id
+        WHERE ect.del_flag=0
+    </select>
+    <select id="queryEduTeacherList" parameterType="EduClassTeacher" resultMap="EduClassTeacherResult">
         <include refid="selectEduClassTeacherVo"/>
         <where>
-            <if test="classTeacherClassId != null ">and class_teacher_class_id = #{classTeacherClassId}</if>
-            <if test="classTeacherTeacherId != null ">and class_teacher_teacher_id = #{classTeacherTeacherId}</if>
+        <if test="classTeacherClassId != null ">and class_teacher_class_id = #{classTeacherClassId}</if>
+        <if test="classTeacherTeacherId != null ">and class_teacher_teacher_id = #{classTeacherTeacherId}</if>
         </where>
     </select>
 
@@ -50,7 +56,7 @@
             <if test="createBy != null  and createBy != ''">#{createBy},</if>
             <if test="createTime != null ">#{createTime},</if>
             <if test="updateBy != null  and updateBy != ''">#{updateBy},</if>
-            <if test="updateTime != null ">#{updateTime},</if>
+            <if test="updateTime != null ">#{updateTime} ,</if>
             <if test="delFlag != null  and delFlag != ''">#{delFlag},</if>
         </trim>
     </insert>
@@ -71,6 +77,9 @@
 
     <delete id="deleteEduClassTeacherById" parameterType="Long">
         delete from edu_class_teacher where class_teacher_id = #{classTeacherId}
+
+--         update edu_class_teacher SET
+--         del_flag=1 WHERE class_teacher_id= #{classTeacherId}
     </delete>
 
     <delete id="deleteEduClassTeacherByIds" parameterType="String">
@@ -79,5 +88,6 @@
             #{classTeacherId}
         </foreach>
     </delete>
+
 
 </mapper>

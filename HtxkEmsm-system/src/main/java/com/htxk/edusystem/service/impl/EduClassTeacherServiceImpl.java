@@ -16,7 +16,7 @@ import java.util.List;
  * @author maple
  * @date 2020-01-03
  */
-@Service
+@Service("classTeacher")
 public class EduClassTeacherServiceImpl implements IEduClassTeacherService {
     @Autowired
     private EduClassTeacherMapper eduClassTeacherMapper;
@@ -42,6 +42,12 @@ public class EduClassTeacherServiceImpl implements IEduClassTeacherService {
     public List<EduClassTeacher> selectEduClassTeacherList(EduClassTeacher eduClassTeacher) {
         return eduClassTeacherMapper.selectEduClassTeacherList(eduClassTeacher);
     }
+
+    @Override
+    public List<EduClassTeacher> queryEduTeacherList(EduClassTeacher eduClassTeacher) {
+        return eduClassTeacherMapper.queryEduTeacherList(eduClassTeacher);
+    }
+
 
     /**
      * 新增班级教师

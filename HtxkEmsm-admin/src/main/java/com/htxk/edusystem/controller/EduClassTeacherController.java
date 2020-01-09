@@ -1,7 +1,11 @@
 package com.htxk.edusystem.controller;
 
+import com.htxk.edusystem.domain.EduClass;
 import com.htxk.edusystem.domain.EduClassTeacher;
+import com.htxk.edusystem.domain.EduTeacher;
+import com.htxk.edusystem.service.IEduClassService;
 import com.htxk.edusystem.service.IEduClassTeacherService;
+import com.htxk.edusystem.service.IEduTeacherService;
 import com.htxk.ruoyi.common.annotation.Log;
 import com.htxk.ruoyi.common.core.controller.BaseController;
 import com.htxk.ruoyi.common.core.domain.AjaxResult;
@@ -14,7 +18,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * 班级教师Controller
@@ -30,6 +37,12 @@ public class EduClassTeacherController extends BaseController {
     @Autowired
     private IEduClassTeacherService eduClassTeacherService;
 
+    @Autowired
+    private IEduClassService eduClassService;
+
+    @Autowired
+    private IEduTeacherService eduTeacherService;
+
     @RequiresPermissions("edusystem:ClassTeacher:view")
     @GetMapping()
     public String ClassTeacher() {
@@ -43,11 +56,22 @@ public class EduClassTeacherController extends BaseController {
     @PostMapping("/list")
     @ResponseBody
     public TableDataInfo list(EduClassTeacher eduClassTeacher) {
-        startPage();
         List<EduClassTeacher> list = eduClassTeacherService.selectEduClassTeacherList(eduClassTeacher);
+        for (EduClassTeacher eduClassTeacher1:list) {
+            System.out.println("哈哈");
+        }
         return getDataTable(list);
     }
-
+    @RequiresPermissions("edusystem:ClassTeacher1:list1")
+    @PostMapping("/list1")
+    @ResponseBody
+    public TableDataInfo list2(EduClassTeacher eduClassTeacher,ModelMap mmap) {
+        List<EduClassTeacher> list = eduClassTeacherService.selectEduClassTeacherList(eduClassTeacher);
+        for (EduClassTeacher eduClassTeacher1:list) {
+            System.out.println(eduClassTeacher1);
+        }
+        return getDataTable(list);
+    }
     /**
      * 导出班级教师列表
      */
@@ -65,7 +89,10 @@ public class EduClassTeacherController extends BaseController {
      * 新增班级教师
      */
     @GetMapping("/add")
-    public String add() {
+    public String add(ModelMap mmap) {
+        mmap.put("eduClassList",eduClassService.selectEduClassList(new EduClass()));
+        mmap.put("eduTeacherList",eduTeacherService.selectEduTeacherList(new EduTeacher()));
+        mmap.put("eduClassTeacherList",eduClassTeacherService.selectEduClassTeacherList(new EduClassTeacher()));
         return prefix + "/add";
     }
 
@@ -77,6 +104,7 @@ public class EduClassTeacherController extends BaseController {
     @PostMapping("/add")
     @ResponseBody
     public AjaxResult addSave(EduClassTeacher eduClassTeacher) {
+        Date date=new Date();
         return toAjax(eduClassTeacherService.insertEduClassTeacher(eduClassTeacher));
     }
 
@@ -87,6 +115,9 @@ public class EduClassTeacherController extends BaseController {
     public String edit(@PathVariable("classTeacherId") Long classTeacherId, ModelMap mmap) {
         EduClassTeacher eduClassTeacher = eduClassTeacherService.selectEduClassTeacherById(classTeacherId);
         mmap.put("eduClassTeacher", eduClassTeacher);
+        mmap.put("eduClassList",eduClassService.selectEduClassList(new EduClass()));
+        mmap.put("eduTeacherList",eduTeacherService.selectEduTeacherList(new EduTeacher()));
+        mmap.put("eduClassTeacherList",eduClassTeacherService.selectEduClassTeacherList(new EduClassTeacher()));
         return prefix + "/edit";
     }
 
