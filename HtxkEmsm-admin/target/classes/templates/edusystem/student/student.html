@@ -2,6 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro" lang="zh">
 <head>
     <th:block th:include="include :: header('学生信息列表')"/>
+    <th:block th:include="include :: select2-css"/>
 </head>
 <body class="gray-bg">
 <div class="container-div">
@@ -20,10 +21,10 @@
                         </li>
                         <li>
                             <p>所属班级：</p>
-                            <select name="studentClass" th:with="type=${@dict.getType('')}">
+                            <select name="studentClass">
                                 <option value="">所有</option>
-                                <option th:each="dict : ${type}" th:text="${dict.dictLabel}"
-                                        th:value="${dict.dictValue}"></option>
+                                <option th:each="dict : ${classList}" th:text="${dict.className}"
+                                        th:value="${dict.classId}"></option>
                             </select>
                         </li>
                         <li>
@@ -36,10 +37,10 @@
                         </li>
                         <li>
                             <p>所学专业：</p>
-                            <select name="studentMajorstudiedid" th:with="type=${@dict.getType('')}">
+                            <select name="studentMajorstudiedid">
                                 <option value="">所有</option>
-                                <option th:each="dict : ${type}" th:text="${dict.dictLabel}"
-                                        th:value="${dict.dictValue}"></option>
+                                <option th:each="dict : ${majorList}" th:text="${dict.majorStudiedname}"
+                                        th:value="${dict.majorStudiedid}"></option>
                             </select>
                         </li>
                         <li>
@@ -75,10 +76,12 @@
     </div>
 </div>
 <th:block th:include="include :: footer"/>
+<th:block th:include="include :: select2-js"/>
 <script th:inline="javascript">
     var editFlag = [[${@permission.hasPermi('edusystem:student:edit')}]];
     var removeFlag = [[${@permission.hasPermi('edusystem:student:remove')}]];
     var statusDatas = [[${@dict.getType('student_status')}]];
+    var resetPwdFlag = [[${@permission.hasPermi('system:user:resetPwd')}]];
     var prefix = ctx + "edusystem/student";
 
     $(function () {
@@ -107,11 +110,47 @@
                 },
                 {
                     field: 'sysUserId',
-                    title: '用户id'
+                    title: '用户id',
+                    visible: false
                 },
                 {
-                    field: 'studentClass',
+                    field: 'className',
                     title: '所属班级'
+                },
+                {
+                    field: 'mjorstudiedName',
+                    title: '专业'
+                },
+                {
+                    field: 'sysUser.loginName',
+                    title: '登录名称',
+                    sortable: true
+                },
+                {
+                    field: 'sysUser.userName',
+                    title: '账号昵称'
+                },
+                {
+                    field: 'sysUser.email',
+                    title: '邮箱',
+                    visible: false
+                },
+                {
+                    field: 'sysUser.phonenumber',
+                    title: '手机'
+                },
+                {
+                    visible: editFlag == 'hidden' ? false : true,
+                    title: '账号状态',
+                    align: 'center',
+                    formatter: function (value, row, index) {
+                        return statusTools(row);
+                    }
+                },
+                {
+                    field: 'sysUser.createTime',
+                    title: '创建时间',
+                    sortable: true
                 },
                 {
                     field: 'status',
@@ -121,22 +160,50 @@
                     }
                 },
                 {
-                    field: 'studentMajorstudiedid',
-                    title: '所学专业'
-                },
-                {
                     title: '操作',
                     align: 'center',
                     formatter: function (value, row, index) {
                         var actions = [];
-                        actions.push('<a class="btn btn-success btn-xs ' + editFlag + '" href="javascript:void(0)" onclick="$.operate.edit(\'' + row.studentId + '\')"><i class="fa fa-edit"></i>编辑</a> ');
+                        actions.push('<a class="btn btn-success btn-xs ' + editFlag + '" href="javascript:void(0)" onclick="$.operate.editTab(\'' + row.studentId + '\')"><i class="fa fa-edit"></i>编辑</a> ');
                         actions.push('<a class="btn btn-danger btn-xs ' + removeFlag + '" href="javascript:void(0)" onclick="$.operate.remove(\'' + row.studentId + '\')"><i class="fa fa-remove"></i>删除</a>');
+                        actions.push('<a class="btn btn-info btn-xs ' + resetPwdFlag + '" href="javascript:void(0)" onclick="resetPwd(\'' + row.sysUserId + '\')"><i class="fa fa-key"></i>重置</a>');
                         return actions.join('');
                     }
                 }]
         };
         $.table.init(options);
     });
+
+    var sys_prefix = ctx + "system/user";
+
+    /* 用户管理-重置密码 */
+    function resetPwd(userId) {
+        var url = sys_prefix + '/resetPwd/' + userId;
+        $.modal.open("重置密码", url, '800', '300');
+    }
+
+    /* 用户状态显示 */
+    function statusTools(row) {
+        if (row.sysUser.status == 1) {
+            return '<i class=\"fa fa-toggle-off text-info fa-2x\" onclick="enable(\'' + row.sysUserId + '\')"></i> ';
+        } else {
+            return '<i class=\"fa fa-toggle-on text-info fa-2x\" onclick="disable(\'' + row.sysUserId + '\')"></i> ';
+        }
+    }
+
+    /* 用户管理-停用 */
+    function disable(userId) {
+        $.modal.confirm("确认要停用用户吗？", function () {
+            $.operate.post(sys_prefix + "/changeStatus", {"userId": userId, "status": 1});
+        })
+    }
+
+    /* 用户管理启用 */
+    function enable(userId) {
+        $.modal.confirm("确认要启用用户吗？", function () {
+            $.operate.post(sys_prefix + "/changeStatus", {"userId": userId, "status": 0});
+        })
+    }
 </script>
 </body>
 </html>

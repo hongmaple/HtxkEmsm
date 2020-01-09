@@ -19,6 +19,7 @@ import com.htxk.ruoyi.system.service.ISysUserService;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -102,6 +103,8 @@ public class EduTeacherController extends BaseController {
     @Log(title = "教师信息", businessType = BusinessType.INSERT)
     @PostMapping("/add")
     @ResponseBody
+    //事务注解
+    @Transactional
     public AjaxResult addSave(@Validated EduTeacher eduTeacher) {
         SysUser user = eduTeacher.getSysUser();
         if (UserConstants.USER_NAME_NOT_UNIQUE.equals(sysUserService.checkLoginNameUnique(user.getLoginName()))) {
@@ -114,7 +117,8 @@ public class EduTeacherController extends BaseController {
         user.setSalt(ShiroUtils.randomSalt());
         user.setPassword(passwordService.encryptPassword(user.getLoginName(), user.getPassword(), user.getSalt()));
         user.setCreateBy(ShiroUtils.getLoginName());
-        eduTeacher.setSysUser(user);
+        sysUserService.insertUser(user);
+        eduTeacher.setSysUserId(sysUserService.selectOidBySELECT_LAST_INSERT_ID());
         return toAjax(eduTeacherService.insertEduTeacher(eduTeacher));
     }
 
@@ -139,17 +143,19 @@ public class EduTeacherController extends BaseController {
     @Log(title = "教师信息", businessType = BusinessType.UPDATE)
     @PostMapping("/edit")
     @ResponseBody
+    //事务注解
+    @Transactional
     public AjaxResult editSave(EduTeacher eduTeacher) {
         SysUser user = eduTeacher.getSysUser();
         sysUserService.checkUserAllowed(user);//校验用户是否允许操作
-        System.out.println(user);
+        System.out.println(user.getRoleIds()[0]);
         if (UserConstants.USER_PHONE_NOT_UNIQUE.equals(sysUserService.checkPhoneUnique(user))) {
             return error("修改用户'" + user.getLoginName() + "'失败，手机号码已存在");
         } else if (UserConstants.USER_EMAIL_NOT_UNIQUE.equals(sysUserService.checkEmailUnique(user))) {
             return error("修改用户'" + user.getLoginName() + "'失败，邮箱账号已存在");
         }
         user.setUpdateBy(ShiroUtils.getLoginName());
-        eduTeacher.setSysUser(user);
+        sysUserService.updateUser(user);
         return toAjax(eduTeacherService.updateEduTeacher(eduTeacher));
     }
 
@@ -161,6 +167,9 @@ public class EduTeacherController extends BaseController {
     @PostMapping("/remove")
     @ResponseBody
     public AjaxResult remove(String ids) {
+        for (String tid : Convert.toStrArray(ids)){
+            sysUserService.deleteUserById(eduTeacherService.selectEduTeacherById(Long.valueOf(tid)).getSysUserId());
+        }
         return toAjax(eduTeacherService.deleteEduTeacherByIds(ids));
     }
 }

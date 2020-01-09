@@ -1,11 +1,13 @@
+
+
 # 湖大信科IT综合管理系统
+
 ## maple小组
 ## 运行环境部署
   * 用git clone 项目到本地仓库
   * 创建Mysql数据库，数据库名：mapleemsplus，并执行sql文件夹下的mapleemsmplus.sql文件
   * 用ieda导入maven项目HtxkEmsm
-  * 按需更改HtxkEmsm-admin模块下resources的application.yml
-  * 修改HtxkEmsm-admin模块下resources的application-druid.yml sqpringboot主配置文件
+  * 按需更改HtxkEmsm-admin模块下resources的application.yml    sqpringboot主配置文件
   ``` yaml
   ruoyi:
   # 名称
@@ -136,13 +138,15 @@ xss:
   excludes: /system/notice/*
   # 匹配链接
   urlPatterns: /system/*,/monitor/*,/tool/*,/edusystem/*
-```
+  ```
+* 修改HtxkEmsm-admin模块下resources的application-druid.yml  数据库配置文件
+
   ``` yaml
     # 主库数据源
             master:
                 url: jdbc:mysql://localhost:3306/mapleemsmplus?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=true&serverTimezone=GMT%2B8             
                 username: root
                 password: root
- ``` 
+  ```
  * 启动HtxkEmsm-admin模块下的com.htxk.MapleApplication中的main方法
  * 启动成功后,访问8888端口

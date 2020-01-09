@@ -1,13 +1,17 @@
 package com.htxk.edusystem.controller;
 
+import com.htxk.edusystem.domain.EduClass;
+import com.htxk.edusystem.domain.EduMajor;
 import com.htxk.edusystem.domain.EduStudent;
 import com.htxk.edusystem.service.IEduClassService;
+import com.htxk.edusystem.service.IEduMajorService;
 import com.htxk.edusystem.service.IEduStudentService;
 import com.htxk.ruoyi.common.annotation.Log;
 import com.htxk.ruoyi.common.constant.UserConstants;
 import com.htxk.ruoyi.common.core.controller.BaseController;
 import com.htxk.ruoyi.common.core.domain.AjaxResult;
 import com.htxk.ruoyi.common.core.page.TableDataInfo;
+import com.htxk.ruoyi.common.core.text.Convert;
 import com.htxk.ruoyi.common.enums.BusinessType;
 import com.htxk.ruoyi.common.utils.poi.ExcelUtil;
 import com.htxk.ruoyi.framework.shiro.service.SysPasswordService;
@@ -18,6 +22,7 @@ import com.htxk.ruoyi.system.service.ISysUserService;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
@@ -47,11 +52,16 @@ public class EduStudentController extends BaseController {
     private SysPasswordService passwordService;
 
     @Autowired
+    private IEduMajorService eduMajorService;
+
+    @Autowired
     private IEduClassService eduClassService;
 
     @RequiresPermissions("edusystem:student:view")
     @GetMapping()
-    public String student() {
+    public String student(ModelMap mmap) {
+        mmap.put("classList",eduClassService.selectEduClassList(new EduClass()));
+        mmap.put("majorList",eduMajorService.selectEduMajorList(new EduMajor()));
         return prefix + "/student";
     }
 
@@ -64,6 +74,12 @@ public class EduStudentController extends BaseController {
     public TableDataInfo list(EduStudent eduStudent) {
         startPage();
         List<EduStudent> list = eduStudentService.selectEduStudentList(eduStudent);
+        for (EduStudent student : list){
+              student.setSysUser(sysUserService.selectUserById(student.getSysUserId()));
+        }
+        for (EduStudent eduStudent1:list){
+            System.out.println(eduStudent1);
+        }
         return getDataTable(list);
     }
 
@@ -86,6 +102,7 @@ public class EduStudentController extends BaseController {
     @GetMapping("/add")
     public String add(ModelMap mmap) {
         mmap.put("roles", roleService.selectRoleAll());
+        mmap.put("classTrees",eduMajorService.selectEduMajorAllList(new EduMajor()));
         return prefix + "/add";
     }
 
@@ -96,7 +113,9 @@ public class EduStudentController extends BaseController {
     @Log(title = "学生信息", businessType = BusinessType.INSERT)
     @PostMapping("/add")
     @ResponseBody
+    @Transactional
     public AjaxResult addSave(EduStudent eduStudent) {
+        System.out.println(eduStudent);
         SysUser user = eduStudent.getSysUser();
         if (UserConstants.USER_NAME_NOT_UNIQUE.equals(sysUserService.checkLoginNameUnique(user.getLoginName()))) {
             return error("新增用户'" + user.getLoginName() + "'失败，登录账号已存在");
@@ -108,8 +127,10 @@ public class EduStudentController extends BaseController {
         user.setSalt(ShiroUtils.randomSalt());
         user.setPassword(passwordService.encryptPassword(user.getLoginName(), user.getPassword(), user.getSalt()));
         user.setCreateBy(ShiroUtils.getLoginName());
-        System.out.println(user);
-        eduStudent.setSysUser(user);
+        sysUserService.insertUser(user);
+        EduClass eduClass = eduClassService.selectEduClassById(eduStudent.getStudentClassID());
+        eduStudent.setStudentMajorstudiedid(eduClass.getClassMajor());
+        eduStudent.setSysUserId(sysUserService.selectOidBySELECT_LAST_INSERT_ID());
         return toAjax(eduStudentService.insertEduStudent(eduStudent));
     }
 
@@ -117,8 +138,15 @@ public class EduStudentController extends BaseController {
      * 修改学生信息
      */
     @GetMapping("/edit/{studentId}")
+    @Transactional
     public String edit(@PathVariable("studentId") Long studentId, ModelMap mmap) {
         EduStudent eduStudent = eduStudentService.selectEduStudentById(studentId);
+        System.out.println(eduStudent);
+        eduStudent.setSysUser(sysUserService.selectUserById(eduStudent.getSysUserId()));
+        //查询角色
+        mmap.put("roles", roleService.selectRoleAll());
+        //查询班级与专业
+        mmap.put("classTrees",eduMajorService.selectEduMajorAllList(new EduMajor()));
         mmap.put("eduStudent", eduStudent);
         return prefix + "/edit";
     }
@@ -131,6 +159,16 @@ public class EduStudentController extends BaseController {
     @PostMapping("/edit")
     @ResponseBody
     public AjaxResult editSave(EduStudent eduStudent) {
+        SysUser user = eduStudent.getSysUser();
+        sysUserService.checkUserAllowed(user);//校验用户是否允许操作
+        System.out.println(user.getRoleIds()[0]);
+        if (UserConstants.USER_PHONE_NOT_UNIQUE.equals(sysUserService.checkPhoneUnique(user))) {
+            return error("修改用户'" + user.getLoginName() + "'失败，手机号码已存在");
+        } else if (UserConstants.USER_EMAIL_NOT_UNIQUE.equals(sysUserService.checkEmailUnique(user))) {
+            return error("修改用户'" + user.getLoginName() + "'失败，邮箱账号已存在");
+        }
+        user.setUpdateBy(ShiroUtils.getLoginName());
+        sysUserService.updateUser(user);
         return toAjax(eduStudentService.updateEduStudent(eduStudent));
     }
 
@@ -142,6 +180,10 @@ public class EduStudentController extends BaseController {
     @PostMapping("/remove")
     @ResponseBody
     public AjaxResult remove(String ids) {
+        for (String sid:Convert.toStrArray(ids)){
+            //根据用户账号id删除账号信息
+            sysUserService.deleteUserById(eduStudentService.selectEduStudentById(Convert.toLong(sid)).getSysUserId());
+        }
         return toAjax(eduStudentService.deleteEduStudentByIds(ids));
     }
 }

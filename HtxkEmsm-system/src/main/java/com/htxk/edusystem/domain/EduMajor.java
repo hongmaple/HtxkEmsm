@@ -6,6 +6,7 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * 专业对象 edu_major
@@ -36,19 +37,31 @@ public class EduMajor extends BaseEntity {
     /**
      * 更新者
      */
-    @Excel(name = "更新者")
     private String updataBy;
 
     /**
      * 更新时间
      */
-    @Excel(name = "更新时间", width = 30, dateFormat = "yyyy-MM-dd")
     private Date updataTime;
 
     /**
      * 删除标志（0代表存在 2代表删除）
      */
     private String delFlag;
+
+    /**
+     * 存储有此专业的班级
+     */
+    private List<EduClass> eduClasses;
+
+
+    public List<EduClass> getEduClasses() {
+        return eduClasses;
+    }
+
+    public void setEduClasses(List<EduClass> eduClasses) {
+        this.eduClasses = eduClasses;
+    }
 
     public Long getMajorStudiedid() {
         return majorStudiedid;
@@ -100,15 +113,15 @@ public class EduMajor extends BaseEntity {
 
     @Override
     public String toString() {
-        return new ToStringBuilder(this, ToStringStyle.MULTI_LINE_STYLE)
-                .append("majorStudiedid", getMajorStudiedid())
-                .append("majorStudiedname", getMajorStudiedname())
-                .append("describe", getDescribe())
-                .append("createBy", getCreateBy())
-                .append("createTime", getCreateTime())
-                .append("updataBy", getUpdataBy())
-                .append("updataTime", getUpdataTime())
-                .append("delFlag", getDelFlag())
-                .toString();
+        final StringBuffer sb = new StringBuffer("EduMajor{");
+        sb.append("majorStudiedid=").append(majorStudiedid);
+        sb.append(", majorStudiedname='").append(majorStudiedname).append('\'');
+        sb.append(", describe='").append(describe).append('\'');
+        sb.append(", updataBy='").append(updataBy).append('\'');
+        sb.append(", updataTime=").append(updataTime);
+        sb.append(", delFlag='").append(delFlag).append('\'');
+        sb.append(", eduClasses=").append(eduClasses);
+        sb.append('}');
+        return sb.toString();
     }
 }

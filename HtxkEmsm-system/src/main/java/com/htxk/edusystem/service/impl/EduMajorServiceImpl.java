@@ -1,13 +1,19 @@
 package com.htxk.edusystem.service.impl;
 
+import com.htxk.edusystem.domain.EduClass;
 import com.htxk.edusystem.domain.EduMajor;
 import com.htxk.edusystem.mapper.EduMajorMapper;
 import com.htxk.edusystem.service.IEduMajorService;
+import com.htxk.ruoyi.common.constant.UserConstants;
+import com.htxk.ruoyi.common.core.domain.Ztree;
 import com.htxk.ruoyi.common.core.text.Convert;
 import com.htxk.ruoyi.common.utils.DateUtils;
+import com.htxk.ruoyi.common.utils.StringUtils;
+import com.htxk.ruoyi.system.domain.SysDept;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -86,5 +92,10 @@ public class EduMajorServiceImpl implements IEduMajorService {
     @Override
     public int deleteEduMajorById(Long majorStudiedid) {
         return eduMajorMapper.deleteEduMajorById(majorStudiedid);
+    }
+
+    @Override
+    public List<EduMajor> selectEduMajorAllList(EduMajor eduMajor) {
+        return eduMajorMapper.selectEduMajorAllList(eduMajor);
     }
 }

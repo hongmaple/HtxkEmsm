@@ -1,6 +1,8 @@
 package com.htxk.edusystem.service;
 
 import com.htxk.edusystem.domain.EduMajor;
+import com.htxk.ruoyi.common.core.domain.Ztree;
+import sun.reflect.generics.tree.Tree;
 
 import java.util.List;
 
@@ -58,4 +60,11 @@ public interface IEduMajorService {
      * @return 结果
      */
     public int deleteEduMajorById(Long majorStudiedid);
+
+    /**
+     * 连表查询全部专业数据
+     * @auto maple
+     * @return list
+     */
+    public List<EduMajor> selectEduMajorAllList(EduMajor eduMajor);
 }

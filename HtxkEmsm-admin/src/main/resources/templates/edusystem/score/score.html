@@ -12,18 +12,18 @@
                     <ul>
                         <li>
                             <p>学生姓名：</p>
-                            <select name="scoreStudentid" th:with="type=${@dict.getType('')}">
+                            <select name="scoreStudentid" th:with="type=${@Student.selectEduStudentList(null)}">
                                 <option value="">所有</option>
-                                <option th:each="dict : ${type}" th:text="${dict.dictLabel}"
-                                        th:value="${dict.dictValue}"></option>
+                                <option th:each="Student : ${type}" th:text="${Student.getStudentName()}"
+                                        th:value="${Student.getStudentId()}"></option>
                             </select>
                         </li>
                         <li>
                             <p>课程名：</p>
-                            <select name="classCourseCourseId" th:with="type=${@dict.getType('')}">
+                            <select name="classCourseCourseId" th:with="type=${@Course.selectEduCourseList(null)}">
                                 <option value="">所有</option>
-                                <option th:each="dict : ${type}" th:text="${dict.dictLabel}"
-                                        th:value="${dict.dictValue}"></option>
+                                <option th:each="Course : ${type}" th:text="${Course.getCourseName()}"
+                                        th:value="${Course.getCourseId()}"></option>
                             </select>
                         </li>
                         <li>
@@ -76,7 +76,37 @@
     var removeFlag = [[${@permission.hasPermi('edusystem:score:remove')}]];
     var prefix = ctx + "edusystem/score";
 
+    var StudentMap = new Map();
+    function queryStudentMap() {
+        //获取所有学生
+        var EduStudentList = [[${@Student.selectEduStudentList(null)}]];
+        $(EduStudentList).each(function () {
+            StudentMap.set(this.studentId, this.studentName);
+        });
+    }
+
+    var CoursMap = new Map();
+    function queryCoursMap() {
+        //获取所课程
+        var CourseList = [[${@Course.selectEduCourseList(null)}]];
+        $(CourseList).each(function () {
+            CoursMap.set(this.courseId, this.courseName);
+        });
+    }
+
+    var SysUserMap = new Map();
+    function querySysUserMap() {
+        //获取所课程
+        var SysUserList = [[${@SysUser.querySysUserList()}]];
+        $(SysUserList).each(function () {
+            SysUserMap.set(this.userId, this.userName);
+        });
+    }
+
     $(function () {
+        queryStudentMap();
+        queryCoursMap();
+        querySysUserMap();
         var options = {
             url: prefix + "/list",
             createUrl: prefix + "/add",
@@ -94,11 +124,17 @@
                 },
                 {
                     field: 'scoreStudentid',
-                    title: '学生姓名'
+                    title: '学生姓名',
+                    formatter: function (value, row, index) {
+                        return StudentMap.get(row.scoreStudentid);
+                    }
                 },
                 {
                     field: 'classCourseCourseId',
-                    title: '课程名'
+                    title: '课程名',
+                    formatter: function (value, row, index) {
+                        return CoursMap.get(row.classCourseCourseId);
+                    }
                 },
                 {
                     field: 'score',
@@ -106,7 +142,10 @@
                 },
                 {
                     field: 'createBy',
-                    title: '创建者'
+                    title: '创建者',
+                    formatter: function (value, row, index) {
+                        return SysUserMap.get(parseInt(row.createBy));
+                    }
                 },
                 {
                     field: 'createTime',
@@ -114,7 +153,10 @@
                 },
                 {
                     field: 'updataBy',
-                    title: '更新者'
+                    title: '更新者',
+                    formatter: function (value, row, index) {
+                        return SysUserMap.get(parseInt(row.updataBy));
+                    }
                 },
                 {
                     field: 'updataTime',

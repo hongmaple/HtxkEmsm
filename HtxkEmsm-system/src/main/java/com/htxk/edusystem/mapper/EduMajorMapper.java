@@ -58,4 +58,10 @@ public interface EduMajorMapper {
      * @return 结果
      */
     public int deleteEduMajorByIds(String[] majorStudiedids);
+
+    /**
+     * 连表查询所有专业数据
+     * @return 结果
+     */
+    public List<EduMajor> selectEduMajorAllList(EduMajor eduMajor);
 }

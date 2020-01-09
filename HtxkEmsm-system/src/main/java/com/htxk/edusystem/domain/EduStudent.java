@@ -42,7 +42,7 @@ public class EduStudent extends BaseEntity {
      * 所属班级
      */
     @Excel(name = "所属班级")
-    private Long studentClass;
+    private Long studentClassID;
 
     /**
      * 状态（0.在籍1:毕业 2:休学 3:退学）
@@ -60,6 +60,32 @@ public class EduStudent extends BaseEntity {
      * 用户账号信息
      */
     private SysUser sysUser;
+
+    /**
+     * 所学专业名
+     */
+    private String majorstudiedName;
+
+    /**
+     * 所属班级名
+     */
+    private String className;
+
+    public String getMajorstudiedName() {
+        return majorstudiedName;
+    }
+
+    public void setMajorstudiedName(String majorstudiedName) {
+        this.majorstudiedName = majorstudiedName;
+    }
+
+    public String getClassName() {
+        return className;
+    }
+
+    public void setClassName(String className) {
+        this.className = className;
+    }
 
     public SysUser getSysUser() {
         return sysUser;
@@ -101,12 +127,12 @@ public class EduStudent extends BaseEntity {
         this.sysUserId = sysUserId;
     }
 
-    public Long getStudentClass() {
-        return studentClass;
+    public Long getStudentClassID() {
+        return studentClassID;
     }
 
-    public void setStudentClass(Long studentClass) {
-        this.studentClass = studentClass;
+    public void setStudentClassID(Long studentClassID) {
+        this.studentClassID = studentClassID;
     }
 
     public String getStatus() {
@@ -127,14 +153,18 @@ public class EduStudent extends BaseEntity {
 
     @Override
     public String toString() {
-        return new ToStringBuilder(this, ToStringStyle.MULTI_LINE_STYLE)
-                .append("studentId", getStudentId())
-                .append("studentNo", getStudentNo())
-                .append("studentName", getStudentName())
-                .append("sysUserId", getSysUserId())
-                .append("studentClass", getStudentClass())
-                .append("status", getStatus())
-                .append("studentMajorstudiedid", getStudentMajorstudiedid())
-                .toString();
+        final StringBuffer sb = new StringBuffer("EduStudent{");
+        sb.append("studentId=").append(studentId);
+        sb.append(", studentNo='").append(studentNo).append('\'');
+        sb.append(", studentName='").append(studentName).append('\'');
+        sb.append(", sysUserId=").append(sysUserId);
+        sb.append(", studentClassID=").append(studentClassID);
+        sb.append(", status='").append(status).append('\'');
+        sb.append(", studentMajorstudiedid=").append(studentMajorstudiedid);
+        sb.append(", sysUser=").append(sysUser);
+        sb.append(", majorstudiedName='").append(majorstudiedName).append('\'');
+        sb.append(", className='").append(className).append('\'');
+        sb.append('}');
+        return sb.toString();
     }
 }
