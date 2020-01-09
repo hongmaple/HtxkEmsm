@@ -42,7 +42,7 @@ public class EduStudent extends BaseEntity {
      * 所属班级
      */
     @Excel(name = "所属班级")
-    private Long studentClass;
+    private Long studentClassID;
 
     /**
      * 状态（0.在籍1:毕业 2:休学 3:退学）
@@ -101,12 +101,12 @@ public class EduStudent extends BaseEntity {
         this.sysUserId = sysUserId;
     }
 
-    public Long getStudentClass() {
-        return studentClass;
+    public Long getStudentClassID() {
+        return studentClassID;
     }
 
-    public void setStudentClass(Long studentClass) {
-        this.studentClass = studentClass;
+    public void setStudentClassID(Long studentClassID) {
+        this.studentClassID = studentClassID;
     }
 
     public String getStatus() {
@@ -132,7 +132,7 @@ public class EduStudent extends BaseEntity {
         sb.append(", studentNo='").append(studentNo).append('\'');
         sb.append(", studentName='").append(studentName).append('\'');
         sb.append(", sysUserId=").append(sysUserId);
-        sb.append(", studentClass=").append(studentClass);
+        sb.append(", studentClass=").append(studentClassID);
         sb.append(", status='").append(status).append('\'');
         sb.append(", studentMajorstudiedid=").append(studentMajorstudiedid);
         sb.append(", sysUser=").append(sysUser);

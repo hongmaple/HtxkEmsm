@@ -30,7 +30,8 @@
                 <div class="form-group">
                     <label class="col-sm-4 control-label">所属班级：</label>
                     <div class="col-sm-8">
-                        <select class="form-control select2-multiple" id="studentClass"  name="studentClass" th:with="type=${@dict.getType('student_class')}>
+                        <select class="form-control select2-multiple" id="studentClass"
+                                 th:with="type=${@dict.getType('student_class')}">
                             <optgroup th:each="Major:${classTrees}"
                                       th:label="${Major.majorStudiedname}">
                                 <option th:each="eduClass:${Major.eduClasses}"
@@ -247,22 +248,18 @@
     });
 
     function submitHandler() {
-        alert($.form.selectSelects("studentClass"))
         if ($.validate.form()) {
             var data = $('#form-student-add').serializeArray();
             var status = $("input[id='sysUser.status']").is(':checked') == true ? 0 : 1;
+            var roleIds = $.form.selectCheckeds("role");
+            var classId = $.form.selectSelects("studentClass");
+            alert(classId)
+            data.push({"name": "studentClass", "value": classId});
             data.push({"name": "sysUser.status", "value": status});
             data.push({"name": "sysUser.roleIds", "value": roleIds});
             $.operate.save(studentprefix + "/add", data);
         }
     }
-
-    $(function () {
-        $('#studentClass').select2({
-            placeholder: "请选择班级",
-            allowClear: true
-        });
-    })
 </script>
 </body>
 </html>
