@@ -113,15 +113,15 @@ public class EduMajor extends BaseEntity {
 
     @Override
     public String toString() {
-        return new ToStringBuilder(this, ToStringStyle.MULTI_LINE_STYLE)
-                .append("majorStudiedid", getMajorStudiedid())
-                .append("majorStudiedname", getMajorStudiedname())
-                .append("describe", getDescribe())
-                .append("createBy", getCreateBy())
-                .append("createTime", getCreateTime())
-                .append("updataBy", getUpdataBy())
-                .append("updataTime", getUpdataTime())
-                .append("delFlag", getDelFlag())
-                .toString();
+        final StringBuffer sb = new StringBuffer("EduMajor{");
+        sb.append("majorStudiedid=").append(majorStudiedid);
+        sb.append(", majorStudiedname='").append(majorStudiedname).append('\'');
+        sb.append(", describe='").append(describe).append('\'');
+        sb.append(", updataBy='").append(updataBy).append('\'');
+        sb.append(", updataTime=").append(updataTime);
+        sb.append(", delFlag='").append(delFlag).append('\'');
+        sb.append(", eduClasses=").append(eduClasses);
+        sb.append('}');
+        return sb.toString();
     }
 }

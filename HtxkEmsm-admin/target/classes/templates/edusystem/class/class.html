@@ -26,8 +26,8 @@
                             <p>班级专业：</p>
                             <select name="classMajor" th:with="type=${@dict.getType('')}">
                                 <option value="">所有</option>
-                                <option th:each="dict : ${type}" th:text="${dict.dictLabel}"
-                                        th:value="${dict.dictValue}"></option>
+                                <option th:each="eduMajor : ${eduMajors}" th:text="${eduMajor.majorStudiedname}"
+                                        th:value="${eduMajor.majorStudiedid}"></option>
                             </select>
                         </li>
                         <li>
@@ -93,7 +93,7 @@
                     title: '开班时间'
                 },
                 {
-                    field: 'classMajor',
+                    field: 'eduMajor.majorStudiedname',
                     title: '班级专业'
                 },
                 {

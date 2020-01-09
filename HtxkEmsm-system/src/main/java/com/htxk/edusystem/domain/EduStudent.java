@@ -127,14 +127,16 @@ public class EduStudent extends BaseEntity {
 
     @Override
     public String toString() {
-        return new ToStringBuilder(this, ToStringStyle.MULTI_LINE_STYLE)
-                .append("studentId", getStudentId())
-                .append("studentNo", getStudentNo())
-                .append("studentName", getStudentName())
-                .append("sysUserId", getSysUserId())
-                .append("studentClass", getStudentClass())
-                .append("status", getStatus())
-                .append("studentMajorstudiedid", getStudentMajorstudiedid())
-                .toString();
+        final StringBuffer sb = new StringBuffer("EduStudent{");
+        sb.append("studentId=").append(studentId);
+        sb.append(", studentNo='").append(studentNo).append('\'');
+        sb.append(", studentName='").append(studentName).append('\'');
+        sb.append(", sysUserId=").append(sysUserId);
+        sb.append(", studentClass=").append(studentClass);
+        sb.append(", status='").append(status).append('\'');
+        sb.append(", studentMajorstudiedid=").append(studentMajorstudiedid);
+        sb.append(", sysUser=").append(sysUser);
+        sb.append('}');
+        return sb.toString();
     }
 }

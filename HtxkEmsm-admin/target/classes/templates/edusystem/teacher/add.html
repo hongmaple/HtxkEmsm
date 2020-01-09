@@ -7,14 +7,14 @@
 <body>
 <div class="main-content">
     <form class="form-horizontal" id="form-teacher-add">
-        <input name="deptId" type="hidden" id="treeId"/>
+        <input name="sysUser.deptId" type="hidden" id="treeId"/>
         <h4 class="form-header h4">基本信息</h4>
         <div class="row">
             <div class="col-sm-6">
                 <div class="form-group">
                     <label class="col-sm-4 control-label">教师姓名：</label>
                     <div class="col-sm-8">
-                        <input name="teacherName" placeholder="请输入教师姓名" class="form-control" type="text" required>
+                        <input name="teacherName" placeholder="请输入教师名" class="form-control" type="text" required>
                     </div>
                 </div>
             </div>
@@ -68,7 +68,7 @@
                     <label class="col-sm-4 control-label"><span style="color: red; ">*</span>归属部门：</label>
                     <div class="col-sm-8">
                         <div class="input-group">
-                            <input name="sysUser.deptName" onclick="selectDeptTree()" id="treeName" type="text"
+                            <input name="sysUser.dept.deptName" onclick="selectDeptTree()" id="treeName" type="text"
                                    placeholder="请选择归属部门" class="form-control" required>
                             <span class="input-group-addon"><i class="fa fa-search"></i></span>
                         </div>
@@ -199,6 +199,9 @@
     $("#form-teacher-add").validate({
         onkeyup: false,
         rules: {
+            "teacherName":{
+                isName:true
+            },
             "sysUser.loginName": {
                 minlength: 2,
                 maxlength: 20,

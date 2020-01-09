@@ -1,6 +1,8 @@
 package com.htxk.edusystem.service;
 
 import com.htxk.edusystem.domain.EduMajor;
+import com.htxk.ruoyi.common.core.domain.Ztree;
+import sun.reflect.generics.tree.Tree;
 
 import java.util.List;
 
@@ -64,5 +66,5 @@ public interface IEduMajorService {
      * @auto maple
      * @return list
      */
-    public List<EduMajor> selectEduMajorAllList();
+    public List<EduMajor> selectEduMajorAllList(EduMajor eduMajor);
 }

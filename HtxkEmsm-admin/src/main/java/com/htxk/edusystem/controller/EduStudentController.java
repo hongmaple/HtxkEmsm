@@ -1,5 +1,7 @@
 package com.htxk.edusystem.controller;
 
+import com.htxk.edusystem.domain.EduClass;
+import com.htxk.edusystem.domain.EduMajor;
 import com.htxk.edusystem.domain.EduStudent;
 import com.htxk.edusystem.service.IEduClassService;
 import com.htxk.edusystem.service.IEduMajorService;
@@ -50,6 +52,9 @@ public class EduStudentController extends BaseController {
     @Autowired
     private IEduMajorService eduMajorService;
 
+    @Autowired
+    private IEduClassService eduClassService;
+
     @RequiresPermissions("edusystem:student:view")
     @GetMapping()
     public String student() {
@@ -87,7 +92,10 @@ public class EduStudentController extends BaseController {
     @GetMapping("/add")
     public String add(ModelMap mmap) {
         mmap.put("roles", roleService.selectRoleAll());
-
+        for(EduMajor eduMajor:eduMajorService.selectEduMajorAllList(new EduMajor())){
+            System.out.println(eduMajor);
+        }
+        mmap.put("classTrees",eduMajorService.selectEduMajorAllList(new EduMajor()));
         return prefix + "/add";
     }
 
@@ -99,6 +107,7 @@ public class EduStudentController extends BaseController {
     @PostMapping("/add")
     @ResponseBody
     public AjaxResult addSave(EduStudent eduStudent) {
+        System.out.println(eduStudent);
         SysUser user = eduStudent.getSysUser();
         if (UserConstants.USER_NAME_NOT_UNIQUE.equals(sysUserService.checkLoginNameUnique(user.getLoginName()))) {
             return error("新增用户'" + user.getLoginName() + "'失败，登录账号已存在");
@@ -110,8 +119,11 @@ public class EduStudentController extends BaseController {
         user.setSalt(ShiroUtils.randomSalt());
         user.setPassword(passwordService.encryptPassword(user.getLoginName(), user.getPassword(), user.getSalt()));
         user.setCreateBy(ShiroUtils.getLoginName());
-        System.out.println(user);
-        eduStudent.setSysUser(user);
+        sysUserService.insertUser(user);
+        System.out.println(eduStudent.getStudentClass());
+        EduClass eduClass = eduClassService.selectEduClassById(eduStudent.getStudentClass());
+        eduStudent.setStudentMajorstudiedid(eduClass.getClassMajor());
+        eduStudent.setSysUserId(sysUserService.selectOidBySELECT_LAST_INSERT_ID());
         return toAjax(eduStudentService.insertEduStudent(eduStudent));
     }
 
