@@ -77,7 +77,6 @@
     var prefix = ctx + "edusystem/score";
 
     var StudentMap = new Map();
-
     function queryStudentMap() {
         //获取所有学生
         var EduStudentList = [[${@Student.selectEduStudentList(null)}]];
@@ -87,7 +86,6 @@
     }
 
     var CoursMap = new Map();
-
     function queryCoursMap() {
         //获取所课程
         var CourseList = [[${@Course.selectEduCourseList(null)}]];
@@ -96,9 +94,19 @@
         });
     }
 
+    var SysUserMap = new Map();
+    function querySysUserMap() {
+        //获取所课程
+        var SysUserList = [[${@SysUser.querySysUserList()}]];
+        $(SysUserList).each(function () {
+            SysUserMap.set(this.userId, this.userName);
+        });
+    }
+
     $(function () {
         queryStudentMap();
         queryCoursMap();
+        querySysUserMap();
         var options = {
             url: prefix + "/list",
             createUrl: prefix + "/add",
@@ -134,7 +142,10 @@
                 },
                 {
                     field: 'createBy',
-                    title: '创建者'
+                    title: '创建者',
+                    formatter: function (value, row, index) {
+                        return SysUserMap.get(parseInt(row.createBy));
+                    }
                 },
                 {
                     field: 'createTime',
@@ -142,7 +153,10 @@
                 },
                 {
                     field: 'updataBy',
-                    title: '更新者'
+                    title: '更新者',
+                    formatter: function (value, row, index) {
+                        return SysUserMap.get(parseInt(row.updataBy));
+                    }
                 },
                 {
                     field: 'updataTime',

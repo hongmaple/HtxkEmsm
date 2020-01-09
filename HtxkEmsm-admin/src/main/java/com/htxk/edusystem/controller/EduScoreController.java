@@ -105,6 +105,8 @@ public class EduScoreController extends BaseController {
     @PostMapping("/edit")
     @ResponseBody
     public AjaxResult editSave(EduScore eduScore) {
+        //设置更新着
+        eduScore.setUpdataBy("1");
         //设置修改时间
         eduScore.setUpdataTime(new Date());
         return toAjax(eduScoreService.updateEduScore(eduScore));
