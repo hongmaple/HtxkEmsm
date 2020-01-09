@@ -24,7 +24,7 @@ import java.util.List;
  *
  * @author ruoyi
  */
-@Service
+@Service("SysUser")
 public class SysUserServiceImpl implements ISysUserService {
     private static final Logger log = LoggerFactory.getLogger(SysUserServiceImpl.class);
 
@@ -45,6 +45,11 @@ public class SysUserServiceImpl implements ISysUserService {
 
     @Autowired
     private ISysConfigService configService;
+
+    @Override
+    public List<SysUser> querySysUserList() {
+        return userMapper.querySysUserList();
+    }
 
     /**
      * 根据条件分页查询用户列表
