@@ -2,6 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro" lang="zh">
 <head>
     <th:block th:include="include :: header('学生信息列表')"/>
+    <th:block th:include="include :: select2-css"/>
 </head>
 <body class="gray-bg">
 <div class="container-div">
@@ -20,10 +21,10 @@
                         </li>
                         <li>
                             <p>所属班级：</p>
-                            <select name="studentClass" th:with="type=${@dict.getType('')}">
+                            <select name="studentClass">
                                 <option value="">所有</option>
-                                <option th:each="dict : ${type}" th:text="${dict.dictLabel}"
-                                        th:value="${dict.dictValue}"></option>
+                                <option th:each="dict : ${classList}" th:text="${dict.className}"
+                                        th:value="${dict.classId}"></option>
                             </select>
                         </li>
                         <li>
@@ -36,10 +37,10 @@
                         </li>
                         <li>
                             <p>所学专业：</p>
-                            <select name="studentMajorstudiedid" th:with="type=${@dict.getType('')}">
+                            <select name="studentMajorstudiedid">
                                 <option value="">所有</option>
-                                <option th:each="dict : ${type}" th:text="${dict.dictLabel}"
-                                        th:value="${dict.dictValue}"></option>
+                                <option th:each="dict : ${majorList}" th:text="${dict.majorStudiedname}"
+                                        th:value="${dict.majorStudiedid}"></option>
                             </select>
                         </li>
                         <li>
@@ -75,6 +76,7 @@
     </div>
 </div>
 <th:block th:include="include :: footer"/>
+<th:block th:include="include :: select2-js"/>
 <script th:inline="javascript">
     var editFlag = [[${@permission.hasPermi('edusystem:student:edit')}]];
     var removeFlag = [[${@permission.hasPermi('edusystem:student:remove')}]];
