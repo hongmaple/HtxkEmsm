@@ -57,9 +57,7 @@ public class EduStudentController extends BaseController {
 
     @RequiresPermissions("edusystem:student:view")
     @GetMapping()
-    public String student() {
-        return prefix + "/student";
-    }
+    public String student() { return prefix + "/student"; }
 
     /**
      * 查询学生信息列表
@@ -70,6 +68,12 @@ public class EduStudentController extends BaseController {
     public TableDataInfo list(EduStudent eduStudent) {
         startPage();
         List<EduStudent> list = eduStudentService.selectEduStudentList(eduStudent);
+        for (EduStudent student : list){
+              student.setSysUser(sysUserService.selectUserById(student.getSysUserId()));
+        }
+        for (EduStudent eduStudent1:list){
+            System.out.println(eduStudent1);
+        }
         return getDataTable(list);
     }
 
@@ -92,9 +96,6 @@ public class EduStudentController extends BaseController {
     @GetMapping("/add")
     public String add(ModelMap mmap) {
         mmap.put("roles", roleService.selectRoleAll());
-        for(EduMajor eduMajor:eduMajorService.selectEduMajorAllList(new EduMajor())){
-            System.out.println(eduMajor);
-        }
         mmap.put("classTrees",eduMajorService.selectEduMajorAllList(new EduMajor()));
         return prefix + "/add";
     }
@@ -107,7 +108,6 @@ public class EduStudentController extends BaseController {
     @PostMapping("/add")
     @ResponseBody
     public AjaxResult addSave(EduStudent eduStudent) {
-        System.out.println(eduStudent);
         SysUser user = eduStudent.getSysUser();
         if (UserConstants.USER_NAME_NOT_UNIQUE.equals(sysUserService.checkLoginNameUnique(user.getLoginName()))) {
             return error("新增用户'" + user.getLoginName() + "'失败，登录账号已存在");
@@ -133,6 +133,12 @@ public class EduStudentController extends BaseController {
     @GetMapping("/edit/{studentId}")
     public String edit(@PathVariable("studentId") Long studentId, ModelMap mmap) {
         EduStudent eduStudent = eduStudentService.selectEduStudentById(studentId);
+        System.out.println(eduStudent);
+        eduStudent.setSysUser(sysUserService.selectUserById(eduStudent.getSysUserId()));
+        //查询角色
+        mmap.put("roles", roleService.selectRoleAll());
+        //查询班级与专业
+        mmap.put("classTrees",eduMajorService.selectEduMajorAllList(new EduMajor()));
         mmap.put("eduStudent", eduStudent);
         return prefix + "/edit";
     }
@@ -145,6 +151,16 @@ public class EduStudentController extends BaseController {
     @PostMapping("/edit")
     @ResponseBody
     public AjaxResult editSave(EduStudent eduStudent) {
+        SysUser user = eduStudent.getSysUser();
+        sysUserService.checkUserAllowed(user);//校验用户是否允许操作
+        System.out.println(user.getRoleIds()[0]);
+        if (UserConstants.USER_PHONE_NOT_UNIQUE.equals(sysUserService.checkPhoneUnique(user))) {
+            return error("修改用户'" + user.getLoginName() + "'失败，手机号码已存在");
+        } else if (UserConstants.USER_EMAIL_NOT_UNIQUE.equals(sysUserService.checkEmailUnique(user))) {
+            return error("修改用户'" + user.getLoginName() + "'失败，邮箱账号已存在");
+        }
+        user.setUpdateBy(ShiroUtils.getLoginName());
+        sysUserService.updateUser(user);
         return toAjax(eduStudentService.updateEduStudent(eduStudent));
     }
 
