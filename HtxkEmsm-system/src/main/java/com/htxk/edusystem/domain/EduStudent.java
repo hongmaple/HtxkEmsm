@@ -61,6 +61,32 @@ public class EduStudent extends BaseEntity {
      */
     private SysUser sysUser;
 
+    /**
+     * 所学专业名
+     */
+    private String majorstudiedName;
+
+    /**
+     * 所属班级名
+     */
+    private String className;
+
+    public String getMajorstudiedName() {
+        return majorstudiedName;
+    }
+
+    public void setMajorstudiedName(String majorstudiedName) {
+        this.majorstudiedName = majorstudiedName;
+    }
+
+    public String getClassName() {
+        return className;
+    }
+
+    public void setClassName(String className) {
+        this.className = className;
+    }
+
     public SysUser getSysUser() {
         return sysUser;
     }
@@ -132,10 +158,12 @@ public class EduStudent extends BaseEntity {
         sb.append(", studentNo='").append(studentNo).append('\'');
         sb.append(", studentName='").append(studentName).append('\'');
         sb.append(", sysUserId=").append(sysUserId);
-        sb.append(", studentClass=").append(studentClassID);
+        sb.append(", studentClassID=").append(studentClassID);
         sb.append(", status='").append(status).append('\'');
         sb.append(", studentMajorstudiedid=").append(studentMajorstudiedid);
         sb.append(", sysUser=").append(sysUser);
+        sb.append(", majorstudiedName='").append(majorstudiedName).append('\'');
+        sb.append(", className='").append(className).append('\'');
         sb.append('}');
         return sb.toString();
     }
