@@ -137,9 +137,6 @@ public class SysUser extends BaseEntity {
      */
     private Long[] postIds;
 
-    public SysUser() {
-
-    }
 
     public String getUserType() {
         return userType;
@@ -330,6 +327,8 @@ public class SysUser extends BaseEntity {
         this.postIds = postIds;
     }
 
+    public SysUser() {
+    }
     @Override
     public String toString() {
         return new ToStringBuilder(this, ToStringStyle.MULTI_LINE_STYLE)

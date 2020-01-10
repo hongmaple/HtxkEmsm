@@ -43,7 +43,8 @@
                 <div class="form-group">
                     <label class="col-sm-4 control-label">所属班级：</label>
                     <div class="col-sm-8">
-                        <select class="form-control select2-multiple" name="studentClassID">
+                        <select class="form-control select2-multiple" name="studentClassID" required>
+                            <option value="">请选择</option>
                             <optgroup th:each="Major:${classTrees}"
                                       th:label="${Major.majorStudiedname}">
                                 <option th:each="Class:${Major.eduClasses}"

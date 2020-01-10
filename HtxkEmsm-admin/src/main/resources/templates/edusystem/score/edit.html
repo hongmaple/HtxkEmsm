@@ -12,7 +12,7 @@
             <div class="col-sm-8">
                 <select name="scoreStudentid" class="form-control m-b" required th:field="*{scoreStudentid}"
                         th:with="type=${@Student.selectEduStudentList(null)}">
-                    <option value="">所有</option>
+                    <option value="">请选择</option>
                     <option th:each="Student : ${type}" th:text="${Student.getStudentName()}"
                             th:value="${Student.getStudentId()}"></option>
                 </select>
@@ -24,7 +24,7 @@
             <div class="col-sm-8">
                 <select name="classCourseCourseId" class="form-control m-b" required th:field="*{classCourseCourseId}"
                         th:with="type=${@Course.selectEduCourseList(null)}">
-                    <option value="">所有</option>
+                    <option value="">请选择</option>
                     <option th:each="Course : ${type}" th:text="${Course.getCourseName()}"
                             th:value="${Course.getCourseId()}"></option>
                 </select>

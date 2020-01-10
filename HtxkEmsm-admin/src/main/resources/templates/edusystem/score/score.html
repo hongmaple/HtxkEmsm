@@ -21,7 +21,7 @@
                         <li>
                             <p>课程名：</p>
                             <select name="classCourseCourseId" th:with="type=${@Course.selectEduCourseList(null)}">
-                                <option value="">所有</option>
+                                <option value="">所有</option> <option value="">所有</option>
                                 <option th:each="Course : ${type}" th:text="${Course.getCourseName()}"
                                         th:value="${Course.getCourseId()}"></option>
                             </select>
