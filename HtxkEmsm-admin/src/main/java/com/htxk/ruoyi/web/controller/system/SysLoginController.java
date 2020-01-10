@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  * 登录验证
@@ -35,10 +36,11 @@ public class SysLoginController extends BaseController {
 
     @PostMapping("/login")
     @ResponseBody
-    public AjaxResult ajaxLogin(String username, String password, Boolean rememberMe) {
+    public AjaxResult ajaxLogin(String username, String password, Boolean rememberMe,HttpSession session) {
         UsernamePasswordToken token = new UsernamePasswordToken(username, password, rememberMe);
         Subject subject = SecurityUtils.getSubject();
         try {
+            session.setAttribute("username",username);
             subject.login(token);
             return success();
         } catch (AuthenticationException e) {

@@ -94,19 +94,9 @@
         });
     }
 
-    var SysUserMap = new Map();
-    function querySysUserMap() {
-        //获取所用户
-        var SysUserList = [[${@SysUser.querySysUserList()}]];
-        $(SysUserList).each(function () {
-            SysUserMap.set(this.userId, this.userName);
-        });
-    }
-
     $(function () {
         queryStudentMap();
         queryCoursMap();
-        querySysUserMap();
         var options = {
             url: prefix + "/list",
             createUrl: prefix + "/add",
@@ -142,10 +132,7 @@
                 },
                 {
                     field: 'createBy',
-                    title: '创建者',
-                    formatter: function (value, row, index) {
-                        return SysUserMap.get(parseInt(row.createBy));
-                    }
+                    title: '创建者'
                 },
                 {
                     field: 'createTime',
@@ -153,10 +140,7 @@
                 },
                 {
                     field: 'updataBy',
-                    title: '更新者',
-                    formatter: function (value, row, index) {
-                        return SysUserMap.get(parseInt(row.updataBy));
-                    }
+                    title: '更新者'
                 },
                 {
                     field: 'updataTime',
