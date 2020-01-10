@@ -27,6 +27,7 @@ public interface IEduClassTeacherService {
      */
     public List<EduClassTeacher> selectEduClassTeacherList(EduClassTeacher eduClassTeacher);
 
+    public List<EduClassTeacher> queryEduTeacherList(EduClassTeacher eduClassTeacher);
     /**
      * 新增班级教师
      *

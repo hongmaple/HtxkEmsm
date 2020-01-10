@@ -29,6 +29,7 @@
             <label class="col-sm-3 control-label">班级专业：</label>
             <div class="col-sm-8">
                 <select name="classMajor" class="form-control m-b" required>
+                    <option th:value="${#dates}">所有</option>
                     <option th:each="eduMajor:${eduMajors}" th:value="${eduMajor.majorStudiedid}"
                             th:text="${eduMajor.majorStudiedname}" th:field="*{classMajor}"></option>
                 </select>

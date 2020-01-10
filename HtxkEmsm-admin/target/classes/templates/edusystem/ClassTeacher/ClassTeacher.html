@@ -12,15 +12,17 @@
                     <ul>
                         <li>
                             <p>班级名：</p>
-                            <select name="classTeacherClassId" th:with="type=${@dict.getType('')}">
+                            <input type="text" name="class_name"/>
+                            <select name="class_name" th:with="type=${@dict.getType('class_name')}">
                                 <option value="">所有</option>
-                                <option th:each="dict : ${type}" th:text="${dict.dictLabel}"
-                                        th:value="${dict.dictValue}"></option>
+                                <option th:each="dict : ${type}" th:text="${eduClassList.className}"
+                                        th:value="${eduClassList.dictValue}"></option>
                             </select>
                         </li>
                         <li>
                             <p>教师名：</p>
-                            <select name="classTeacherTeacherId" th:with="type=${@dict.getType('')}">
+                            <input type="text" name="teacher_name"/>
+                            <select name="teacher_name" th:with="type=${@dict.getType('teacher_name')}">
                                 <option value="">所有</option>
                                 <option th:each="dict : ${type}" th:text="${dict.dictLabel}"
                                         th:value="${dict.dictValue}"></option>
@@ -63,8 +65,11 @@
 <script th:inline="javascript">
     var editFlag = [[${@permission.hasPermi('edusystem:ClassTeacher:edit')}]];
     var removeFlag = [[${@permission.hasPermi('edusystem:ClassTeacher:remove')}]];
+    //var classNameData=;
     var prefix = ctx + "edusystem/ClassTeacher";
-
+    $(".formId").validate({
+        focusCleanup: true
+    });
     $(function () {
         var options = {
             url: prefix + "/list",
@@ -82,13 +87,29 @@
                     visible: false
                 },
                 {
-                    field: 'classTeacherClassId',
-                    title: '班级名'
+                    field: 'class_name',
+                    title: '班级名',
+                    type:href
+                    // formatter:function () {
+                    //     $.table.selectDictLabel(value);
+                    // }
                 },
                 {
-                    field: 'classTeacherTeacherId',
+                    field: 'teacher_name',
                     title: '教师名'
+                    // formatter:function () {
+                    //     $.table.selectDictLabel(value);
+                    // }
                 },
+                {
+                    field: 'createBy',
+                    title: '创建者'
+                },
+                {
+                    field:'updateBy',
+                    title:'更新者'
+                }
+                ,
                 {
                     field: 'createTime',
                     title: '创建时间'

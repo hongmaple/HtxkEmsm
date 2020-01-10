@@ -19,6 +19,7 @@ import com.htxk.ruoyi.system.service.ISysUserService;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -102,6 +103,8 @@ public class EduTeacherController extends BaseController {
     @Log(title = "教师信息", businessType = BusinessType.INSERT)
     @PostMapping("/add")
     @ResponseBody
+    //事务注解
+    @Transactional
     public AjaxResult addSave(@Validated EduTeacher eduTeacher) {
         SysUser user = eduTeacher.getSysUser();
         if (UserConstants.USER_NAME_NOT_UNIQUE.equals(sysUserService.checkLoginNameUnique(user.getLoginName()))) {
@@ -140,6 +143,8 @@ public class EduTeacherController extends BaseController {
     @Log(title = "教师信息", businessType = BusinessType.UPDATE)
     @PostMapping("/edit")
     @ResponseBody
+    //事务注解
+    @Transactional
     public AjaxResult editSave(EduTeacher eduTeacher) {
         SysUser user = eduTeacher.getSysUser();
         sysUserService.checkUserAllowed(user);//校验用户是否允许操作
