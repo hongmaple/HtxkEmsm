@@ -52,8 +52,7 @@ public interface IEduStudentService {
     public int deleteEduStudentByIds(String ids);
 
     /**
-     * 删除学生信息信息
-     *
+     * 删除学生信息
      * @param studentId 学生信息ID
      * @return 结果
      */

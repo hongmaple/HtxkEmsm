@@ -1,11 +1,10 @@
 package com.htxk.edusystem.domain;
 
 import com.htxk.ruoyi.common.annotation.Excel;
+import com.htxk.ruoyi.common.annotation.Excels;
 import com.htxk.ruoyi.common.core.domain.BaseEntity;
 import com.htxk.ruoyi.system.domain.SysUser;
-import org.apache.commons.lang3.builder.ToStringBuilder;
-import org.apache.commons.lang3.builder.ToStringStyle;
-
+import com.htxk.ruoyi.common.annotation.Excel.Type;
 /**
  * 学生信息对象 edu_student
  *
@@ -35,40 +34,50 @@ public class EduStudent extends BaseEntity {
     /**
      * 用户id
      */
-    @Excel(name = "用户id")
+    @Excel(name = "用户id",type = Type.IMPORT)
     private Long sysUserId;
 
     /**
      * 所属班级
      */
-    @Excel(name = "所属班级")
+    @Excel(name = "所属班级",type = Type.IMPORT)
     private Long studentClassID;
 
     /**
      * 状态（0.在籍1:毕业 2:休学 3:退学）
      */
-    @Excel(name = "状态", readConverterExp = "0=.在籍1:毕业,2=:休学,3=:退学")
+    @Excel(name = "状态", readConverterExp = "0=在籍,1=毕业,2=休学,3=退学")
     private String status;
 
     /**
      * 所学专业
      */
-    @Excel(name = "所学专业")
+    @Excel(name = "所学专业",type = Type.IMPORT)
     private Long studentMajorstudiedid;
 
     /**
      * 用户账号信息
      */
+    @Excels({
+            @Excel(name = "登录名称",targetAttr = "loginName",type = Type.EXPORT),
+            @Excel(name = "昵称",targetAttr = "userName",type = Type.EXPORT),
+            @Excel(name = "邮箱",targetAttr = "email",type = Type.EXPORT),
+            @Excel(name = "手机号码",targetAttr = "phonenumber",type = Type.EXPORT),
+            @Excel(name = "性别", readConverterExp = "0=男,1=女,2=未知",targetAttr = "sex",type = Type.EXPORT),
+            @Excel(name = "帐号状态", readConverterExp = "0=正常,1=停用",targetAttr = "status",type = Type.EXPORT),
+    })
     private SysUser sysUser;
 
     /**
      * 所学专业名
      */
+    @Excel(name = "所学专业名",type = Type.EXPORT)
     private String majorstudiedName;
 
     /**
      * 所属班级名
      */
+    @Excel(name = "所属班级名",type = Type.EXPORT)
     private String className;
 
     public String getMajorstudiedName() {

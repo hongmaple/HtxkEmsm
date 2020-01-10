@@ -15,7 +15,7 @@
                             <input type="text" name="class_name"/>
                             <select name="class_name" th:with="type=${@dict.getType('class_name')}">
                                 <option value="">所有</option>
-                                <option th:each="dict : ${type}" th:text="${eduClassList.className}"
+                                <option th:each="dict : ${type}" th:text="${classTeacher.}"
                                         th:value="${eduClassList.dictValue}"></option>
                             </select>
                         </li>
@@ -89,17 +89,10 @@
                 {
                     field: 'class_name',
                     title: '班级名',
-                    type:href
-                    // formatter:function () {
-                    //     $.table.selectDictLabel(value);
-                    // }
                 },
                 {
                     field: 'teacher_name',
                     title: '教师名'
-                    // formatter:function () {
-                    //     $.table.selectDictLabel(value);
-                    // }
                 },
                 {
                     field: 'createBy',

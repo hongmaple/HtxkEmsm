@@ -13,6 +13,8 @@ import com.htxk.ruoyi.common.core.domain.AjaxResult;
 import com.htxk.ruoyi.common.core.page.TableDataInfo;
 import com.htxk.ruoyi.common.core.text.Convert;
 import com.htxk.ruoyi.common.enums.BusinessType;
+import com.htxk.ruoyi.common.utils.DateUtils;
+import com.htxk.ruoyi.common.utils.StringUtils;
 import com.htxk.ruoyi.common.utils.poi.ExcelUtil;
 import com.htxk.ruoyi.framework.shiro.service.SysPasswordService;
 import com.htxk.ruoyi.framework.util.ShiroUtils;
@@ -77,9 +79,6 @@ public class EduStudentController extends BaseController {
         for (EduStudent student : list){
               student.setSysUser(sysUserService.selectUserById(student.getSysUserId()));
         }
-        for (EduStudent eduStudent1:list){
-            System.out.println(eduStudent1);
-        }
         return getDataTable(list);
     }
 
@@ -92,6 +91,10 @@ public class EduStudentController extends BaseController {
     @ResponseBody
     public AjaxResult export(EduStudent eduStudent) {
         List<EduStudent> list = eduStudentService.selectEduStudentList(eduStudent);
+        for (EduStudent student:list){
+            SysUser user = sysUserService.selectUserById(student.getSysUserId());
+            student.setSysUser(user);
+        }
         ExcelUtil<EduStudent> util = new ExcelUtil<>(EduStudent.class);
         return util.exportExcel(list, "student");
     }
@@ -124,11 +127,16 @@ public class EduStudentController extends BaseController {
         } else if (UserConstants.USER_EMAIL_NOT_UNIQUE.equals(sysUserService.checkEmailUnique(user))) {
             return error("新增用户'" + user.getLoginName() + "'失败，邮箱账号已存在");
         }
+        //设置学号和登录账号
+        String loginname_studenNo = DateUtils.parseDateToStr("yyyyMMddmmss",DateUtils.getNowDate());
         user.setSalt(ShiroUtils.randomSalt());
-        user.setPassword(passwordService.encryptPassword(user.getLoginName(), user.getPassword(), user.getSalt()));
+        user.setLoginName(loginname_studenNo);
+        user.setPassword(StringUtils.substring(user.getPhonenumber(),5));
+        user.setPassword(passwordService.encryptPassword(user.getLoginName(),user.getPassword() , user.getSalt()));
         user.setCreateBy(ShiroUtils.getLoginName());
         sysUserService.insertUser(user);
         EduClass eduClass = eduClassService.selectEduClassById(eduStudent.getStudentClassID());
+        eduStudent.setStudentNo(loginname_studenNo);
         eduStudent.setStudentMajorstudiedid(eduClass.getClassMajor());
         eduStudent.setSysUserId(sysUserService.selectOidBySELECT_LAST_INSERT_ID());
         return toAjax(eduStudentService.insertEduStudent(eduStudent));
@@ -138,13 +146,11 @@ public class EduStudentController extends BaseController {
      * 修改学生信息
      */
     @GetMapping("/edit/{studentId}")
-    @Transactional
     public String edit(@PathVariable("studentId") Long studentId, ModelMap mmap) {
         EduStudent eduStudent = eduStudentService.selectEduStudentById(studentId);
-        System.out.println(eduStudent);
         eduStudent.setSysUser(sysUserService.selectUserById(eduStudent.getSysUserId()));
         //查询角色
-        mmap.put("roles", roleService.selectRoleAll());
+        mmap.put("roles", roleService.selectRolesByUserId(eduStudent.getSysUserId()));
         //查询班级与专业
         mmap.put("classTrees",eduMajorService.selectEduMajorAllList(new EduMajor()));
         mmap.put("eduStudent", eduStudent);
@@ -158,10 +164,11 @@ public class EduStudentController extends BaseController {
     @Log(title = "学生信息", businessType = BusinessType.UPDATE)
     @PostMapping("/edit")
     @ResponseBody
+    @Transactional
     public AjaxResult editSave(EduStudent eduStudent) {
         SysUser user = eduStudent.getSysUser();
         sysUserService.checkUserAllowed(user);//校验用户是否允许操作
-        System.out.println(user.getRoleIds()[0]);
+        System.out.println(eduStudent);
         if (UserConstants.USER_PHONE_NOT_UNIQUE.equals(sysUserService.checkPhoneUnique(user))) {
             return error("修改用户'" + user.getLoginName() + "'失败，手机号码已存在");
         } else if (UserConstants.USER_EMAIL_NOT_UNIQUE.equals(sysUserService.checkEmailUnique(user))) {
@@ -169,6 +176,8 @@ public class EduStudentController extends BaseController {
         }
         user.setUpdateBy(ShiroUtils.getLoginName());
         sysUserService.updateUser(user);
+        EduClass eduClass = eduClassService.selectEduClassById(eduStudent.getStudentClassID());
+        eduStudent.setStudentMajorstudiedid(eduClass.getClassMajor());
         return toAjax(eduStudentService.updateEduStudent(eduStudent));
     }
 
