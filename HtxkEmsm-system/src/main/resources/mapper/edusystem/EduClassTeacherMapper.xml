@@ -23,7 +23,15 @@
         SELECT * FROM edu_class_teacher ect
         INNER JOIN edu_class ec ON ec.class_id=ect.class_teacher_class_id
         INNER JOIN edu_teacher et ON et.teacher_id=ect.class_teacher_teacher_id
-        WHERE ect.del_flag=0
+        <where><if test="classTeacherClassId != null ">and ect.class_teacher_class_id = #{classTeacherClassId}</if>
+        <if test="classTeacherTeacherId != null ">and ect.class_teacher_teacher_id = #{classTeacherTeacherId}</if>
+        ect.del_flag=0
+        </where>
+        <!--<include refid="selectEduClassTeacherVo"/>-->
+        <!--<where>-->
+            <!--<if test="classTeacherClassId != null ">and class_teacher_class_id = #{classTeacherClassId}</if>-->
+            <!--<if test="classTeacherTeacherId != null ">and class_teacher_teacher_id = #{classTeacherTeacherId}</if>-->
+        <!--</where>-->
     </select>
     <select id="queryEduTeacherList" parameterType="EduClassTeacher" resultMap="EduClassTeacherResult">
         <include refid="selectEduClassTeacherVo"/>

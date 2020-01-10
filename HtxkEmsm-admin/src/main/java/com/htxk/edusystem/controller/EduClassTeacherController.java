@@ -11,7 +11,9 @@ import com.htxk.ruoyi.common.core.controller.BaseController;
 import com.htxk.ruoyi.common.core.domain.AjaxResult;
 import com.htxk.ruoyi.common.core.page.TableDataInfo;
 import com.htxk.ruoyi.common.enums.BusinessType;
+import com.htxk.ruoyi.common.utils.DateUtils;
 import com.htxk.ruoyi.common.utils.poi.ExcelUtil;
+import com.htxk.ruoyi.framework.util.ShiroUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -92,7 +94,6 @@ public class EduClassTeacherController extends BaseController {
     public String add(ModelMap mmap) {
         mmap.put("eduClassList",eduClassService.selectEduClassList(new EduClass()));
         mmap.put("eduTeacherList",eduTeacherService.selectEduTeacherList(new EduTeacher()));
-        mmap.put("eduClassTeacherList",eduClassTeacherService.selectEduClassTeacherList(new EduClassTeacher()));
         return prefix + "/add";
     }
 
@@ -104,7 +105,9 @@ public class EduClassTeacherController extends BaseController {
     @PostMapping("/add")
     @ResponseBody
     public AjaxResult addSave(EduClassTeacher eduClassTeacher) {
-        Date date=new Date();
+        eduClassTeacher.setCreateBy(ShiroUtils.getLoginName());
+        eduClassTeacher.setCreateTime(DateUtils.getNowDate());
+        eduClassTeacher.setUpdateTime(DateUtils.getNowDate());
         return toAjax(eduClassTeacherService.insertEduClassTeacher(eduClassTeacher));
     }
 
@@ -114,10 +117,10 @@ public class EduClassTeacherController extends BaseController {
     @GetMapping("/edit/{classTeacherId}")
     public String edit(@PathVariable("classTeacherId") Long classTeacherId, ModelMap mmap) {
         EduClassTeacher eduClassTeacher = eduClassTeacherService.selectEduClassTeacherById(classTeacherId);
-        mmap.put("eduClassTeacher", eduClassTeacher);
-        mmap.put("eduClassList",eduClassService.selectEduClassList(new EduClass()));
+        mmap.put("eduClassTeacher",eduClassTeacher);
         mmap.put("eduTeacherList",eduTeacherService.selectEduTeacherList(new EduTeacher()));
-        mmap.put("eduClassTeacherList",eduClassTeacherService.selectEduClassTeacherList(new EduClassTeacher()));
+        mmap.put("eduClassList",eduClassService.selectEduClassList(new EduClass()));
+
         return prefix + "/edit";
     }
 
@@ -129,6 +132,9 @@ public class EduClassTeacherController extends BaseController {
     @PostMapping("/edit")
     @ResponseBody
     public AjaxResult editSave(EduClassTeacher eduClassTeacher) {
+        eduClassTeacher.setUpdateBy(ShiroUtils.getLoginName());
+        eduClassTeacher.setCreateTime(DateUtils.getNowDate());
+        eduClassTeacher.setUpdateTime(DateUtils.getNowDate());
         return toAjax(eduClassTeacherService.updateEduClassTeacher(eduClassTeacher));
     }
 

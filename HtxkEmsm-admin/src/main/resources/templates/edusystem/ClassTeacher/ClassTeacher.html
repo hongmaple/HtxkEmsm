@@ -12,20 +12,18 @@
                     <ul>
                         <li>
                             <p>班级名：</p>
-                            <input type="text" name="class_name"/>
-                            <select name="class_name" th:with="type=${@dict.getType('class_name')}">
+                            <select name="class_name" th:with="type=${@ClassTeacher.selectEduClassTeacherList(null)}">
                                 <option value="">所有</option>
-                                <option th:each="dict : ${type}" th:text="${classTeacher.}"
-                                        th:value="${eduClassList.dictValue}"></option>
+                                <option th:each="ClassTeacher : ${type}" th:text="${ClassTeacher.getClass_name()}"
+                                        th:value="${ClassTeacher.getClassTeacherClassId()}"></option>
                             </select>
                         </li>
                         <li>
                             <p>教师名：</p>
-                            <input type="text" name="teacher_name"/>
-                            <select name="teacher_name" th:with="type=${@dict.getType('teacher_name')}">
+                            <select name="teacher_name" th:with="type=${@ClassTeacher.selectEduClassTeacherList(null)}">
                                 <option value="">所有</option>
-                                <option th:each="dict : ${type}" th:text="${dict.dictLabel}"
-                                        th:value="${dict.dictValue}"></option>
+                                <option th:each="ClassTeacher : ${type}" th:text="${ClassTeacher.getTeacher_name()}"
+                                        th:value="${ClassTeacher.getClassTeacherTeacherId()}"></option>
                             </select>
                         </li>
                         <li>
@@ -65,7 +63,8 @@
 <script th:inline="javascript">
     var editFlag = [[${@permission.hasPermi('edusystem:ClassTeacher:edit')}]];
     var removeFlag = [[${@permission.hasPermi('edusystem:ClassTeacher:remove')}]];
-    //var classNameData=;
+    var teacher_name = $.table.selectColumns("teacher_name");
+    var aa=$.modal.enable();
     var prefix = ctx + "edusystem/ClassTeacher";
     $(".formId").validate({
         focusCleanup: true
@@ -89,10 +88,16 @@
                 {
                     field: 'class_name',
                     title: '班级名',
+                    formatter:function(value,row,index){
+                        return "<a href='javascript:void(0)' onClickCell='aa('+row.id+')'>"+row.class_name+"</a>";
+                    }
                 },
                 {
                     field: 'teacher_name',
-                    title: '教师名'
+                    title: '教师名',
+                    formatter:function(value,row,index){
+                        return "<a href='show.html?id="+row.classTeacherClassId+"' onClickCell='aa('+row.id+')'>"+row.teacher_name+"</a>";
+                    }
                 },
                 {
                     field: 'createBy',
