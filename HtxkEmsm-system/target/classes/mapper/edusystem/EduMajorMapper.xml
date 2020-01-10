@@ -83,7 +83,6 @@
             #{majorStudiedid}
         </foreach>
     </delete>
-
     <resultMap id="eduMajorAllresult" type="EduMajor">
         <id property="majorStudiedid" column="Major_studiedId"/>
         <result property="majorStudiedname" column="Major_studiedName"/>

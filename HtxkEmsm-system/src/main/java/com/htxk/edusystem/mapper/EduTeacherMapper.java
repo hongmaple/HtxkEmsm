@@ -1,5 +1,6 @@
 package com.htxk.edusystem.mapper;
 
+import com.htxk.edusystem.domain.EduClassTeacher;
 import com.htxk.edusystem.domain.EduTeacher;
 
 import java.util.List;
@@ -58,4 +59,5 @@ public interface EduTeacherMapper {
      * @return 结果
      */
     public int deleteEduTeacherByIds(String[] teacherIds);
+
 }
