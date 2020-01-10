@@ -127,6 +127,8 @@ public class EduTeacherController extends BaseController {
         user.setSalt(ShiroUtils.randomSalt());
         user.setPassword(passwordService.encryptPassword(user.getLoginName(), user.getPassword(), user.getSalt()));
         user.setCreateBy(ShiroUtils.getLoginName());
+        //把账号类型设置为教师类型
+        user.setUserType("03");
         sysUserService.insertUser(user);
         eduTeacher.setSysUserId(sysUserService.selectOidBySELECT_LAST_INSERT_ID());
         return toAjax(eduTeacherService.insertEduTeacher(eduTeacher));

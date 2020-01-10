@@ -56,6 +56,8 @@ public class SysUserController extends BaseController {
     @ResponseBody
     public TableDataInfo list(SysUser user) {
         startPage();
+        //只查询系统用户
+        user.setUserType("00");
         List<SysUser> list = userService.selectUserList(user);
         return getDataTable(list);
     }

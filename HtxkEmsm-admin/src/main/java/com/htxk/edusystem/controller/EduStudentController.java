@@ -134,6 +134,8 @@ public class EduStudentController extends BaseController {
         user.setPassword(StringUtils.substring(user.getPhonenumber(),5));
         user.setPassword(passwordService.encryptPassword(user.getLoginName(),user.getPassword() , user.getSalt()));
         user.setCreateBy(ShiroUtils.getLoginName());
+        //把账号类型设置为学生类型
+        user.setUserType("02");
         sysUserService.insertUser(user);
         EduClass eduClass = eduClassService.selectEduClassById(eduStudent.getStudentClassID());
         eduStudent.setStudentNo(loginname_studenNo);
