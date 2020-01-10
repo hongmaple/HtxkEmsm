@@ -10,8 +10,11 @@
         <div class="form-group">
             <label class="col-sm-3 control-label">班级名：</label>
             <div class="col-sm-8">
-                <select name="classCourseClassId" class="form-control m-b" required>
+                <select name="classCourseClassId" class="form-control m-b" required th:field="*{classCourseClassId}"
+                        th:with="type=${@EduClass.selectEduClassList(null)}">
                     <option value="">所有</option>
+                    <option th:each="EduClass : ${type}" th:text="${EduClass.getClassName()}"
+                            th:value="${EduClass.getClassId()}"></option>
                 </select>
                 <span class="help-block m-b-none"><i class="fa fa-info-circle"></i> 代码生成请选择字典属性</span>
             </div>
@@ -19,8 +22,11 @@
         <div class="form-group">
             <label class="col-sm-3 control-label">任课教师：</label>
             <div class="col-sm-8">
-                <select name="classCourseTeacherid" class="form-control m-b" required>
+                <select name="classCourseTeacherid" class="form-control m-b" required th:field="*{classCourseTeacherid}"
+                        th:with="type=${@EduTeacher.selectEduTeacherList(null)}">
                     <option value="">所有</option>
+                    <option th:each="EduTeacher : ${type}" th:text="${EduTeacher.getTeacherName()}"
+                            th:value="${EduTeacher.getTeacherId()}"></option>
                 </select>
                 <span class="help-block m-b-none"><i class="fa fa-info-circle"></i> 代码生成请选择字典属性</span>
             </div>
@@ -28,8 +34,11 @@
         <div class="form-group">
             <label class="col-sm-3 control-label">课程名：</label>
             <div class="col-sm-8">
-                <select name="classCourseCourseId" class="form-control m-b" required>
+                <select name="classCourseCourseId" class="form-control m-b" required th:field="*{classCourseCourseId}"
+                        th:with="type=${@Course.selectEduCourseList(null)}">
                     <option value="">所有</option>
+                    <option th:each="Course : ${type}" th:text="${Course.getCourseName()}"
+                            th:value="${Course.getCourseId()}"></option>
                 </select>
                 <span class="help-block m-b-none"><i class="fa fa-info-circle"></i> 代码生成请选择字典属性</span>
             </div>
@@ -42,7 +51,7 @@
     $("#form-ClassCourse-edit").validate({
         focusCleanup: true
     });
-
+    //submitHandler
     function submitHandler() {
         if ($.validate.form()) {
             $.operate.save(prefix + "/edit", $('#form-ClassCourse-edit').serialize());

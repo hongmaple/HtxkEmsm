@@ -51,7 +51,7 @@
     $("#form-ClassCourse-edit").validate({
         focusCleanup: true
     });
-
+    //submitHandler
     function submitHandler() {
         if ($.validate.form()) {
             $.operate.save(prefix + "/edit", $('#form-ClassCourse-edit').serialize());

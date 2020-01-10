@@ -73,6 +73,7 @@
     var removeFlag = [[${@permission.hasPermi('edusystem:ClassCourse:remove')}]];
     var prefix = ctx + "edusystem/ClassCourse";
 
+    //保存所有班级
     var EduClassMap = new Map();
     function selectEduClassList() {
         //获取所有班级
@@ -81,7 +82,7 @@
             EduClassMap.set(this.classId, this.className);
         });
     }
-
+    //保存所有教师
     var EduTeacherMap = new Map();
     function selectEduTeacherList() {
         //获取所有教师
@@ -90,7 +91,6 @@
             EduTeacherMap.set(this.teacherId, this.teacherName);
         });
     }
-
     var CoursMap = new Map();
     function queryCoursMap() {
         //获取所课程

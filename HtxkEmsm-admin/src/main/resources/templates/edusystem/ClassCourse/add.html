@@ -47,7 +47,7 @@
     $("#form-ClassCourse-add").validate({
         focusCleanup: true
     });
-
+    //submitHandler
     function submitHandler() {
         if ($.validate.form()) {
             $.operate.save(prefix + "/add", $('#form-ClassCourse-add').serialize());
