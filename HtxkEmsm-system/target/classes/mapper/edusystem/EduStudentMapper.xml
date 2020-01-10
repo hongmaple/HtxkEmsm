@@ -24,7 +24,7 @@
         <include refid="selectEduStudentVo"/>
         <where>
             <if test="studentNo != null  and studentNo != ''">
-                and student_no = #{studentNo}
+                and student_no like concat('%',  #{studentNo}, '%')
             </if>
             <if test="studentName != null  and studentName != ''">
                 and student_name like concat('%', #{studentName}, '%')
@@ -53,7 +53,7 @@
     <insert id="insertEduStudent" parameterType="EduStudent" useGeneratedKeys="true"
             keyProperty="studentId">
         insert into edu_student
-        <trim prefix="values (" suffix=")" suffixOverrides=",">
+        <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="studentNo != null  and studentNo != ''">student_no,
             </if>
             <if test="studentName != null  and studentName != ''">student_name,

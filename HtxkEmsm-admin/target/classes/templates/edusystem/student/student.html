@@ -21,7 +21,7 @@
                         </li>
                         <li>
                             <p>所属班级：</p>
-                            <select name="studentClass">
+                            <select name="studentClassID">
                                 <option value="">所有</option>
                                 <option th:each="dict : ${classList}" th:text="${dict.className}"
                                         th:value="${dict.classId}"></option>
@@ -118,7 +118,7 @@
                     title: '所属班级'
                 },
                 {
-                    field: 'mjorstudiedName',
+                    field: 'majorstudiedName',
                     title: '专业'
                 },
                 {

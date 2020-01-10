@@ -57,7 +57,6 @@ public class EduClassTeacherServiceImpl implements IEduClassTeacherService {
      */
     @Override
     public int insertEduClassTeacher(EduClassTeacher eduClassTeacher) {
-        eduClassTeacher.setCreateTime(DateUtils.getNowDate());
         return eduClassTeacherMapper.insertEduClassTeacher(eduClassTeacher);
     }
 

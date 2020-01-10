@@ -1,5 +1,6 @@
 package com.htxk.edusystem.controller;
 
+import com.htxk.edusystem.domain.EduStudent;
 import com.htxk.edusystem.domain.EduTeacher;
 import com.htxk.edusystem.service.IEduTeacherService;
 import com.htxk.ruoyi.common.annotation.Log;
@@ -13,6 +14,7 @@ import com.htxk.ruoyi.common.utils.poi.ExcelUtil;
 import com.htxk.ruoyi.framework.shiro.service.SysPasswordService;
 import com.htxk.ruoyi.framework.util.ShiroUtils;
 import com.htxk.ruoyi.system.domain.SysUser;
+import com.htxk.ruoyi.system.service.ISysDeptService;
 import com.htxk.ruoyi.system.service.ISysPostService;
 import com.htxk.ruoyi.system.service.ISysRoleService;
 import com.htxk.ruoyi.system.service.ISysUserService;
@@ -52,6 +54,9 @@ public class EduTeacherController extends BaseController {
     @Autowired
     private SysPasswordService passwordService;
 
+    @Autowired
+    private ISysDeptService deptService;
+
     @RequiresPermissions("edusystem:teacher:view")
     @GetMapping()
     public String teacher() {
@@ -82,7 +87,12 @@ public class EduTeacherController extends BaseController {
     @ResponseBody
     public AjaxResult export(EduTeacher eduTeacher) {
         List<EduTeacher> list = eduTeacherService.selectEduTeacherList(eduTeacher);
-        ExcelUtil<EduTeacher> util = new ExcelUtil<EduTeacher>(EduTeacher.class);
+        for (EduTeacher teacher:list){
+            SysUser user = sysUserService.selectUserById(teacher.getSysUserId());
+            teacher.setSysUser(user);
+            teacher.setSysDept(deptService.selectDeptById(user.getDeptId()));
+        }
+        ExcelUtil<EduTeacher> util = new ExcelUtil<>(EduTeacher.class);
         return util.exportExcel(list, "teacher");
     }
 
@@ -129,7 +139,6 @@ public class EduTeacherController extends BaseController {
     public String edit(@PathVariable("teacherId") Long teacherId, ModelMap mmap) {
         EduTeacher eduTeacher = eduTeacherService.selectEduTeacherById(teacherId);
         eduTeacher.setSysUser(sysUserService.selectUserById(eduTeacher.getSysUserId()));
-        System.out.println(eduTeacher.getSysUser());
         mmap.put("eduTeacher", eduTeacher);
         mmap.put("roles", roleService.selectRolesByUserId(eduTeacher.getSysUserId()));
         mmap.put("posts", postService.selectPostsByUserId(eduTeacher.getSysUserId()));
@@ -148,7 +157,6 @@ public class EduTeacherController extends BaseController {
     public AjaxResult editSave(EduTeacher eduTeacher) {
         SysUser user = eduTeacher.getSysUser();
         sysUserService.checkUserAllowed(user);//校验用户是否允许操作
-        System.out.println(user.getRoleIds()[0]);
         if (UserConstants.USER_PHONE_NOT_UNIQUE.equals(sysUserService.checkPhoneUnique(user))) {
             return error("修改用户'" + user.getLoginName() + "'失败，手机号码已存在");
         } else if (UserConstants.USER_EMAIL_NOT_UNIQUE.equals(sysUserService.checkEmailUnique(user))) {
