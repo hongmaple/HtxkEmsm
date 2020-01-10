@@ -2,36 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b196ab14-df7a-4fd5-8f38-2c15eb3532ed" name="默认的" comment="">
-      <change afterPath="$PROJECT_DIR$/HtxkEmsm-admin/src/test/java/com/htxk/Test.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HtxkEmsm-admin/HtxkEmsm-admin.iml" beforeDir="false" afterPath="$PROJECT_DIR$/HtxkEmsm-admin/HtxkEmsm-admin.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HtxkEmsm-admin/src/main/java/com/htxk/edusystem/controller/EduClassTeacherController.java" beforeDir="false" afterPath="$PROJECT_DIR$/HtxkEmsm-admin/src/main/java/com/htxk/edusystem/controller/EduClassTeacherController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/HtxkEmsm-admin/src/main/java/com/htxk/edusystem/controller/EduStudentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/HtxkEmsm-admin/src/main/java/com/htxk/edusystem/controller/EduStudentController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/HtxkEmsm-admin/src/main/java/com/htxk/edusystem/controller/EduTeacherController.java" beforeDir="false" afterPath="$PROJECT_DIR$/HtxkEmsm-admin/src/main/java/com/htxk/edusystem/controller/EduTeacherController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HtxkEmsm-admin/src/main/resources/templates/edusystem/ClassTeacher/add.html" beforeDir="false" afterPath="$PROJECT_DIR$/HtxkEmsm-admin/src/main/resources/templates/edusystem/ClassTeacher/add.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HtxkEmsm-admin/src/main/resources/templates/edusystem/student/add.html" beforeDir="false" afterPath="$PROJECT_DIR$/HtxkEmsm-admin/src/main/resources/templates/edusystem/student/add.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HtxkEmsm-admin/src/main/resources/templates/edusystem/student/edit.html" beforeDir="false" afterPath="$PROJECT_DIR$/HtxkEmsm-admin/src/main/resources/templates/edusystem/student/edit.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HtxkEmsm-admin/src/main/resources/templates/edusystem/student/student.html" beforeDir="false" afterPath="$PROJECT_DIR$/HtxkEmsm-admin/src/main/resources/templates/edusystem/student/student.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HtxkEmsm-admin/src/main/resources/templates/edusystem/teacher/add.html" beforeDir="false" afterPath="$PROJECT_DIR$/HtxkEmsm-admin/src/main/resources/templates/edusystem/teacher/add.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HtxkEmsm-admin/src/main/resources/templates/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/HtxkEmsm-admin/src/main/resources/templates/login.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HtxkEmsm-admin/target/classes/com/htxk/edusystem/controller/EduClassTeacherController.class" beforeDir="false" afterPath="$PROJECT_DIR$/HtxkEmsm-admin/target/classes/com/htxk/edusystem/controller/EduClassTeacherController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HtxkEmsm-admin/target/classes/com/htxk/edusystem/controller/EduStudentController.class" beforeDir="false" afterPath="$PROJECT_DIR$/HtxkEmsm-admin/target/classes/com/htxk/edusystem/controller/EduStudentController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HtxkEmsm-admin/target/classes/com/htxk/edusystem/controller/EduTeacherController.class" beforeDir="false" afterPath="$PROJECT_DIR$/HtxkEmsm-admin/target/classes/com/htxk/edusystem/controller/EduTeacherController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HtxkEmsm-admin/target/classes/templates/edusystem/ClassTeacher/ClassTeacher.html" beforeDir="false" afterPath="$PROJECT_DIR$/HtxkEmsm-admin/target/classes/templates/edusystem/ClassTeacher/ClassTeacher.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HtxkEmsm-admin/target/classes/templates/edusystem/ClassTeacher/add.html" beforeDir="false" afterPath="$PROJECT_DIR$/HtxkEmsm-admin/target/classes/templates/edusystem/ClassTeacher/add.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HtxkEmsm-admin/target/classes/templates/edusystem/student/add.html" beforeDir="false" afterPath="$PROJECT_DIR$/HtxkEmsm-admin/target/classes/templates/edusystem/student/add.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HtxkEmsm-admin/target/classes/templates/edusystem/student/edit.html" beforeDir="false" afterPath="$PROJECT_DIR$/HtxkEmsm-admin/target/classes/templates/edusystem/student/edit.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HtxkEmsm-admin/target/classes/templates/edusystem/student/student.html" beforeDir="false" afterPath="$PROJECT_DIR$/HtxkEmsm-admin/target/classes/templates/edusystem/student/student.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HtxkEmsm-admin/target/classes/templates/edusystem/teacher/add.html" beforeDir="false" afterPath="$PROJECT_DIR$/HtxkEmsm-admin/target/classes/templates/edusystem/teacher/add.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HtxkEmsm-admin/target/classes/templates/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/HtxkEmsm-admin/target/classes/templates/login.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HtxkEmsm-system/src/main/java/com/htxk/edusystem/domain/EduStudent.java" beforeDir="false" afterPath="$PROJECT_DIR$/HtxkEmsm-system/src/main/java/com/htxk/edusystem/domain/EduStudent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HtxkEmsm-system/src/main/java/com/htxk/edusystem/domain/EduTeacher.java" beforeDir="false" afterPath="$PROJECT_DIR$/HtxkEmsm-system/src/main/java/com/htxk/edusystem/domain/EduTeacher.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HtxkEmsm-system/src/main/java/com/htxk/edusystem/service/IEduStudentService.java" beforeDir="false" afterPath="$PROJECT_DIR$/HtxkEmsm-system/src/main/java/com/htxk/edusystem/service/IEduStudentService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HtxkEmsm-system/src/main/java/com/htxk/edusystem/service/impl/EduClassTeacherServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/HtxkEmsm-system/src/main/java/com/htxk/edusystem/service/impl/EduClassTeacherServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HtxkEmsm-system/src/main/resources/mapper/edusystem/EduStudentMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/HtxkEmsm-system/src/main/resources/mapper/edusystem/EduStudentMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HtxkEmsm-system/target/classes/com/htxk/edusystem/domain/EduStudent.class" beforeDir="false" afterPath="$PROJECT_DIR$/HtxkEmsm-system/target/classes/com/htxk/edusystem/domain/EduStudent.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HtxkEmsm-system/target/classes/com/htxk/edusystem/service/impl/EduClassTeacherServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/HtxkEmsm-system/target/classes/com/htxk/edusystem/service/impl/EduClassTeacherServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HtxkEmsm-system/target/classes/mapper/edusystem/EduStudentMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/HtxkEmsm-system/target/classes/mapper/edusystem/EduStudentMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HtxkEmsm-admin/src/main/java/com/htxk/ruoyi/web/controller/system/SysUserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/HtxkEmsm-admin/src/main/java/com/htxk/ruoyi/web/controller/system/SysUserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HtxkEmsm-system/src/main/java/com/htxk/ruoyi/system/domain/SysUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/HtxkEmsm-system/src/main/java/com/htxk/ruoyi/system/domain/SysUser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HtxkEmsm-system/src/main/resources/mapper/system/SysUserMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/HtxkEmsm-system/src/main/resources/mapper/system/SysUserMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HtxkEmsm-system/target/classes/com/htxk/edusystem/domain/EduTeacher.class" beforeDir="false" afterPath="$PROJECT_DIR$/HtxkEmsm-system/target/classes/com/htxk/edusystem/domain/EduTeacher.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HtxkEmsm-system/target/classes/mapper/system/SysUserMapper.xml" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/HtxkEmsm-common/target/" />
     <ignored path="$PROJECT_DIR$/HtxkEmsm-generator/target/" />
@@ -62,35 +40,8 @@
       <file leaf-file-name="EduStudentController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/HtxkEmsm-admin/src/main/java/com/htxk/edusystem/controller/EduStudentController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="228">
-              <caret line="93" column="7" lean-forward="true" selection-start-line="93" selection-start-column="7" selection-end-line="96" selection-end-column="9" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="student.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/HtxkEmsm-admin/src/main/resources/templates/edusystem/student/student.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="209">
-              <caret line="50" column="29" lean-forward="true" selection-start-line="50" selection-start-column="29" selection-end-line="50" selection-end-column="29" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ry-ui.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/HtxkEmsm-admin/src/main/resources/static/ruoyi/js/ry-ui.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="86">
-              <caret line="344" column="77" selection-start-line="344" selection-start-column="73" selection-end-line="344" selection-end-column="77" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CommonController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/HtxkEmsm-admin/src/main/java/com/htxk/ruoyi/web/controller/common/CommonController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-599">
-              <caret line="42" column="51" selection-start-line="42" selection-start-column="47" selection-end-line="42" selection-end-column="51" />
+            <state relative-caret-position="380">
+              <caret line="137" column="31" lean-forward="true" selection-start-line="136" selection-start-column="8" selection-end-line="137" selection-end-column="31" />
             </state>
           </provider>
         </entry>
@@ -98,8 +49,14 @@
       <file leaf-file-name="SysUser.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/HtxkEmsm-system/src/main/java/com/htxk/ruoyi/system/domain/SysUser.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1085">
-              <caret line="122" lean-forward="true" selection-start-line="122" selection-end-line="122" />
+            <state relative-caret-position="323">
+              <caret line="143" column="33" selection-start-line="143" selection-start-column="33" selection-end-line="143" selection-end-column="33" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#2670#2671#0" expanded="true" />
+                <element signature="e#2718#2719#0" expanded="true" />
+                <element signature="e#2758#2759#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -154,11 +111,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="EduTeacher.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="EduTeacher.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/HtxkEmsm-system/src/main/java/com/htxk/edusystem/domain/EduTeacher.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="287">
-              <caret line="28" column="21" selection-start-line="28" selection-start-column="21" selection-end-line="28" selection-end-column="21" />
+            <state relative-caret-position="300">
+              <caret line="27" column="7" lean-forward="true" selection-start-line="27" selection-start-column="7" selection-end-line="27" selection-end-column="7" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#1980#1981#0" expanded="true" />
@@ -198,29 +155,60 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="EduTeacherController.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="SysUserMapper.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/HtxkEmsm-system/src/main/resources/mapper/system/SysUserMapper.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="360">
+              <caret line="232" column="66" lean-forward="true" selection-start-line="232" selection-start-column="66" selection-end-line="232" selection-end-column="66" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SysUserController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/HtxkEmsm-admin/src/main/java/com/htxk/ruoyi/web/controller/system/SysUserController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="45">
+              <caret line="41" column="14" lean-forward="true" selection-start-line="41" selection-start-column="14" selection-end-line="41" selection-end-column="14" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ISysUserService.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/HtxkEmsm-system/src/main/java/com/htxk/ruoyi/system/service/ISysUserService.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="133">
+              <caret line="19" column="19" selection-start-line="19" selection-start-column="19" selection-end-line="19" selection-end-column="19" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SysUserServiceImpl.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/HtxkEmsm-system/src/main/java/com/htxk/ruoyi/system/service/impl/SysUserServiceImpl.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="185">
+              <caret line="62" column="31" selection-start-line="62" selection-start-column="31" selection-end-line="62" selection-end-column="31" />
+              <folding>
+                <element signature="e#1709#1710#0" expanded="true" />
+                <element signature="e#1763#1764#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SysUserMapper.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/HtxkEmsm-system/src/main/java/com/htxk/ruoyi/system/mapper/SysUserMapper.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="178">
+              <caret line="19" column="25" selection-start-line="19" selection-start-column="25" selection-end-line="19" selection-end-column="25" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="EduTeacherController.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/HtxkEmsm-admin/src/main/java/com/htxk/edusystem/controller/EduTeacherController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="308">
-              <caret line="87" column="53" lean-forward="true" selection-start-line="87" selection-start-column="53" selection-end-line="87" selection-end-column="53" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Excels.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/HtxkEmsm-common/src/main/java/com/htxk/ruoyi/common/annotation/Excels.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="228">
-              <caret line="15" column="9" selection-start-line="15" selection-start-column="4" selection-end-line="15" selection-end-column="9" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Excel.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/HtxkEmsm-common/src/main/java/com/htxk/ruoyi/common/annotation/Excel.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1246">
-              <caret line="16" column="20" lean-forward="true" selection-start-line="16" selection-start-column="20" selection-end-line="16" selection-end-column="20" />
+            <state relative-caret-position="-72">
+              <caret line="130" column="31" lean-forward="true" selection-start-line="130" selection-start-column="31" selection-end-line="130" selection-end-column="31" />
             </state>
           </provider>
         </entry>
@@ -240,6 +228,7 @@
       <find>studentClass</find>
       <find>mjorstudiedName</find>
       <find>majorstudiedName</find>
+      <find>type</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -264,9 +253,12 @@
         <option value="$PROJECT_DIR$/HtxkEmsm-system/src/main/resources/mapper/edusystem/EduStudentMapper.xml" />
         <option value="$PROJECT_DIR$/HtxkEmsm-admin/src/main/resources/templates/edusystem/student/student.html" />
         <option value="$PROJECT_DIR$/HtxkEmsm-system/src/main/java/com/htxk/edusystem/domain/EduStudent.java" />
+        <option value="$PROJECT_DIR$/HtxkEmsm-system/src/main/java/com/htxk/edusystem/domain/EduTeacher.java" />
+        <option value="$PROJECT_DIR$/HtxkEmsm-system/src/main/java/com/htxk/ruoyi/system/domain/SysUser.java" />
+        <option value="$PROJECT_DIR$/HtxkEmsm-admin/src/main/java/com/htxk/ruoyi/web/controller/system/SysUserController.java" />
+        <option value="$PROJECT_DIR$/HtxkEmsm-system/src/main/resources/mapper/system/SysUserMapper.xml" />
         <option value="$PROJECT_DIR$/HtxkEmsm-admin/src/main/java/com/htxk/edusystem/controller/EduStudentController.java" />
         <option value="$PROJECT_DIR$/HtxkEmsm-admin/src/main/java/com/htxk/edusystem/controller/EduTeacherController.java" />
-        <option value="$PROJECT_DIR$/HtxkEmsm-system/src/main/java/com/htxk/edusystem/domain/EduTeacher.java" />
       </list>
     </option>
   </component>
@@ -411,78 +403,6 @@
               <item name="ruoyi" type="462c0819:PsiDirectoryNode" />
               <item name="web" type="462c0819:PsiDirectoryNode" />
               <item name="controller" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="HtxkEmsm" type="b2602c69:ProjectViewProjectNode" />
-              <item name="HtxkEmsm" type="462c0819:PsiDirectoryNode" />
-              <item name="HtxkEmsm-admin" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="htxk" type="462c0819:PsiDirectoryNode" />
-              <item name="ruoyi" type="462c0819:PsiDirectoryNode" />
-              <item name="web" type="462c0819:PsiDirectoryNode" />
-              <item name="controller" type="462c0819:PsiDirectoryNode" />
-              <item name="common" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="HtxkEmsm" type="b2602c69:ProjectViewProjectNode" />
-              <item name="HtxkEmsm" type="462c0819:PsiDirectoryNode" />
-              <item name="HtxkEmsm-admin" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="htxk" type="462c0819:PsiDirectoryNode" />
-              <item name="ruoyi" type="462c0819:PsiDirectoryNode" />
-              <item name="web" type="462c0819:PsiDirectoryNode" />
-              <item name="controller" type="462c0819:PsiDirectoryNode" />
-              <item name="demo" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="HtxkEmsm" type="b2602c69:ProjectViewProjectNode" />
-              <item name="HtxkEmsm" type="462c0819:PsiDirectoryNode" />
-              <item name="HtxkEmsm-admin" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="htxk" type="462c0819:PsiDirectoryNode" />
-              <item name="ruoyi" type="462c0819:PsiDirectoryNode" />
-              <item name="web" type="462c0819:PsiDirectoryNode" />
-              <item name="controller" type="462c0819:PsiDirectoryNode" />
-              <item name="demo" type="462c0819:PsiDirectoryNode" />
-              <item name="controller" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="HtxkEmsm" type="b2602c69:ProjectViewProjectNode" />
-              <item name="HtxkEmsm" type="462c0819:PsiDirectoryNode" />
-              <item name="HtxkEmsm-admin" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="htxk" type="462c0819:PsiDirectoryNode" />
-              <item name="ruoyi" type="462c0819:PsiDirectoryNode" />
-              <item name="web" type="462c0819:PsiDirectoryNode" />
-              <item name="controller" type="462c0819:PsiDirectoryNode" />
-              <item name="demo" type="462c0819:PsiDirectoryNode" />
-              <item name="domain" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="HtxkEmsm" type="b2602c69:ProjectViewProjectNode" />
-              <item name="HtxkEmsm" type="462c0819:PsiDirectoryNode" />
-              <item name="HtxkEmsm-admin" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="htxk" type="462c0819:PsiDirectoryNode" />
-              <item name="ruoyi" type="462c0819:PsiDirectoryNode" />
-              <item name="web" type="462c0819:PsiDirectoryNode" />
-              <item name="controller" type="462c0819:PsiDirectoryNode" />
-              <item name="monitor" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="HtxkEmsm" type="b2602c69:ProjectViewProjectNode" />
@@ -692,42 +612,6 @@
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="com" type="462c0819:PsiDirectoryNode" />
               <item name="htxk" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="HtxkEmsm" type="b2602c69:ProjectViewProjectNode" />
-              <item name="HtxkEmsm" type="462c0819:PsiDirectoryNode" />
-              <item name="HtxkEmsm-common" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="htxk" type="462c0819:PsiDirectoryNode" />
-              <item name="ruoyi" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="HtxkEmsm" type="b2602c69:ProjectViewProjectNode" />
-              <item name="HtxkEmsm" type="462c0819:PsiDirectoryNode" />
-              <item name="HtxkEmsm-common" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="htxk" type="462c0819:PsiDirectoryNode" />
-              <item name="ruoyi" type="462c0819:PsiDirectoryNode" />
-              <item name="common" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="HtxkEmsm" type="b2602c69:ProjectViewProjectNode" />
-              <item name="HtxkEmsm" type="462c0819:PsiDirectoryNode" />
-              <item name="HtxkEmsm-common" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="htxk" type="462c0819:PsiDirectoryNode" />
-              <item name="ruoyi" type="462c0819:PsiDirectoryNode" />
-              <item name="common" type="462c0819:PsiDirectoryNode" />
-              <item name="utils" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="HtxkEmsm" type="b2602c69:ProjectViewProjectNode" />
@@ -1259,7 +1143,7 @@
       <workItem from="1578530618385" duration="6174000" />
       <workItem from="1578537640713" duration="16488000" />
       <workItem from="1578560658049" duration="10769000" />
-      <workItem from="1578616562422" duration="13486000" />
+      <workItem from="1578616562422" duration="15804000" />
     </task>
     <task id="LOCAL-00001" summary="版权信息修改">
       <created>1577979889528</created>
@@ -1408,7 +1292,14 @@
       <option name="project" value="LOCAL" />
       <updated>1578552136699</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="学生与教师模块完善成功，导出正常">
+      <created>1578630249473</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1578630249475</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1444,11 +1335,10 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="23873000" />
+    <option name="totallyTimeSpent" value="26191000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1295" height="695" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.50282943" side_tool="true" weight="0.66725665" />
       <window_info anchor="bottom" id="JRebel Console" order="7" sideWeight="0.5004042" side_tool="true" weight="0.32920355" />
@@ -1473,7 +1363,7 @@
       <window_info anchor="bottom" id="消息" order="7" sideWeight="0.4995958" weight="0.30973452" />
       <window_info anchor="bottom" id="Spring" order="8" sideWeight="0.4995958" weight="0.32920355" />
       <window_info anchor="bottom" id="Terminal" order="7" weight="0.32920355" />
-      <window_info active="true" anchor="bottom" id="运行" order="7" sideWeight="0.49717057" visible="true" weight="0.1380531" />
+      <window_info active="true" anchor="bottom" id="运行" order="7" sideWeight="0.49717057" visible="true" weight="0.23893805" />
       <window_info anchor="right" id="控制板" order="7" />
       <window_info anchor="bottom" id="Problems" order="9" />
       <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4950166" visible="true" weight="0.38561034" />
@@ -1559,12 +1449,14 @@
     <MESSAGE value="修改学生用户中实体类的班级id字段属性" />
     <MESSAGE value="学生模块查询与新增完成" />
     <MESSAGE value="学生列表下拉框动态填充数据" />
-    <option name="LAST_COMMIT_MESSAGE" value="学生列表下拉框动态填充数据" />
+    <MESSAGE value="学生与教师模块完善成功，导出正常" />
+    <option name="LAST_COMMIT_MESSAGE" value="学生与教师模块完善成功，导出正常" />
+  </component>
+  <component name="antWorkspaceConfiguration">
+    <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
+    <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/HtxkEmsm-admin/src/main/resources/static/dashuju/images/bg_box1.png" />
-    <entry file="file://$PROJECT_DIR$/HtxkEmsm-admin/src/main/resources/static/dashuju/images/bg_box2.png" />
-    <entry file="file://$PROJECT_DIR$/HtxkEmsm-admin/src/main/resources/static/dashuju/images/bg_box3.png" />
     <entry file="file://$PROJECT_DIR$/HtxkEmsm-admin/src/main/resources/static/dashuju/images/bg_title.png" />
     <entry file="file://$PROJECT_DIR$/HtxkEmsm-admin/src/main/resources/static/dashuju/images/data_icon.png" />
     <entry file="file://$PROJECT_DIR$/HtxkEmsm-admin/src/main/resources/static/dashuju/images/title_icon.png" />
@@ -1736,20 +1628,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/HtxkEmsm-system/src/main/java/com/htxk/ruoyi/system/service/impl/SysUserServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="166">
-          <caret line="194" column="30" selection-start-line="194" selection-start-column="30" selection-end-line="194" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/HtxkEmsm-system/src/main/java/com/htxk/ruoyi/system/service/ISysUserService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-13">
-          <caret line="94" column="7" lean-forward="true" selection-start-line="94" selection-start-column="7" selection-end-line="94" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/HtxkEmsm-admin/src/main/resources/templates/edusystem/teacher/add.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1188">
@@ -1847,17 +1725,62 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/HtxkEmsm-admin/src/main/java/com/htxk/edusystem/controller/EduStudentController.java">
+    <entry file="file://$PROJECT_DIR$/HtxkEmsm-system/src/main/java/com/htxk/ruoyi/system/service/impl/SysUserServiceImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="228">
-          <caret line="93" column="7" lean-forward="true" selection-start-line="93" selection-start-column="7" selection-end-line="96" selection-end-column="9" />
+        <state relative-caret-position="185">
+          <caret line="62" column="31" selection-start-line="62" selection-start-column="31" selection-end-line="62" selection-end-column="31" />
+          <folding>
+            <element signature="e#1709#1710#0" expanded="true" />
+            <element signature="e#1763#1764#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/HtxkEmsm-admin/src/main/java/com/htxk/edusystem/controller/EduTeacherController.java">
+    <entry file="file://$PROJECT_DIR$/HtxkEmsm-system/src/main/java/com/htxk/ruoyi/system/mapper/SysUserMapper.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="308">
-          <caret line="87" column="53" lean-forward="true" selection-start-line="87" selection-start-column="53" selection-end-line="87" selection-end-column="53" />
+        <state relative-caret-position="178">
+          <caret line="19" column="25" selection-start-line="19" selection-start-column="25" selection-end-line="19" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/HtxkEmsm-system/src/main/java/com/htxk/ruoyi/system/service/ISysUserService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="133">
+          <caret line="19" column="19" selection-start-line="19" selection-start-column="19" selection-end-line="19" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/HtxkEmsm-admin/src/main/java/com/htxk/ruoyi/web/controller/system/SysUserController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="41" column="14" lean-forward="true" selection-start-line="41" selection-start-column="14" selection-end-line="41" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/HtxkEmsm-system/src/main/resources/mapper/system/SysUserMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="232" column="66" lean-forward="true" selection-start-line="232" selection-start-column="66" selection-end-line="232" selection-end-column="66" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/HtxkEmsm-admin/src/main/java/com/htxk/edusystem/controller/EduStudentController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="380">
+          <caret line="137" column="31" lean-forward="true" selection-start-line="136" selection-start-column="8" selection-end-line="137" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/HtxkEmsm-system/src/main/java/com/htxk/ruoyi/system/domain/SysUser.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="143" column="33" selection-start-line="143" selection-start-column="33" selection-end-line="143" selection-end-column="33" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#2670#2671#0" expanded="true" />
+            <element signature="e#2718#2719#0" expanded="true" />
+            <element signature="e#2758#2759#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1909,17 +1832,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/HtxkEmsm-system/src/main/java/com/htxk/ruoyi/system/domain/SysUser.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1085">
-          <caret line="122" lean-forward="true" selection-start-line="122" selection-end-line="122" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/HtxkEmsm-system/src/main/java/com/htxk/edusystem/domain/EduTeacher.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="287">
-          <caret line="28" column="21" selection-start-line="28" selection-start-column="21" selection-end-line="28" selection-end-column="21" />
+        <state relative-caret-position="300">
+          <caret line="27" column="7" lean-forward="true" selection-start-line="27" selection-start-column="7" selection-end-line="27" selection-end-column="7" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#1980#1981#0" expanded="true" />
@@ -1955,6 +1871,13 @@
             <element signature="e#3179#3180#0" expanded="true" />
             <element signature="e#3215#3216#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/HtxkEmsm-admin/src/main/java/com/htxk/edusystem/controller/EduTeacherController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-72">
+          <caret line="130" column="31" lean-forward="true" selection-start-line="130" selection-start-column="31" selection-end-line="130" selection-end-column="31" />
         </state>
       </provider>
     </entry>
