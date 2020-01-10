@@ -8,12 +8,15 @@ import com.htxk.ruoyi.common.core.domain.AjaxResult;
 import com.htxk.ruoyi.common.core.page.TableDataInfo;
 import com.htxk.ruoyi.common.enums.BusinessType;
 import com.htxk.ruoyi.common.utils.poi.ExcelUtil;
+import com.htxk.ruoyi.system.domain.SysUser;
+import com.htxk.ruoyi.system.service.ISysUserService;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import java.util.Date;
 import java.util.List;
 
@@ -77,9 +80,10 @@ public class EduScoreController extends BaseController {
     @Log(title = "课程分数", businessType = BusinessType.INSERT)
     @PostMapping("/add")
     @ResponseBody
-    public AjaxResult addSave(EduScore eduScore) {
+    public AjaxResult addSave(EduScore eduScore,HttpSession session) {
+        String userName = session.getAttribute("username").toString();
         //设置创建者
-        eduScore.setCreateBy("1");
+        eduScore.setCreateBy(userName);
         //设置创建时间
         eduScore.setCreateTime(new Date());
         //设置修改时间
@@ -104,9 +108,10 @@ public class EduScoreController extends BaseController {
     @Log(title = "课程分数", businessType = BusinessType.UPDATE)
     @PostMapping("/edit")
     @ResponseBody
-    public AjaxResult editSave(EduScore eduScore) {
-        //设置更新着
-        eduScore.setUpdataBy("1");
+    public AjaxResult editSave(EduScore eduScore,HttpSession session) {
+        String userName = session.getAttribute("username").toString();
+        //设置更新者
+        eduScore.setUpdataBy(userName);
         //设置修改时间
         eduScore.setUpdataTime(new Date());
         return toAjax(eduScoreService.updateEduScore(eduScore));

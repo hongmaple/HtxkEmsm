@@ -14,9 +14,9 @@ import java.util.List;
  * 班级信息Service业务层处理
  *
  * @author maple
- * @date 2020-01-03
+ * @date 2020-01-10
  */
-@Service
+@Service("EduClass")
 public class EduClassServiceImpl implements IEduClassService {
     @Autowired
     private EduClassMapper eduClassMapper;
