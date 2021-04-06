@@ -2,7 +2,7 @@
 
 # 湖大信科IT综合管理系统
 
-## maple小组
+## - [HtxkEmsm升级版](https://github.com/hongmaple/octopus "HtxkEmsm升级版")
 ## 运行环境部署
   * 用git clone 项目到本地仓库
   * 创建Mysql数据库，数据库名：mapleemsplus，并执行sql文件夹下的mapleemsmplus.sql文件
