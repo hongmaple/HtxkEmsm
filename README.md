@@ -1,6 +1,6 @@
 
 
-# 湖大信科IT综合管理系统
+# 教务综合管理系统
 
 ## - [HtxkEmsm升级版](https://github.com/hongmaple/octopus "HtxkEmsm升级版")
 ## 运行环境部署
