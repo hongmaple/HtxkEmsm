@@ -150,3 +150,15 @@ xss:
   ```
  * 启动HtxkEmsm-admin模块下的com.htxk.MapleApplication中的main方法
  * 启动成功后,访问8888端口
+
+### 提供部署，定制服务，有需要的加v mapleCx331
+## 联系我，提供部署定制服务
+wx: mapleCx331   qq群：[![加入QQ群](https://img.shields.io/badge/628043364-blue.svg)](https://qm.qq.com/q/RuCfOyaOUm) 
+
+## 开源不易，谢谢打赏
+<table>
+ <td>
+   <tr><img style="height: 150px;width: 100px" src="https://gitee.com/hongmaple/netdisk/raw/master/image/wxPay.jpg" alt=""/></tr>
+   <tr><img style="height: 150px;width: 100px" src="https://gitee.com/hongmaple/netdisk/raw/master/image/zfb.jpg" alt=""/></tr>
+ </td>
+</table>
