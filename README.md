@@ -2,6 +2,9 @@
 
 # 教务综合管理系统
 
+* 阿里云服务器优惠：[点我进入](https://www.aliyun.com/daily-act/ecs/activity_selection?userCode=yclv4x57)，腾讯云产品优惠：[点我进入](https://curl.qcloud.com/ZHPbMWTl)&nbsp;&nbsp;
+* 阿里云618：[点我领取](https://www.aliyun.com/minisite/goods?userCode=yclv4x57)，腾讯云618：[点我领取](https://curl.qcloud.com/6znbHFOM)&nbsp;&nbsp;
+
 ## - [HtxkEmsm升级版](https://github.com/hongmaple/octopus "HtxkEmsm升级版")
 ## 运行环境部署
   * 用git clone 项目到本地仓库
